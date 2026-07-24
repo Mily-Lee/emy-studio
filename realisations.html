@@ -51,6 +51,68 @@
   }
 
   /* ====================================
+     MENU DESKTOP — barre horizontale classique,
+     le burger prend le relais uniquement en responsive
+     ==================================== */
+  .top-nav {
+    display: none;
+  }
+  @media (min-width: 900px) {
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.6rem 2.5rem;
+      z-index: 800;
+    }
+    .nav-burger,
+    .nav-links {
+      display: none;
+    }
+  }
+  .top-nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    font-size: 1.15rem;
+    color: var(--ink);
+  }
+  .top-nav-links {
+    display: flex;
+    gap: 2.4rem;
+    list-style: none;
+  }
+  .top-nav-links a {
+    position: relative;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .top-nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.35s var(--ease);
+  }
+  .top-nav-links a:hover::after,
+  .top-nav-links a.active::after {
+    width: 100%;
+  }
+  .top-nav-links a.active {
+    color: var(--accent);
+  }
+
+  /* ====================================
      BURGER — grille 2x2, converge en croix
      ==================================== */
   .nav-burger {
@@ -221,6 +283,17 @@
 </style>
 </head>
 <body>
+
+  <header class="top-nav">
+    <a href="index.html" class="top-nav-logo">Emy Studio</a>
+    <ul class="top-nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="realisations.html" class="active">Réalisations</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </header>
 
   <button class="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false">
     <span></span><span></span><span></span><span></span>
