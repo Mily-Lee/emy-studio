@@ -18,6 +18,7 @@
     --sand: #E8D9C8;
     --panel: #4A372F;
     --panel-text: #FCFAF7;
+    --rose: #C79FA8;
     --ease: cubic-bezier(0.65, 0, 0.35, 1);
   }
 
@@ -81,6 +82,9 @@
     letter-spacing: 0.03em;
     font-size: 1.15rem;
     color: var(--ink);
+  }
+  .top-nav-logo .rose {
+    color: var(--rose);
   }
   .top-nav-links {
     display: flex;
@@ -285,7 +289,7 @@
 <body>
 
   <header class="top-nav">
-    <a href="index.html" class="top-nav-logo">Emy Studio</a>
+    <a href="index.html" class="top-nav-logo"><span class="rose">Emy</span> Studio</a>
     <ul class="top-nav-links">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="services.html" class="active">Services</a></li>
