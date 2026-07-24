@@ -144,7 +144,7 @@ a { color: inherit; text-decoration: none; }
 .about-section p + p {
   margin-top: 1rem;
 }
-.about-section a {
+.about-section p a {
   color: var(--ink);
   font-weight: 600;
   text-decoration: underline;
