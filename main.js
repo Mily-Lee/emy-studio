@@ -172,7 +172,7 @@ function initContactForm() {
         status.className = 'form-status error';
       }
     } catch {
-      status.textContent = 'Une erreur est survenue. Écrivez-moi directement à contact@emilieroupsard.fr';
+      status.textContent = 'Une erreur est survenue. Appelez-moi directement au 07 64 62 88 43';
       status.className = 'form-status error';
     }
 
