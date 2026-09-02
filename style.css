@@ -1069,19 +1069,28 @@ main.is-leaving {
 .top-nav {
   display: none;
 }
+body.subpage .top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.3rem 1.5rem;
+  background: var(--bg);
+  box-shadow: 0 12px 24px -18px rgba(74, 55, 47, 0.5);
+  z-index: 1100;
+}
+body.subpage .top-nav-links {
+  display: none;
+}
 @media (min-width: 900px) {
   body.subpage .top-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     padding: 1.6rem 2.5rem;
-    background: var(--bg);
-    box-shadow: 0 12px 24px -18px rgba(74, 55, 47, 0.5);
-    z-index: 1100;
+  }
+  body.subpage .top-nav-links {
+    display: flex;
   }
   body.subpage .nav-burger,
   body.subpage .nav-links {
