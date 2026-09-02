@@ -765,6 +765,7 @@ main.is-leaving {
     right: 0;
     padding: 1.6rem 2.5rem;
     background: var(--bg);
+    box-shadow: 0 12px 24px -18px rgba(74, 55, 47, 0.5);
     z-index: 800;
   }
   body.subpage .nav-burger,
