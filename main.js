@@ -15,39 +15,13 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ===== Modale projets (page Réalisations) =====
-// Etat au niveau module : persiste entre deux appels d'initGallery,
-// donc pas de listener keydown dupliqué à chaque navigation AJAX.
-let gallerySlides = [];
-let galleryIndex = 0;
-
-function updateGallerySlide() {
-  const img = document.getElementById('modalImg');
-  if (!img) return;
-  const dotsWrap = document.getElementById('modalDots');
-  const prevBtn = document.getElementById('modalPrev');
-  const nextBtn = document.getElementById('modalNext');
-
-  img.style.opacity = '0';
-  setTimeout(() => {
-    img.src = gallerySlides[galleryIndex];
-    img.style.opacity = '1';
-  }, 200);
-
-  if (dotsWrap) {
-    dotsWrap.querySelectorAll('.modal-dot').forEach((d, i) => d.classList.toggle('active', i === galleryIndex));
-  }
-  if (prevBtn) prevBtn.classList.toggle('hidden', gallerySlides.length < 2);
-  if (nextBtn) nextBtn.classList.toggle('hidden', gallerySlides.length < 2);
-}
-
+// Vue d'ensemble : toutes les images du projet côte à côte dans une grille,
+// plus de carrousel à faire défiler une image à la fois.
 function openProjectModal(tile) {
   const modal = document.getElementById('projectModal');
   if (!modal) return;
 
-  const img = document.getElementById('modalImg');
-  const dotsWrap = document.getElementById('modalDots');
-  const prevBtn = document.getElementById('modalPrev');
-  const nextBtn = document.getElementById('modalNext');
+  const galleryEl = document.getElementById('modalGallery');
   const tagEl = document.getElementById('modalTag');
   const titleEl = document.getElementById('modalTitle');
   const detailEl = document.getElementById('modalDetail');
@@ -61,36 +35,23 @@ function openProjectModal(tile) {
   const soonEl = document.getElementById('modalSoon');
 
   const imgsRaw = tile.dataset.imgs || '';
-  gallerySlides = imgsRaw ? imgsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
-  galleryIndex = 0;
+  const captionsRaw = tile.dataset.captions || '';
+  const images = imgsRaw ? imgsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+  const captions = captionsRaw ? captionsRaw.split(',').map(s => s.trim()) : [];
 
   tagEl.textContent = tile.dataset.tag || '';
   titleEl.textContent = tile.dataset.title || '';
   detailEl.textContent = tile.dataset.detail || '';
 
-  dotsWrap.innerHTML = '';
-  if (gallerySlides.length) {
-    img.style.display = 'block';
-    img.alt = tile.dataset.title || '';
-    img.src = gallerySlides[0];
-    img.style.opacity = '1';
-    if (gallerySlides.length > 1) {
-      gallerySlides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'modal-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', `Image ${i + 1}`);
-        dot.addEventListener('click', () => { galleryIndex = i; updateGallerySlide(); });
-        dotsWrap.appendChild(dot);
-      });
-    }
-    prevBtn.classList.toggle('hidden', gallerySlides.length < 2);
-    nextBtn.classList.toggle('hidden', gallerySlides.length < 2);
-  } else {
-    img.style.display = 'none';
-    prevBtn.classList.add('hidden');
-    nextBtn.classList.add('hidden');
-  }
+  galleryEl.innerHTML = '';
+  galleryEl.classList.toggle('single', images.length <= 1);
+  images.forEach((src, i) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = captions[i] || tile.dataset.title || '';
+    img.loading = 'lazy';
+    galleryEl.appendChild(img);
+  });
 
   const toolsRaw = tile.dataset.tools || '';
   toolsWrap.style.display = toolsRaw ? 'block' : 'none';
@@ -144,29 +105,12 @@ function initGallery() {
   tiles.forEach(tile => tile.addEventListener('click', () => openProjectModal(tile)));
   document.getElementById('modalClose').addEventListener('click', closeProjectModal);
   modal.querySelector('.modal-backdrop').addEventListener('click', closeProjectModal);
-  document.getElementById('modalPrev').addEventListener('click', () => {
-    galleryIndex = (galleryIndex - 1 + gallerySlides.length) % gallerySlides.length;
-    updateGallerySlide();
-  });
-  document.getElementById('modalNext').addEventListener('click', () => {
-    galleryIndex = (galleryIndex + 1) % gallerySlides.length;
-    updateGallerySlide();
-  });
 }
 
 // Enregistré une seule fois au chargement du script : safe contre les navigations répétées
 document.addEventListener('keydown', (e) => {
   const modal = document.getElementById('projectModal');
-  if (!modal || !modal.classList.contains('open')) return;
-  if (e.key === 'Escape') closeProjectModal();
-  if (e.key === 'ArrowLeft' && gallerySlides.length > 1) {
-    galleryIndex = (galleryIndex - 1 + gallerySlides.length) % gallerySlides.length;
-    updateGallerySlide();
-  }
-  if (e.key === 'ArrowRight' && gallerySlides.length > 1) {
-    galleryIndex = (galleryIndex + 1) % gallerySlides.length;
-    updateGallerySlide();
-  }
+  if (modal && modal.classList.contains('open') && e.key === 'Escape') closeProjectModal();
 });
 
 initGallery();
