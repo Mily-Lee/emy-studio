@@ -318,7 +318,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-4px);
 }
 .project-tile-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 1.05rem;
