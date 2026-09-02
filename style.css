@@ -563,6 +563,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-soft);
 }
 .modal-body .btn {
+  --r: -2deg;
   margin-top: clamp(1.7rem, 2.5vw, 2.4rem);
 }
 .modal-body #modalLink,
