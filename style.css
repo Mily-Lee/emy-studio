@@ -1164,8 +1164,8 @@ body.subpage .top-nav-links {
     padding: 5px;
   }
   .nav-burger span {
-    width: 11px;
-    height: 11px;
+    width: 8px;
+    height: 8px;
   }
   .nav-burger span:nth-child(1) { top: 5px; left: 5px; }
   .nav-burger span:nth-child(2) { top: 5px; right: 5px; }
