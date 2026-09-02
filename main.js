@@ -144,7 +144,44 @@ document.addEventListener('keydown', (e) => {
   if (modal && modal.classList.contains('open') && e.key === 'Escape') closeProjectModal();
 });
 
+// ===== Formulaire de contact (page Contact) =====
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = document.getElementById('formStatus');
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    status.className = 'form-status';
+    status.textContent = '';
+
+    try {
+      const res = await fetch('https://formspree.io/f/xrevkdvw', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        status.textContent = 'Message envoyé ! Je vous réponds rapidement.';
+        status.className = 'form-status success';
+        form.reset();
+      } else {
+        status.textContent = 'Une erreur est survenue, réessayez.';
+        status.className = 'form-status error';
+      }
+    } catch {
+      status.textContent = 'Une erreur est survenue. Écrivez-moi directement à contact@emilieroupsard.fr';
+      status.className = 'form-status error';
+    }
+
+    btn.disabled = false;
+  });
+}
+
 initGallery();
+initContactForm();
 
 // ===== Navigation sans rechargement — le menu reste en place =====
 // On ne remplace que le contenu de <main>, jamais le header/burger/menu.
@@ -173,6 +210,7 @@ async function navigateTo(page, addToHistory = true) {
     current.replaceWith(document.adoptNode(nextMain));
     setActiveLinks(page);
     initGallery();
+    initContactForm();
 
     if (addToHistory) history.pushState({ page }, '', page);
     window.scrollTo(0, 0);
