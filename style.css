@@ -431,7 +431,7 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   flex: none;
   height: 60vh;
-  background: var(--sand);
+  background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
