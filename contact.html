@@ -65,18 +65,24 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="contact-name">Nom</label>
-              <input type="text" id="contact-name" name="name" placeholder="Votre nom" required autocomplete="name">
+              <label for="contact-firstname">Prénom</label>
+              <input type="text" id="contact-firstname" name="firstname" placeholder="Votre prénom" required autocomplete="given-name">
             </div>
+            <div class="form-group">
+              <label for="contact-name">Nom</label>
+              <input type="text" id="contact-name" name="name" placeholder="Votre nom" required autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="form-row">
             <div class="form-group">
               <label for="contact-email">Email</label>
               <input type="email" id="contact-email" name="email" placeholder="votre@email.com" required autocomplete="email">
             </div>
-          </div>
-
-          <div class="form-group">
-            <label for="contact-subject">Sujet</label>
-            <input type="text" id="contact-subject" name="subject" placeholder="Objet de votre message" required>
+            <div class="form-group">
+              <label for="contact-subject">Sujet</label>
+              <input type="text" id="contact-subject" name="subject" placeholder="Objet de votre message" required>
+            </div>
           </div>
 
           <div class="form-group">
