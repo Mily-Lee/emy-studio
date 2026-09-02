@@ -50,8 +50,17 @@ function openProjectModal(tile) {
     img.src = src;
     img.alt = captions[i] || tile.dataset.title || '';
     img.loading = 'lazy';
-    if (/icon|logo/i.test(src)) img.classList.add('is-icon');
-    galleryEl.appendChild(img);
+
+    if (/icon|logo/i.test(src)) {
+      img.classList.add('is-icon');
+      const card = document.createElement('div');
+      card.className = 'modal-gallery-card';
+      card.style.background = tile.dataset.iconBg || 'var(--sand)';
+      card.appendChild(img);
+      galleryEl.appendChild(card);
+    } else {
+      galleryEl.appendChild(img);
+    }
   });
 
   const toolsRaw = tile.dataset.tools || '';

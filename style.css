@@ -455,11 +455,16 @@ a { color: inherit; text-decoration: none; }
   border-radius: 1rem;
   transition: transform 0.4s var(--ease);
 }
+.modal-gallery-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  padding: 2rem;
+}
 .modal-gallery img.is-icon {
   width: auto;
   max-width: 100%;
-  justify-self: center;
-  align-self: center;
 }
 .modal-gallery img:hover {
   transform: scale(1.02);
