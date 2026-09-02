@@ -263,6 +263,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 1rem;
   overflow: hidden;
   isolation: isolate;
+  z-index: 1000;
   transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
 }
 .project-tile:hover,
