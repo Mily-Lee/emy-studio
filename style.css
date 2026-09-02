@@ -426,16 +426,22 @@ a { color: inherit; text-decoration: none; }
   transform: rotate(90deg);
 }
 
-/* L'image arrive en dernier, dans la continuité du texte */
+/* L'image arrive en dernier, dans la continuité du texte, en pleine largeur */
 .modal-visual {
   position: relative;
   flex: none;
-  height: 60vh;
+  height: 65vh;
   background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+}
+@media (min-width: 700px) {
+  .modal-visual {
+    height: 80vh;
+    padding: 3rem;
+  }
 }
 .modal-visual img {
   max-width: 100%;
@@ -492,12 +498,21 @@ a { color: inherit; text-decoration: none; }
 
 .modal-body {
   flex: none;
-  padding: calc(4rem + env(safe-area-inset-top)) 2.2rem 2rem;
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: calc(4rem + env(safe-area-inset-top)) 1.5rem 2rem;
 }
-@media (min-width: 800px) {
+@media (min-width: 700px) {
   .modal-body {
-    padding: calc(4.5rem + env(safe-area-inset-top)) 3.2rem 2.5rem;
-    max-width: 44rem;
+    max-width: 52rem;
+    padding: calc(5.5rem + env(safe-area-inset-top)) 2.5rem 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  .modal-body {
+    max-width: 60rem;
+    padding: calc(7rem + env(safe-area-inset-top)) 2.5rem 3.5rem;
   }
 }
 .modal-body h2 {
@@ -505,24 +520,24 @@ a { color: inherit; text-decoration: none; }
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 600;
-  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
   color: var(--ink);
 }
 .modal-detail {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   font-family: 'Manrope', sans-serif;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--ink-soft);
-  font-size: 0.95rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
 }
 .modal-meta {
-  margin-top: 1.3rem;
+  margin-top: clamp(1.3rem, 2vw, 1.8rem);
 }
 .modal-meta-label {
   display: block;
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -538,7 +553,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 0.4rem;
   font-family: 'Manrope', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: var(--ink-soft);
 }
 .modal-swatch-dot {
@@ -551,11 +566,11 @@ a { color: inherit; text-decoration: none; }
 .modal-body #modalFonts,
 .modal-body #modalTools {
   font-family: 'Manrope', sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: var(--ink-soft);
 }
 .modal-body .btn {
-  margin-top: 1.7rem;
+  margin-top: clamp(1.7rem, 2.5vw, 2.4rem);
 }
 .modal-body #modalLink,
 .modal-body #modalSoon {
