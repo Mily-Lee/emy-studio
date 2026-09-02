@@ -456,7 +456,8 @@ a { color: inherit; text-decoration: none; }
   transition: transform 0.4s var(--ease);
 }
 .modal-gallery img.is-icon {
-  max-width: 180px;
+  width: auto;
+  max-width: 100%;
   justify-self: center;
   align-self: center;
 }
