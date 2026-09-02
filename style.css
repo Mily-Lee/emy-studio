@@ -319,7 +319,7 @@ a { color: inherit; text-decoration: none; }
 }
 .project-tile-title {
   font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 600;
   font-size: 1.05rem;
   color: var(--panel-text);
