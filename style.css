@@ -369,10 +369,6 @@ a { color: inherit; text-decoration: none; }
   position: fixed;
   inset: 0;
   z-index: 970;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
@@ -390,17 +386,15 @@ a { color: inherit; text-decoration: none; }
   -webkit-backdrop-filter: blur(8px);
 }
 
+/* La modale occupe tout l'écran, quelle que soit la taille */
 .modal-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 62rem;
-  max-height: 88vh;
+  width: 100vw;
+  height: 100dvh;
   background: var(--bg);
-  border-radius: 1.75rem;
   overflow: hidden;
-  box-shadow: 0 40px 100px -30px rgba(74, 55, 47, 0.5);
   transform: translateY(24px) scale(0.98);
   opacity: 0;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
@@ -412,17 +406,16 @@ a { color: inherit; text-decoration: none; }
 @media (min-width: 800px) {
   .modal-card {
     flex-direction: row;
-    max-height: 82vh;
   }
 }
 
 .modal-close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
   z-index: 5;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(74, 55, 47, 0.15);
   background: var(--bg);
@@ -441,7 +434,7 @@ a { color: inherit; text-decoration: none; }
 .modal-visual {
   position: relative;
   flex: 0 0 auto;
-  height: 42vh;
+  height: 38dvh;
   background: var(--sand);
   display: flex;
   align-items: center;
@@ -450,8 +443,8 @@ a { color: inherit; text-decoration: none; }
 }
 @media (min-width: 800px) {
   .modal-visual {
-    flex: 0 0 52%;
-    height: auto;
+    flex: 0 0 55%;
+    height: 100%;
   }
 }
 .modal-visual img {
@@ -509,8 +502,14 @@ a { color: inherit; text-decoration: none; }
 
 .modal-body {
   flex: 1;
-  padding: 2rem 2.2rem 2.4rem;
+  padding: 2rem 2.2rem calc(2.4rem + env(safe-area-inset-bottom));
   overflow-y: auto;
+  min-height: 0;
+}
+@media (min-width: 800px) {
+  .modal-body {
+    padding: 3rem 3.2rem;
+  }
 }
 .modal-body h2 {
   margin-top: 0.8rem;
