@@ -50,6 +50,7 @@ function openProjectModal(tile) {
     img.src = src;
     img.alt = captions[i] || tile.dataset.title || '';
     img.loading = 'lazy';
+    if (/icon|logo/i.test(src)) img.classList.add('is-icon');
     galleryEl.appendChild(img);
   });
 
