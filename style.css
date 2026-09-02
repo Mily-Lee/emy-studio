@@ -469,6 +469,11 @@ a { color: inherit; text-decoration: none; }
 .modal-gallery img:hover {
   transform: scale(1.02);
 }
+/* Uniformise la hauteur des captures pour ce projet ; l'icône reste intacte */
+.modal-gallery.crop img:not(.is-icon) {
+  height: clamp(220px, 30vw, 380px);
+  object-fit: cover;
+}
 /* Une seule image : affichage entier, pas de recadrage forcé */
 .modal-gallery.single {
   grid-template-columns: 1fr;
