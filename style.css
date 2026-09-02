@@ -83,7 +83,7 @@ a { color: inherit; text-decoration: none; }
 .about-page {
   max-width: 72rem;
   margin: 0 auto;
-  padding: clamp(7rem, 14vw, 9rem) 1.5rem 6rem;
+  padding: 8rem 1.5rem 6rem;
 }
 
 .about-hero {
@@ -244,7 +244,7 @@ a { color: inherit; text-decoration: none; }
 .realisations-page {
   max-width: 72rem;
   margin: 0 auto;
-  padding: clamp(7rem, 14vw, 9rem) 1.5rem 6rem;
+  padding: 8rem 1.5rem 6rem;
 }
 
 .realisations-header {
@@ -624,7 +624,7 @@ a { color: inherit; text-decoration: none; }
 .contact-page {
   max-width: 72rem;
   margin: 0 auto;
-  padding: clamp(7rem, 14vw, 9rem) 1.5rem 6rem;
+  padding: 8rem 1.5rem 6rem;
 }
 
 .contact-grid {
