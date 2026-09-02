@@ -14,6 +14,25 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && burger.classList.contains('open')) toggleMenu();
 });
 
+// ===== Bouton retour en haut =====
+// Créé une seule fois et attaché au body (jamais touché par la navigation AJAX).
+const scrollTopBtn = document.createElement('button');
+scrollTopBtn.type = 'button';
+scrollTopBtn.className = 'scroll-top';
+scrollTopBtn.setAttribute('aria-label', 'Retour en haut');
+scrollTopBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+  <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+document.body.appendChild(scrollTopBtn);
+
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 // ===== Modale projets (page Réalisations) =====
 // Vue d'ensemble : toutes les images du projet côte à côte dans une grille,
 // plus de carrousel à faire défiler une image à la fois.
