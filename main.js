@@ -158,7 +158,7 @@ function initContactForm() {
     status.textContent = '';
 
     try {
-      const res = await fetch('https://formspree.io/f/xrevkdvw', {
+      const res = await fetch('https://formspree.io/f/xvkorgeb', {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' },
