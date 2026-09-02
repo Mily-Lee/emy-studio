@@ -394,7 +394,7 @@ a { color: inherit; text-decoration: none; }
   width: 100vw;
   height: 100dvh;
   background: var(--bg);
-  overflow: hidden;
+  overflow-y: auto;
   transform: translateY(24px) scale(0.98);
   opacity: 0;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
@@ -403,14 +403,9 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(0) scale(1);
   opacity: 1;
 }
-@media (min-width: 800px) {
-  .modal-card {
-    flex-direction: row;
-  }
-}
 
 .modal-close {
-  position: absolute;
+  position: fixed;
   top: max(1rem, env(safe-area-inset-top));
   right: max(1rem, env(safe-area-inset-right));
   z-index: 5;
@@ -431,21 +426,16 @@ a { color: inherit; text-decoration: none; }
   transform: rotate(90deg);
 }
 
+/* L'image arrive en dernier, dans la continuité du texte */
 .modal-visual {
   position: relative;
-  flex: 0 0 auto;
-  height: 38dvh;
+  flex: none;
+  height: 60vh;
   background: var(--sand);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-}
-@media (min-width: 800px) {
-  .modal-visual {
-    flex: 0 0 55%;
-    height: 100%;
-  }
 }
 .modal-visual img {
   max-width: 100%;
@@ -501,14 +491,13 @@ a { color: inherit; text-decoration: none; }
 }
 
 .modal-body {
-  flex: 1;
-  padding: 2rem 2.2rem calc(2.4rem + env(safe-area-inset-bottom));
-  overflow-y: auto;
-  min-height: 0;
+  flex: none;
+  padding: calc(4rem + env(safe-area-inset-top)) 2.2rem 2rem;
 }
 @media (min-width: 800px) {
   .modal-body {
-    padding: 3rem 3.2rem;
+    padding: calc(4.5rem + env(safe-area-inset-top)) 3.2rem 2.5rem;
+    max-width: 44rem;
   }
 }
 .modal-body h2 {
