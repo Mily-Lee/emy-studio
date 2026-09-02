@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160">
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@700&amp;display=swap');</style>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- éclair -->
+  <g transform="translate(10,10) scale(5.83)" fill="#ffe600" filter="url(#glow)">
+    <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>
+  </g>
+  <!-- VOLT -->
+  <text x="165" y="118"
+        font-family="'Archivo Expanded', 'Archivo', sans-serif"
+        font-weight="700"
+        font-size="108"
+        letter-spacing="-2"
+        fill="#f4f4f6">VOLT</text>
+</svg>
