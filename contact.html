@@ -81,7 +81,13 @@
             </div>
             <div class="form-group">
               <label for="contact-subject">Sujet</label>
-              <input type="text" id="contact-subject" name="subject" placeholder="Objet de votre message" required>
+              <select id="contact-subject" name="subject" required>
+                <option value="" disabled selected hidden>Choisissez un sujet</option>
+                <option value="Site vitrine">Site vitrine</option>
+                <option value="Site e-commerce">Site e-commerce</option>
+                <option value="Identité visuelle & print">Identité visuelle &amp; print (logo, cartes de visite...)</option>
+                <option value="Autre">Autre</option>
+              </select>
             </div>
           </div>
 
