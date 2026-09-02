@@ -788,7 +788,7 @@ a.contact-detail-item:hover {
   font-size: 0.88rem;
   min-height: 1.2em;
 }
-.form-status.success { color: #4E7A5F; }
+.form-status.success { color: #2F8A4E; font-weight: 600; }
 .form-status.error { color: #B4544B; }
 
 .contact-form .btn {
