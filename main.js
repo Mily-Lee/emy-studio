@@ -46,6 +46,7 @@ function openProjectModal(tile) {
   galleryEl.innerHTML = '';
   galleryEl.classList.toggle('single', images.length <= 1);
   galleryEl.classList.toggle('crop', tile.dataset.cropGallery === 'true');
+  galleryEl.classList.toggle('two-col', tile.dataset.twoColGallery === 'true');
   images.forEach((src, i) => {
     const img = document.createElement('img');
     img.src = src;
