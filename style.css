@@ -1161,6 +1161,17 @@ body.subpage .top-nav-links {
 .nav-burger:hover { transform: rotate(90deg); }
 .nav-burger.open { transform: rotate(180deg); }
 
+/* Sur les sous-pages, le burger est imbriqué dans .top-nav :
+   centrage automatique avec le logo, quelle que soit la hauteur de la barre. */
+.top-nav .nav-burger {
+  position: absolute;
+  top: 50%;
+  right: 1.2rem;
+  transform: translateY(-50%);
+}
+.top-nav .nav-burger:hover { transform: translateY(-50%) rotate(90deg); }
+.top-nav .nav-burger.open { transform: translateY(-50%) rotate(180deg); }
+
 .nav-burger span {
   position: absolute;
   width: 14px;
