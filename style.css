@@ -764,6 +764,7 @@ main.is-leaving {
     left: 0;
     right: 0;
     padding: 1.6rem 2.5rem;
+    background: var(--bg);
     z-index: 800;
   }
   body.subpage .nav-burger,
