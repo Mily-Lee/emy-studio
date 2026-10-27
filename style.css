@@ -545,6 +545,15 @@ html { scrollbar-color: var(--accent) var(--bg); }
   height: clamp(340px, 46vw, 580px);
   object-fit: cover;
 }
+/* Vidéo : même hauteur que les captures, affichée entière */
+.modal-gallery.crop video {
+  height: clamp(340px, 46vw, 580px);
+  object-fit: contain;
+}
+@media (max-width: 560px) {
+  /* Une colonne : vidéo verticale plus haute pour rester lisible */
+  .modal-gallery.crop video { height: min(560px, 75vh); }
+}
 /* Une seule image : affichage entier, pas de recadrage forcé */
 .modal-gallery.single {
   grid-template-columns: 1fr;
