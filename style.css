@@ -1184,7 +1184,7 @@ body.subpage .top-nav-links {
   transition: transform 0.6s var(--ease);
 }
 @media (max-width: 720px) {
-  .nav-burger { top: 0.8rem; right: 1.2rem; }
+  .nav-burger { top: 0.4rem; right: 1.2rem; }
 }
 .nav-burger:hover { transform: rotate(90deg); }
 .nav-burger.open { transform: rotate(180deg); }
@@ -1200,7 +1200,7 @@ body.subpage .top-nav-links {
 .top-nav .nav-burger:hover { transform: translateY(-50%) rotate(90deg); }
 .top-nav .nav-burger.open { transform: translateY(-50%) rotate(180deg); }
 @media (max-width: 720px) {
-  .top-nav .nav-burger { top: calc(50% - 6px); }
+  .top-nav .nav-burger { top: calc(50% - 9px); }
 }
 
 .nav-burger span {
