@@ -1195,10 +1195,19 @@ body.subpage .top-nav-links {
   position: absolute;
   top: 50%;
   right: 1.2rem;
-  transform: translateY(-50%);
+  /* translate/scale séparés de transform : le rotate du survol s'y ajoute,
+     et le centrage n'est pas réduit par le scale */
+  translate: 0 -50%;
+  scale: 0.85;
 }
-.top-nav .nav-burger:hover { transform: translateY(-50%) rotate(90deg); }
-.top-nav .nav-burger.open { transform: translateY(-50%) rotate(180deg); }
+/* Menu ouvert : la barre passe devant le panneau (sinon il recouvre la croix),
+   sans fond ni logo pour ne laisser que la croix */
+body.subpage .top-nav:has(.nav-burger.open) {
+  z-index: 1160;
+  background: transparent;
+  box-shadow: none;
+}
+.top-nav:has(.nav-burger.open) .top-nav-logo { visibility: hidden; }
 @media (max-width: 720px) {
   /* Barre plus basse : logo et burger remontent ensemble, restent centrés */
   body.subpage .top-nav { padding-top: calc(1.3rem - 9px); padding-bottom: calc(1.3rem - 9px); }
