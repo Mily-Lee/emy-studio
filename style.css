@@ -1360,3 +1360,8 @@ body.subpage .top-nav:has(.nav-burger.open) {
 @media (max-width: 600px) {
   .nav-links { gap: 1rem; }
 }
+
+/* Mobile : marge réduite entre le menu et le haut des sous-pages */
+@media (max-width: 720px) {
+  .about-page, .realisations-page, .services-page, .contact-page { padding-top: 6.5rem; }
+}
