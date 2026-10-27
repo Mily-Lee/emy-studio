@@ -1200,7 +1200,8 @@ body.subpage .top-nav-links {
 .top-nav .nav-burger:hover { transform: translateY(-50%) rotate(90deg); }
 .top-nav .nav-burger.open { transform: translateY(-50%) rotate(180deg); }
 @media (max-width: 720px) {
-  .top-nav .nav-burger { top: calc(50% - 9px); }
+  /* Barre plus basse : logo et burger remontent ensemble, restent centrés */
+  body.subpage .top-nav { padding-top: calc(1.3rem - 9px); padding-bottom: calc(1.3rem - 9px); }
 }
 
 .nav-burger span {
