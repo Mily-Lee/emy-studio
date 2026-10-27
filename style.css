@@ -641,6 +641,15 @@ html { scrollbar-color: var(--accent) var(--bg); }
   --r: -2deg;
   margin-top: clamp(1.7rem, 2.5vw, 2.4rem);
 }
+@media (max-width: 720px) {
+  /* Centré (le JS l'affiche en inline-flex, d'où left + translate) et moins penché */
+  .modal-body .btn {
+    --r: -0.8deg;
+    position: relative;
+    left: 50%;
+    translate: -50% 0;
+  }
+}
 .modal-body #modalLink,
 .modal-body #modalSoon {
   display: none;
