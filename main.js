@@ -207,6 +207,11 @@ async function navigateTo(page, addToHistory = true) {
 
     document.body.className = nextDoc.body.className;
     document.title = nextDoc.title;
+    // Le burger vit dans .top-nav sur les sous-pages, hors de .top-nav sur l'accueil
+    // (où la barre est masquée) : on reprend la place qu'il a dans la page cible.
+    const topNav = document.querySelector('.top-nav');
+    if (nextDoc.querySelector('.top-nav .nav-burger')) topNav.appendChild(burger);
+    else topNav.after(burger);
     current.replaceWith(document.adoptNode(nextMain));
     setActiveLinks(page);
     initGallery();
