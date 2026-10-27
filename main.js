@@ -87,6 +87,17 @@ function openProjectModal(tile) {
   galleryEl.classList.toggle('crop', tile.dataset.cropGallery === 'true');
   galleryEl.classList.toggle('two-col', tile.dataset.twoColGallery === 'true');
   images.forEach((src, i) => {
+    // Vidéo : lecture auto en boucle, muette (obligatoire pour l'autoplay mobile).
+    // L'affiche (même nom en -poster.jpg) s'affiche le temps du chargement.
+    if (/\.mp4$/i.test(src)) {
+      const video = document.createElement('video');
+      Object.assign(video, { src, muted: true, loop: true, autoplay: true, playsInline: true, preload: 'auto' });
+      video.poster = src.replace(/\.mp4$/i, '-poster.jpg');
+      video.setAttribute('aria-label', captions[i] || tile.dataset.title || '');
+      galleryEl.appendChild(video);
+      return;
+    }
+
     const img = document.createElement('img');
     img.src = src;
     img.alt = captions[i] || tile.dataset.title || '';
@@ -152,6 +163,7 @@ function closeProjectModal() {
   if (!modal) return;
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
+  modal.querySelectorAll('video').forEach(v => v.pause());
   document.body.style.overflow = '';
 }
 

@@ -512,6 +512,13 @@ html { scrollbar-color: var(--accent) var(--bg); }
     grid-template-columns: 1fr;
   }
 }
+.modal-gallery video {
+  display: block;
+  width: 100%;
+  max-width: 56rem;
+  height: auto;
+  margin: 0 auto;
+}
 .modal-gallery img {
   width: 100%;
   height: auto;
