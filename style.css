@@ -937,15 +937,29 @@ main.is-leaving {
   line-height: 1;
   color: var(--ink);
 }
+/* Le mot est peint d'emblée en couleur d'accent ; une copie brune posée dessus
+   s'efface en fondu. Animer directement la couleur laissait la queue du y
+   (qui déborde du titre) brune sur Safari iOS, qui ne la repeignait pas. */
 .wordmark h1 .accent-word {
+  position: relative;
+  color: var(--accent);
+}
+.wordmark h1 .accent-word::before {
+  content: attr(data-text);
+  content: attr(data-text) / "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: normal;
+  white-space: nowrap;
   color: var(--ink);
   animation: color-shift 2.5s ease-in-out 1s forwards;
 }
 @keyframes color-shift {
-  to { color: var(--accent); }
+  to { opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .wordmark h1 .accent-word { animation: none; color: var(--accent); }
+  .wordmark h1 .accent-word::before { display: none; }
 }
 .wordmark .eyebrow {
   margin-top: 1.4rem;
