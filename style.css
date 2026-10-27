@@ -264,6 +264,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-bottom: clamp(3rem, 8vw, 5rem);
 }
 .realisations-header .eyebrow {
+  margin-top: 0; /* sinon hérite du margin de .realisations-header p */
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
@@ -644,6 +645,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-bottom: clamp(3rem, 8vw, 5rem);
 }
 .services-header .eyebrow {
+  margin-top: 0; /* sinon hérite du margin de .services-header p */
   font-family: 'Manrope', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
