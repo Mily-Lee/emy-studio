@@ -249,3 +249,6 @@ window.addEventListener('popstate', () => {
   const page = location.pathname.split('/').pop() || 'index.html';
   navigateTo(page, false);
 });
+
+// ===== Pied de page : année du copyright =====
+document.querySelector('.footer-year').textContent = new Date().getFullYear();
