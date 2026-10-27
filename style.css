@@ -938,7 +938,6 @@ main.is-leaving {
   color: var(--ink);
 }
 .wordmark h1 .accent-word {
-  display: inline-block;
   color: var(--ink);
   animation: color-shift 2.5s ease-in-out 1s forwards;
 }
