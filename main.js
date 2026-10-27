@@ -36,6 +36,26 @@ scrollTopBtn.addEventListener('click', () => {
 // ===== Modale projets (page Réalisations) =====
 // Vue d'ensemble : toutes les images du projet côte à côte dans une grille,
 // plus de carrousel à faire défiler une image à la fois.
+// Chaque nom de typo s'affiche dans sa propre police, chargée depuis Google Fonts
+// à la première ouverture (seulement les lettres du nom, via &text=).
+// Archivo Expanded n'existe pas sous ce nom chez Google : c'est Archivo en largeur 125 %.
+const FONT_ALIASES = {
+  'Archivo Expanded': { query: 'Archivo:wdth@125', family: 'Archivo', stretch: '125%' },
+};
+const loadedFonts = new Set();
+function applyFontPreview(el, name) {
+  const spec = FONT_ALIASES[name] || { query: name.replace(/ /g, '+'), family: name };
+  if (!loadedFonts.has(name)) {
+    loadedFonts.add(name);
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `https://fonts.googleapis.com/css2?family=${spec.query}&text=${encodeURIComponent(name)}&display=swap`;
+    document.head.appendChild(link);
+  }
+  el.style.fontFamily = `'${spec.family}', 'Manrope', sans-serif`;
+  if (spec.stretch) el.style.fontStretch = spec.stretch;
+}
+
 function openProjectModal(tile) {
   const modal = document.getElementById('projectModal');
   if (!modal) return;
@@ -104,7 +124,14 @@ function openProjectModal(tile) {
 
   const fontsRaw = tile.dataset.fonts || '';
   fontsWrap.style.display = fontsRaw ? 'block' : 'none';
-  fontsEl.textContent = fontsRaw;
+  fontsEl.textContent = '';
+  fontsRaw.split('·').map(s => s.trim()).filter(Boolean).forEach((name, i) => {
+    if (i) fontsEl.append(' · ');
+    const span = document.createElement('span');
+    span.textContent = name;
+    applyFontPreview(span, name);
+    fontsEl.appendChild(span);
+  });
 
   if (tile.dataset.url) {
     linkEl.href = tile.dataset.url;
