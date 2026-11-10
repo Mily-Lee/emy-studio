@@ -372,7 +372,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--rose);
 }
 
-/* Fond clair (Demacia) : texte foncé, pas de gradient sombre nécessaire */
+/* Vignettes à fond clair : titre et étiquette en foncé */
 .project-tile--light .project-tile-title {
   color: var(--ink);
 }
@@ -491,9 +491,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
-}
-.modal-gallery.two-col {
-  grid-template-columns: repeat(2, 1fr);
 }
 @media (max-width: 560px) {
   .modal-gallery {
@@ -629,7 +626,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-top: clamp(1.7rem, 2.5vw, 2.4rem);
 }
 @media (max-width: 720px) {
-  /* Centré (le JS l'affiche en inline-flex, d'où left + translate) et moins penché */
+  /* Centré (le JS l'affiche en inline-flex, d'où left + translate) */
   .modal-body .btn {
     position: relative;
     left: 50%;
@@ -866,7 +863,7 @@ main.is-leaving {
   opacity: 0;
 }
 
-/* ===== Wordmark central - imposant, en italique (accueil) ===== */
+/* ===== Accueil : « Emy Studio » au centre ===== */
 .cover {
   min-height: 100vh;
   display: flex;
@@ -886,8 +883,7 @@ main.is-leaving {
 }
 .wordmark h1 {
   font-family: 'Corinthia', cursive;
-  font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(4.8rem, 18vw, 13.5rem);
   line-height: 1;
   color: var(--ink);
@@ -919,22 +915,9 @@ main.is-leaving {
 @media (prefers-reduced-motion: reduce) {
   .wordmark h1 .accent-word::before { display: none; }
 }
-.wordmark .eyebrow {
-  margin-top: 1.4rem;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  font-size: clamp(0.65rem, 1vw, 0.8rem);
-  color: var(--ink-soft);
-}
 .wordmark .tagline-group {
   margin: 3rem auto 0;
   max-width: 34rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
 }
 .wordmark .tagline {
   font-family: 'Lato', sans-serif;
@@ -943,19 +926,11 @@ main.is-leaving {
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   color: var(--ink);
 }
-.wordmark .subtagline {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
-  line-height: 1.6;
-  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
-  color: var(--ink-soft);
-}
 @media (min-width: 900px) {
   .wordmark .tagline-group {
     max-width: none;
   }
-  .wordmark .tagline,
-  .wordmark .subtagline {
+  .wordmark .tagline {
     white-space: nowrap;
   }
 }
@@ -966,7 +941,7 @@ main.is-leaving {
   .wordmark { animation: none; opacity: 1; transform: none; }
 }
 
-/* ===== Boutons (accueil) ===== */
+/* ===== Boutons de l'accueil : apparition en fondu ===== */
 .hero-actions {
   margin-top: 3rem;
   display: flex;
@@ -1010,7 +985,6 @@ main.is-leaving {
 }
 .btn-primary:hover { color: var(--panel-text); background: var(--accent); border-color: var(--accent); }
 .btn:active { scale: 0.97; }
-.btn:disabled { background: var(--panel); border-color: var(--panel); }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-actions { animation: none; opacity: 1; transform: none; }
@@ -1018,21 +992,20 @@ main.is-leaving {
 }
 
 /* ====================================
-   MENU MAGNÉTIQUE « GOOEY » - tout le site
-   Un quart de rond plein, collé au coin haut droit (bords droits en haut
-   et à droite, comme une part de camembert) ; à l'ouverture, les liens
-   en verre dépoli en jaillissent.
+   MENU - tout le site
+   Un quart de rond plein, collé au coin haut droit ; à l'ouverture,
+   les liens en verre dépoli en sortent un à un.
    ==================================== */
 html {
-  --goo-b: 110px;     /* rayon du quart de rond, en coin de page */
+  --menu-r: 110px;     /* rayon du quart de rond, en coin de page */
   --menu-right: 1.8rem; /* marge droite des boutons */
-  --goo-pw: 190px;    /* largeur d'une pastille */
-  --goo-ph: 48px;     /* hauteur d'une pastille */
-  --goo-gap: 18px;
-  --goo-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --menu-pw: 190px;    /* largeur d'une pastille */
+  --menu-ph: 48px;     /* hauteur d'une pastille */
+  --menu-gap: 18px;
+  --menu-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 @media (max-width: 720px) {
-  html { --goo-b: 92px; --goo-pw: 170px; --goo-ph: 44px; --menu-right: 1rem; }
+  html { --menu-r: 92px; --menu-pw: 170px; --menu-ph: 44px; --menu-right: 1rem; }
 }
 
 .nav-links {
@@ -1044,8 +1017,8 @@ html {
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
-  gap: var(--goo-gap);
-  padding-top: calc(var(--goo-b) + var(--goo-gap));
+  gap: var(--menu-gap);
+  padding-top: calc(var(--menu-r) + var(--menu-gap));
   margin: 0;
   list-style: none;
   pointer-events: none;
@@ -1054,8 +1027,8 @@ html {
    (centre de gravité ≈ 0,42 × rayon depuis le coin) */
 .nav-links li {
   transform:
-    translate(calc(var(--menu-right) + var(--goo-pw) / 2 - 0.42 * var(--goo-b)),
-              calc(-1 * (0.58 * var(--goo-b) + var(--goo-gap) + var(--goo-ph) / 2 + var(--i) * (var(--goo-ph) + var(--goo-gap)))))
+    translate(calc(var(--menu-right) + var(--menu-pw) / 2 - 0.42 * var(--menu-r)),
+              calc(-1 * (0.58 * var(--menu-r) + var(--menu-gap) + var(--menu-ph) / 2 + var(--i) * (var(--menu-ph) + var(--menu-gap)))))
     scale(0.3);
   transition: transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.2);
   transition-delay: calc((4 - var(--i)) * 0.04s);
@@ -1066,19 +1039,19 @@ html {
 .nav-links li:nth-child(4) { --i: 3; }
 .nav-links li:nth-child(5) { --i: 4; }
 
-/* Ouvert : les gouttes jaillissent une à une, avec un rebond */
+/* Ouvert : les pastilles sortent une à une, avec un rebond */
 .nav-links.open li {
   transform: none;
-  transition: transform 0.7s var(--goo-spring);
+  transition: transform 0.7s var(--menu-spring);
   transition-delay: calc(var(--i) * 0.06s);
 }
 
 .nav-links { z-index: 1130; }
 .nav-links.open li { pointer-events: auto; }
 .nav-links a {
-  width: var(--goo-pw);
-  height: var(--goo-ph);
-  border-radius: calc(var(--goo-ph) / 2);
+  width: var(--menu-pw);
+  height: var(--menu-ph);
+  border-radius: calc(var(--menu-ph) / 2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1087,7 +1060,7 @@ html {
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   color: var(--ink);
-  /* Flou spatial : verre dépoli qui laisse deviner la page derrière */
+  /* Verre dépoli qui laisse deviner la page derrière */
   background: rgba(252, 250, 247, 0.42);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   backdrop-filter: blur(14px) saturate(160%);
@@ -1114,8 +1087,8 @@ html {
   cursor: pointer;
   top: 0;
   right: 0;
-  width: var(--goo-b);
-  height: var(--goo-b);
+  width: var(--menu-r);
+  height: var(--menu-r);
   padding: 0;
   border-radius: 0 0 0 100%;
   background: var(--panel);
@@ -1128,8 +1101,8 @@ html {
 .nav-burger::after {
   content: '';
   position: absolute;
-  top: calc(0.36 * var(--goo-b));
-  right: calc(0.36 * var(--goo-b) - 12px);
+  top: calc(0.36 * var(--menu-r));
+  right: calc(0.36 * var(--menu-r) - 12px);
   width: 24px;
   height: 2.5px;
   border-radius: 2px;
@@ -1171,10 +1144,10 @@ html {
   .nav-links a:hover { background: rgba(252, 250, 247, 1); }
   .nav-links li {
     transform:
-      translate(calc(50vw - 0.42 * var(--goo-b)),
-                calc(0.42 * var(--goo-b) - 50dvh
-                     + (5 * var(--goo-ph) + 4 * var(--goo-gap)) / 2
-                     - var(--i) * (var(--goo-ph) + var(--goo-gap)) - var(--goo-ph) / 2))
+      translate(calc(50vw - 0.42 * var(--menu-r)),
+                calc(0.42 * var(--menu-r) - 50dvh
+                     + (5 * var(--menu-ph) + 4 * var(--menu-gap)) / 2
+                     - var(--i) * (var(--menu-ph) + var(--menu-gap)) - var(--menu-ph) / 2))
       scale(0.3);
   }
   .nav-links.open li { transform: none; }
@@ -1191,8 +1164,8 @@ html {
 
 /* ====================================
    PIED DE PAGE
-   Accueil : copyright seul, en bas du premier écran.
-   Sous-pages : infos utiles + copyright.
+   Accueil : copyright seul, en bas de l'écran.
+   Autres pages : infos utiles + copyright.
    ==================================== */
 .site-footer {
   max-width: 72rem;

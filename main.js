@@ -42,8 +42,7 @@ scrollTopBtn.addEventListener('click', () => {
 });
 
 // ===== Modale projets (page Réalisations) =====
-// Vue d'ensemble : toutes les images du projet côte à côte dans une grille,
-// plus de carrousel à faire défiler une image à la fois.
+// Vue d'ensemble : toutes les images du projet côte à côte dans une grille.
 // Chaque nom de typo s'affiche dans sa propre police, chargée depuis Google Fonts
 // à la première ouverture (seulement les lettres du nom, via &text=).
 // Archivo Expanded n'existe pas sous ce nom chez Google : c'est Archivo en largeur 125 %.
@@ -96,7 +95,6 @@ function openProjectModal(tile) {
   galleryEl.innerHTML = '';
   galleryEl.classList.toggle('single', images.length <= 1);
   galleryEl.classList.toggle('crop', tile.dataset.cropGallery === 'true');
-  galleryEl.classList.toggle('two-col', tile.dataset.twoColGallery === 'true');
   images.forEach((src, i) => {
     // Vidéo : lecture auto en boucle, muette (obligatoire pour l'autoplay mobile).
     // L'affiche (même nom en -poster.jpg) s'affiche le temps du chargement.
