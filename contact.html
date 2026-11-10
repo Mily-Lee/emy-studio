@@ -17,84 +17,48 @@
   <main class="page">
     <div class="contact-page">
 
-      <div class="contact-grid">
+      <header class="contact-header">
+        <p class="eyebrow">Contact</p>
+        <h1>Travaillons <span class="accent-word">ensemble.</span></h1>
+        <p class="contact-lead">Une idée, un projet, une question ? Écrivez-moi, je vous réponds rapidement.</p>
+      </header>
 
-        <div class="contact-info">
-          <p class="eyebrow">Contact</p>
-          <h1>Travaillons<br><span class="accent-word">ensemble.</span></h1>
-          <p class="contact-lead">Une idée, un projet, une question ?<br>Je suis disponible et à l'écoute.</p>
+      <div class="contact-cards">
+        <button type="button" class="contact-card contact-card--main" data-copy="contact@emystudio.fr">
+          <span class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="contact-card-label">Email</span>
+          <span class="contact-card-value">contact@emystudio.fr</span>
+          <span class="contact-card-hint" data-default="Cliquez pour copier l'adresse" aria-live="polite">Cliquez pour copier l'adresse</span>
+        </button>
 
-          <div class="contact-details">
-            <a href="tel:0764628843" class="contact-detail-item">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              07 64 62 88 43
-            </a>
-            <div class="contact-detail-item">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z" fill="currentColor"/>
-              </svg>
-              France · Full remote
-            </div>
-            <a href="https://www.linkedin.com/in/emilie-roupsard-15a058191/" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-              LinkedIn
-            </a>
-          </div>
-        </div>
+        <a href="tel:0764628843" class="contact-card">
+          <span class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="contact-card-label">Téléphone</span>
+          <span class="contact-card-value">07 64 62 88 43</span>
+        </a>
 
-        <form class="contact-form" id="contactForm">
-          <input type="hidden" name="_subject" value="[Emy Studio] Nouveau message via emystudio.fr">
+        <a href="https://www.instagram.com/emystudio_web/" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <span class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </span>
+          <span class="contact-card-label">Instagram</span>
+          <span class="contact-card-value">@emystudio_web</span>
+        </a>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="contact-firstname">Prénom</label>
-              <input type="text" id="contact-firstname" name="firstname" placeholder="Votre prénom" required autocomplete="given-name">
-            </div>
-            <div class="form-group">
-              <label for="contact-name">Nom</label>
-              <input type="text" id="contact-name" name="name" placeholder="Votre nom" required autocomplete="family-name">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="contact-email">Email</label>
-            <input type="email" id="contact-email" name="email" placeholder="votre@email.com" required autocomplete="email">
-          </div>
-
-          <div class="form-group">
-            <label for="contact-subject">Sujet</label>
-            <select id="contact-subject" name="subject" required>
-              <option value="" disabled selected hidden>Choisissez un sujet</option>
-              <option value="Site vitrine">Site vitrine</option>
-              <option value="Site e-commerce">Site e-commerce</option>
-              <option value="Identité visuelle & print">Identité visuelle &amp; print (logo, cartes de visite...)</option>
-              <option value="Autre">Autre</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" rows="6" placeholder="Dites-moi tout..." required></textarea>
-          </div>
-
-          <label class="form-consent">
-            <input type="checkbox" id="contact-consent" name="consent" required>
-            <span>J'accepte que mes données soient utilisées pour être recontacté(e) dans le cadre de ma demande.</span>
-          </label>
-
-          <div class="form-status" id="formStatus" aria-live="polite"></div>
-
-          <button type="submit" class="btn btn-primary">
-            <span>Envoyer le message</span>
-          </button>
-        </form>
-
+        <a href="https://www.linkedin.com/in/emilie-roupsard-15a058191/" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <span class="contact-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <span class="contact-card-label">LinkedIn</span>
+          <span class="contact-card-value">Emilie Roupsard</span>
+        </a>
       </div>
+
+      <p class="contact-location">Basée en France · Je travaille à distance partout</p>
 
     </div>
   </main>
