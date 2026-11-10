@@ -6,6 +6,7 @@ function toggleMenu() {
   const isOpen = burger.classList.toggle('open');
   links.classList.toggle('open');
   burger.setAttribute('aria-expanded', isOpen);
+  burger.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
   document.body.style.overflow = isOpen ? 'hidden' : '';
   document.body.classList.toggle('menu-open', isOpen);
 }

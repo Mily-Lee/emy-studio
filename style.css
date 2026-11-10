@@ -1221,25 +1221,33 @@ html {
   right: 0;
   width: var(--goo-b);
   height: var(--goo-b);
-  /* le libellé se loge au cœur du quart de rond, vers le coin */
-  padding: calc(0.3 * var(--goo-b)) calc(0.18 * var(--goo-b)) 0 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
+  padding: 0;
   border-radius: 0 0 0 100%;
   background: var(--ink);
   transition: background 0.3s var(--ease);
 }
 .nav-burger:hover { background: var(--accent); }
+/* Icône au cœur de la part : 3 barres (::before = haut + milieu en ombre,
+   ::after = bas) qui pivotent en croix à l'ouverture */
+.nav-burger::before,
 .nav-burger::after {
-  content: 'Menu';
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  color: var(--panel-text);
+  content: '';
+  position: absolute;
+  top: calc(0.36 * var(--goo-b));
+  right: calc(0.36 * var(--goo-b) - 12px);
+  width: 24px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--panel-text);
+  transition: transform 0.4s var(--ease), box-shadow 0.3s var(--ease);
 }
-.nav-burger.open::after { content: 'Fermer'; }
+.nav-burger::before {
+  transform: translateY(-7px);
+  box-shadow: 0 7px 0 var(--panel-text);
+}
+.nav-burger::after { transform: translateY(7px); }
+.nav-burger.open::before { transform: rotate(45deg); box-shadow: 0 0 0 transparent; }
+.nav-burger.open::after { transform: rotate(-45deg); }
 .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: -6px; }
 
 /* Mobile : menu ouvert, la page derrière se floute */
