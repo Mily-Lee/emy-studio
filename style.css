@@ -955,7 +955,7 @@ main.is-leaving {
 }
 /* Mobile : le titre descend sous le rond du menu */
 @media (max-width: 720px) {
-  .cover { padding-top: 7rem; }
+  .cover { padding-top: 4.5rem; }
 }
 .wordmark {
   opacity: 0;
