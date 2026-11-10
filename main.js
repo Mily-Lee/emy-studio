@@ -22,6 +22,7 @@ function toggleMenu() {
   goo.classList.toggle('open', isOpen);
   burger.setAttribute('aria-expanded', isOpen);
   document.body.style.overflow = isOpen ? 'hidden' : '';
+  document.body.classList.toggle('menu-open', isOpen);
 }
 
 burger.addEventListener('click', toggleMenu);

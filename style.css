@@ -1542,6 +1542,14 @@ body.home .nav-burger::after {
 body.home .nav-burger.open::after { content: 'Fermer'; }
 body.home .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
+/* Mobile : menu ouvert, la page derrière se floute légèrement */
+@media (max-width: 720px) {
+  body.home main,
+  body.home .site-footer { transition: filter 0.4s var(--ease); }
+  body.home.menu-open main,
+  body.home.menu-open .site-footer { filter: blur(6px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body.home .goo *, body.home .nav-links *, body.home .nav-burger { transition: none !important; }
 }
