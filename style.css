@@ -6,7 +6,7 @@
   --sand: #E8D9C8;
   --panel: #4A372F;
   --panel-text: #FCFAF7;
-  --rose: #C79FA8;
+  --rose: #D8A68F;          /* = accent : un seul ton chaud */
   --ease: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
