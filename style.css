@@ -1166,46 +1166,83 @@ html {
 
 /* ====================================
    PIED DE PAGE
+   Autres pages : bloc gris brun aux coins arrondis (marque, contact, réseaux).
    Accueil : copyright seul, en bas de l'écran.
-   Autres pages : infos utiles + copyright.
    ==================================== */
 .site-footer {
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 2.5rem;
-  border-top: 1px solid var(--sand);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
+  padding: clamp(2.8rem, 6vw, 4rem) max(1.5rem, (100% - 72rem) / 2) 1.8rem;
+  border-radius: 32px 32px 0 0;
   font-family: 'Lato', sans-serif;
-  font-size: 0.85rem;
-  color: var(--ink-soft);
+  font-size: 0.95rem;
+  color: rgba(252, 250, 247, 0.72);
+  background: var(--panel);
 }
-.footer-info {
+.site-footer a { transition: color 0.3s var(--ease); }
+.site-footer a:hover { color: var(--accent); }
+.site-footer ul { list-style: none; }
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.2rem;
+}
+@media (min-width: 720px) {
+  .footer-main { grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+}
+.footer-logo {
+  font-family: 'Corinthia', cursive;
+  font-weight: 700;
+  font-size: 3.2rem;
+  line-height: 1;
+  color: var(--panel-text);
+}
+.footer-logo .accent-word { color: var(--accent); }
+.footer-tagline {
+  margin-top: 0.8rem;
+  max-width: 22rem;
+  line-height: 1.6;
+}
+.footer-title {
+  margin-bottom: 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--panel-text);
+}
+.footer-col li + li { margin-top: 0.5rem; }
+
+.footer-bottom {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem 1.8rem;
-  list-style: none;
+  justify-content: space-between;
+  gap: 0.6rem 2rem;
+  margin-top: clamp(2.2rem, 5vw, 3rem);
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(252, 250, 247, 0.15);
+  font-size: 0.82rem;
 }
-.footer-info a { transition: color 0.3s var(--ease); }
-.footer-info a:hover { color: var(--accent); }
 
+/* Accueil : seulement le copyright, discret, en bas du premier écran */
 body.home .site-footer {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 1.2rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--ink-soft);
+}
+body.home .footer-main,
+body.home .footer-legal { display: none; }
+body.home .footer-bottom {
+  justify-content: center;
+  margin: 0;
   padding: 0;
   border: none;
-  justify-content: center;
   font-size: 0.75rem;
-}
-body.home .footer-info { display: none; }
-
-@media (max-width: 720px) {
-  body.subpage .site-footer { flex-direction: column; align-items: flex-start; }
 }
 
 /* ===== Mentions légales ===== */
