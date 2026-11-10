@@ -1117,6 +1117,31 @@ main.is-leaving {
   box-shadow: 0 8px 20px -8px rgba(74, 55, 47, 0.18);
 }
 
+/* Accueil : mêmes pastilles en verre dépoli que le menu */
+.hero-actions .btn,
+.hero-actions .btn:hover,
+.hero-actions .btn:active {
+  width: var(--goo-pw);
+  height: var(--goo-ph);
+  padding: 0;
+  border-radius: calc(var(--goo-ph) / 2);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background: rgba(252, 250, 247, 0.42);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 30px -10px rgba(74, 55, 47, 0.35),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transform: none;
+  transition: color 0.3s var(--ease), background 0.3s var(--ease), scale 0.15s var(--ease);
+}
+.hero-actions .btn::before { display: none; }
+.hero-actions .btn:hover { color: var(--accent); background: rgba(252, 250, 247, 0.65); }
+.hero-actions .btn:active { scale: 0.97; }
+
 @media (prefers-reduced-motion: reduce) {
   .hero-actions { animation: none; opacity: 1; transform: none; }
   .btn { transition: none; }
