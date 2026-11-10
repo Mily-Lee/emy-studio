@@ -248,7 +248,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 .realisations-header {
-  max-width: 38rem;
+  max-width: 40rem;
   margin-bottom: clamp(3rem, 8vw, 5rem);
 }
 .realisations-header .eyebrow {
@@ -260,6 +260,16 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 0.75rem;
   color: var(--ink-soft);
 }
+.realisations-header h1 {
+  margin-top: 1rem;
+  font-family: 'Lato', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+  color: var(--ink);
+}
+.realisations-header h1 .accent-word { color: var(--accent); }
 .realisations-header p {
   margin-top: 1.2rem;
   font-family: 'Lato', sans-serif;
