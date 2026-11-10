@@ -1399,7 +1399,7 @@ body.home {
   --goo-b: 64px;      /* diamètre du rond */
   --goo-pw: 190px;    /* largeur d'une pastille */
   --goo-ph: 48px;     /* hauteur d'une pastille */
-  --goo-gap: 10px;
+  --goo-gap: 18px;
   --goo-top: 1.8rem;
   --goo-right: 1.8rem;
   --goo-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
