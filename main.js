@@ -2,7 +2,7 @@ const burger = document.querySelector('.nav-burger');
 const links = document.querySelector('.nav-links');
 
 // ===== Accueil : menu magnétique « gooey » =====
-// Calque de formes (rond + 5 pastilles) fusionnées par un filtre SVG ;
+// Le rond (ancre + goutte qui suit le curseur) fusionné par un filtre SVG ;
 // le CSS ne l'affiche que sur body.home.
 document.body.insertAdjacentHTML('beforeend', `
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -13,7 +13,6 @@ document.body.insertAdjacentHTML('beforeend', `
   </svg>
   <div class="goo" aria-hidden="true">
     <span class="goo-anchor"></span><span class="goo-follow"></span>
-    ${'<span class="goo-item"></span>'.repeat(5)}
   </div>`);
 const goo = document.querySelector('.goo');
 
