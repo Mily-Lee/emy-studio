@@ -49,6 +49,8 @@ scrollTopBtn.addEventListener('click', () => {
 // Archivo Expanded n'existe pas sous ce nom chez Google : c'est Archivo en largeur 125 %.
 const FONT_ALIASES = {
   'Archivo Expanded': { query: 'Archivo:wdth@125', family: 'Archivo', stretch: '125%' },
+  // Police manuscrite, trop fine à taille normale : affichée plus grande
+  'Arizonia': { query: 'Arizonia', family: 'Arizonia', size: '1.7em' },
 };
 const loadedFonts = new Set();
 function applyFontPreview(el, name) {
@@ -62,6 +64,7 @@ function applyFontPreview(el, name) {
   }
   el.style.fontFamily = `'${spec.family}', 'Lato', sans-serif`;
   if (spec.stretch) el.style.fontStretch = spec.stretch;
+  if (spec.size) el.style.fontSize = spec.size;
 }
 
 function openProjectModal(tile) {
