@@ -965,6 +965,8 @@ main.is-leaving {
   font-size: clamp(3.2rem, 12vw, 9rem);
   line-height: 1;
   color: var(--ink);
+  /* Instrument Serif n'a qu'une graisse : un contour de la couleur du texte l'épaissit */
+  -webkit-text-stroke-width: 0.025em;
 }
 /* Le mot est peint d'emblée en couleur d'accent ; une copie brune posée dessus
    s'efface en fondu. Animer directement la couleur laissait la queue du y
