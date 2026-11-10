@@ -1166,12 +1166,11 @@ html {
 
 /* ====================================
    PIED DE PAGE
-   Autres pages : bloc gris brun aux coins arrondis (marque, contact, réseaux).
+   Autres pages : bloc gris brun (marque, contact, réseaux).
    Accueil : copyright seul, en bas de l'écran.
    ==================================== */
 .site-footer {
   padding: clamp(2.8rem, 6vw, 4rem) max(1.5rem, (100% - 72rem) / 2) 1.8rem;
-  border-radius: 32px 32px 0 0;
   font-family: 'Lato', sans-serif;
   font-size: 0.95rem;
   color: rgba(252, 250, 247, 0.72);
@@ -1231,7 +1230,6 @@ body.home .site-footer {
   bottom: 1.2rem;
   margin: 0;
   padding: 0;
-  border-radius: 0;
   background: none;
   color: var(--ink-soft);
 }
