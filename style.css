@@ -120,7 +120,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .about-intro h1 {
   margin-top: 1rem;
   font-family: 'Lato', sans-serif;
-  font-style: italic;
   font-weight: 700;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   line-height: 1.15;
@@ -159,7 +158,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 
 .about-num {
   font-family: 'Lato', sans-serif;
-  font-style: italic;
   font-weight: 700;
   font-size: 1.4rem;
   color: var(--accent);
@@ -167,7 +165,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 
 .about-section h2 {
   font-family: 'Lato', sans-serif;
-  font-style: italic;
   font-weight: 700;
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   color: var(--ink);
@@ -263,7 +260,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .realisations-header h1 {
   margin-top: 1rem;
   font-family: 'Lato', sans-serif;
-  font-style: italic;
   font-weight: 700;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   line-height: 1.15;
@@ -581,7 +577,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .modal-body h2 {
   margin-top: 0.8rem;
   font-family: 'Lato', sans-serif;
-  font-style: italic;
   font-weight: 700;
   font-size: clamp(1.8rem, 4.5vw, 3.2rem);
   color: var(--ink);
@@ -674,7 +669,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .services-header h1 {
   margin-top: 1rem;
   font-family: 'Lato', sans-serif;
-  font-style: italic;
   font-weight: 700;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   line-height: 1.15;
@@ -715,7 +709,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .service-card h2 {
   font-family: 'Lato', sans-serif;
-  font-style: italic;
   font-weight: 700;
   font-size: 1.5rem;
   color: var(--ink);
@@ -734,7 +727,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .services-cta p {
   font-family: 'Lato', sans-serif;
-  font-style: italic;
   font-weight: 700;
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
   color: var(--ink);
