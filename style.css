@@ -2,11 +2,11 @@
   --bg: #FCFAF7;
   --ink: #4A372F;
   --ink-soft: #5D514B;
-  --accent: #D8A68F;
+  --accent: #DB8159;
   --sand: #E8D9C8;
   --panel: #4A372F;
   --panel-text: #FCFAF7;
-  --rose: #D8A68F;          /* = accent : un seul ton chaud */
+  --rose: #DB8159;          /* = accent : un seul ton chaud */
   --ease: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
@@ -879,7 +879,7 @@ a.contact-detail-item:hover {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(216, 166, 143, 0.25);
+  box-shadow: 0 0 0 3px rgba(219, 129, 89, 0.25);
 }
 .form-group textarea {
   resize: vertical;
@@ -1103,7 +1103,7 @@ main.is-leaving {
 .btn-primary {
   background: var(--ink);
   color: var(--bg);
-  box-shadow: 0 6px 18px -4px rgba(216, 166, 143, 0.3),
+  box-shadow: 0 6px 18px -4px rgba(219, 129, 89, 0.3),
               0 14px 28px -14px rgba(74, 55, 47, 0.4);
 }
 .btn-secondary {
