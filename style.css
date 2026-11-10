@@ -235,7 +235,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink) !important;
 }
 .about-section .btn {
-  --r: -2deg;
   margin-top: 1.8rem;
 }
 
@@ -627,13 +626,11 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink-soft);
 }
 .modal-body .btn {
-  --r: -2deg;
   margin-top: clamp(1.7rem, 2.5vw, 2.4rem);
 }
 @media (max-width: 720px) {
   /* Centré (le JS l'affiche en inline-flex, d'où left + translate) et moins penché */
   .modal-body .btn {
-    --r: -0.8deg;
     position: relative;
     left: 50%;
     translate: -50% 0;
@@ -735,9 +732,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
   color: var(--ink);
   margin-bottom: 1.6rem;
-}
-.services-cta .btn {
-  --r: -1.5deg;
 }
 
 /* ====================================
@@ -914,7 +908,6 @@ a.contact-detail-item:hover {
 .form-status.error { color: #B4544B; }
 
 .contact-form .btn {
-  --r: 1.5deg;
   align-self: flex-start;
   margin-top: 0.5rem;
 }
@@ -1045,90 +1038,42 @@ main.is-leaving {
 @keyframes buttons-reveal {
   to { opacity: 1; transform: translateY(0); }
 }
-/* Bouton "tampon d'atelier" : contour organique façon tampon encreur,
-   légère rotation au repos, se redresse et s'aplatit au clic comme
-   un vrai coup de tampon. Pas d'effet de survol tape-à-l'œil. */
+/* Boutons du site : pastilles sobres, même gabarit partout.
+   Principal plein (gris brun → terracotta au survol, flèche qui avance),
+   secondaire en contour fin qui se remplit au survol. */
 .btn {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.95rem 2.3rem;
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  font-size: 0.88rem;
-  letter-spacing: 0.03em;
-  cursor: pointer;
-  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-  transform: rotate(var(--r, 0deg));
-  transition: transform 0.45s var(--ease), box-shadow 0.35s var(--ease);
-}
-.btn span {
-  position: relative;
-  z-index: 1;
-}
-.btn:hover {
-  transform: rotate(calc(var(--r, 0deg) * 0.35));
-}
-.btn:active {
-  transform: rotate(0deg) scale(0.95);
-  box-shadow: none !important;
-  transition-duration: 0.15s;
-}
-
-.hero-actions .btn:nth-child(1) { --r: -2deg; }
-.hero-actions .btn:nth-child(2) { --r: 1.5deg; }
-
-.btn-primary {
-  background: var(--ink);
-  color: var(--bg);
-  box-shadow: 0 6px 18px -4px rgba(219, 129, 89, 0.3),
-              0 14px 28px -14px rgba(51, 36, 30, 0.4);
-}
-.btn-secondary {
-  background: var(--sand);
-  color: var(--ink);
-  border: 1.5px solid rgba(51, 36, 30, 0.35);
-  box-shadow: 0 8px 20px -8px rgba(51, 36, 30, 0.18);
-}
-
-/* Accueil : deux pastilles sobres, même gabarit.
-   Principal plein (gris brun → terracotta au survol), secondaire en contour fin. */
-.hero-actions .btn,
-.hero-actions .btn:hover,
-.hero-actions .btn:active {
   height: 50px;
   padding: 0 1.9rem;
   gap: 0.6rem;
   border-radius: 25px;
+  font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
   letter-spacing: 0.03em;
+  cursor: pointer;
   color: var(--ink);
   background: transparent;
   border: 1.5px solid var(--ink);
-  box-shadow: none;
-  transform: none;
   transition: color 0.3s var(--ease), background 0.3s var(--ease),
               border-color 0.3s var(--ease), scale 0.15s var(--ease);
 }
-.hero-actions .btn:hover { color: var(--bg); background: var(--ink); }
-.hero-actions .btn-primary,
-.hero-actions .btn-primary:active {
+.btn:hover { color: var(--bg); background: var(--ink); }
+.btn-primary {
   color: var(--panel-text);
   background: var(--panel);
   border-color: var(--panel);
 }
-.hero-actions .btn-primary:hover { color: var(--panel-text); background: var(--accent); border-color: var(--accent); }
-/* Petite flèche qui avance au survol */
-.hero-actions .btn-primary::after {
+.btn-primary:hover { color: var(--panel-text); background: var(--accent); border-color: var(--accent); }
+.btn-primary::after {
   content: '→';
   transition: translate 0.3s var(--ease);
 }
-.hero-actions .btn-primary:hover::after { translate: 4px 0; }
-.hero-actions .btn:active { scale: 0.97; }
+.btn-primary:hover::after { translate: 4px 0; }
+.btn:active { scale: 0.97; }
+.btn:disabled { background: var(--panel); border-color: var(--panel); }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-actions { animation: none; opacity: 1; transform: none; }
