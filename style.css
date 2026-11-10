@@ -1123,41 +1123,6 @@ main.is-leaving {
 }
 
 /* ====================================
-   BARRE DU HAUT (sous-pages) — logo seul, le menu est le rond gooey
-   ==================================== */
-.top-nav {
-  display: none;
-}
-body.subpage .top-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 1.3rem 1.5rem;
-  background: var(--bg);
-  box-shadow: 0 12px 24px -18px rgba(74, 55, 47, 0.5);
-  z-index: 1100;
-}
-@media (min-width: 900px) {
-  body.subpage .top-nav {
-    padding: 1.6rem 2.5rem;
-  }
-}
-.top-nav-logo {
-  font-family: 'Corinthia', cursive;
-  font-style: italic;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  font-size: 1.35rem;
-  color: var(--ink);
-}
-.top-nav-logo .rose {
-  color: var(--rose);
-}
-/* ====================================
    MENU MAGNÉTIQUE « GOOEY » — tout le site
    Un rond qui suit la souris et s'étire comme une goutte (.goo, filtre
    SVG #goo) ; à l'ouverture, les liens en verre dépoli en jaillissent.
@@ -1174,10 +1139,6 @@ html {
 @media (max-width: 720px) {
   html { --goo-b: 56px; --goo-pw: 170px; --goo-ph: 44px; --goo-top: 1rem; --goo-right: 1rem; }
 }
-/* Sous-pages : le rond se cale dans la barre du haut */
-body.subpage { --goo-top: 0.6rem; --goo-right: 2.5rem; }
-@media (max-width: 900px) { body.subpage { --goo-right: 1.5rem; } }
-@media (max-width: 720px) { body.subpage { --goo-b: 50px; --goo-top: 3px; --goo-right: 1rem; } }
 
 .goo,
 .nav-links {
@@ -1307,12 +1268,9 @@ body.subpage { --goo-top: 0.6rem; --goo-right: 2.5rem; }
 /* Mobile : menu ouvert, la page derrière se floute */
 @media (max-width: 720px) {
   main,
-  .top-nav,
   .site-footer { transition: filter 0.4s var(--ease); }
   body.menu-open main,
-  body.menu-open .top-nav,
   body.menu-open .site-footer { filter: blur(12px); }
-  body.subpage .nav-burger::after { font-size: 0.72rem; }
 }
 
 /* Mobile : boutons centrés dans la page ; fermés, ils restent ramassés sous le rond */
