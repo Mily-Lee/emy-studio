@@ -8,6 +8,9 @@
   --panel-text: #FCFAF7;
   --rose: #A87A67;         /* Rose terre - touche secondaire (« voir le projet ») */
   --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  /* Tailles de texte : 17 px sur téléphone → 19 px sur ordinateur */
+  --text: clamp(1.0625rem, 0.95rem + 0.4vw, 1.1875rem);
+  --text-sm: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem); /* infos secondaires : 15 → 16 px */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,6 +23,7 @@ body {
   overflow-x: clip;
   /* Pas de faux gras ni faux italique : on reste sur les graisses chargées */
   font-synthesis: none;
+  font-size: var(--text);
 }
 
 a { color: inherit; text-decoration: none; }
@@ -134,7 +138,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   line-height: 1.75;
-  font-size: 1.05rem;
+  font-size: var(--text);
   color: var(--ink-soft);
 }
 
@@ -176,6 +180,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   line-height: 1.75;
   color: var(--ink-soft);
   max-width: 40rem;
+  font-size: var(--text);
 }
 .about-section p + p {
   margin-top: 1rem;
@@ -271,7 +276,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-family: 'Lato', sans-serif;
   line-height: 1.75;
   color: var(--ink-soft);
-  font-size: calc(1.05rem - 2px);
+  font-size: var(--text);
 }
 
 .projects-grid {
@@ -586,7 +591,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-family: 'Lato', sans-serif;
   line-height: 1.75;
   color: var(--ink-soft);
-  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-size: var(--text);
 }
 .modal-meta {
   margin-top: clamp(1.3rem, 2vw, 1.8rem);
@@ -624,7 +629,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .modal-body #modalFonts,
 .modal-body #modalTools {
   font-family: 'Lato', sans-serif;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
   color: var(--ink-soft);
 }
 .modal-body .btn {
@@ -682,7 +687,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-family: 'Lato', sans-serif;
   line-height: 1.75;
   color: var(--ink-soft);
-  font-size: 1.05rem;
+  font-size: var(--text);
 }
 
 .services-grid {
@@ -718,7 +723,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-family: 'Lato', sans-serif;
   line-height: 1.65;
   color: var(--ink-soft);
-  font-size: 0.95rem;
+  font-size: var(--text);
 }
 
 .services-cta {
@@ -768,7 +773,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-family: 'Lato', sans-serif;
   line-height: 1.7;
   color: var(--ink-soft);
-  font-size: 1.05rem;
+  font-size: var(--text);
 }
 
 /* Encarts : l'email en grand (clic = copie), puis téléphone, Instagram, LinkedIn */
@@ -853,7 +858,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .contact-location {
   margin-top: 2rem;
   font-family: 'Lato', sans-serif;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   color: var(--ink-soft);
 }
 
@@ -925,7 +930,7 @@ main.is-leaving {
   font-family: 'Lato', sans-serif;
   font-weight: 600;
   line-height: 1.6;
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
   color: var(--ink);
 }
 @media (min-width: 900px) {
@@ -1172,7 +1177,7 @@ html {
 .site-footer {
   padding: clamp(2.8rem, 6vw, 4rem) max(1.5rem, (100% - 72rem) / 2) 1.8rem;
   font-family: 'Lato', sans-serif;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
   color: rgba(252, 250, 247, 0.72);
   background: var(--panel);
 }
@@ -1200,6 +1205,7 @@ html {
   margin-top: 0.8rem;
   max-width: 22rem;
   line-height: 1.6;
+  font-size: var(--text);
 }
 .footer-title {
   margin-bottom: 0.9rem;
@@ -1259,6 +1265,7 @@ body.home .footer-bottom {
   font-family: 'Lato', sans-serif;
   line-height: 1.75;
   color: var(--ink-soft);
+  font-size: var(--text);
 }
 .legal-section a {
   text-decoration: underline;
