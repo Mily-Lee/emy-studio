@@ -132,9 +132,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .about-intro h1 {
   margin-top: 1rem;
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   line-height: 1.15;
   color: var(--ink);
@@ -171,17 +171,17 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 .about-num {
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.4rem;
   color: var(--accent);
 }
 
 .about-section h2 {
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   color: var(--ink);
   margin-bottom: 1rem;
@@ -587,9 +587,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .modal-body h2 {
   margin-top: 0.8rem;
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(1.8rem, 4.5vw, 3.2rem);
   color: var(--ink);
 }
@@ -682,9 +682,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .services-header h1 {
   margin-top: 1rem;
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   line-height: 1.15;
   color: var(--ink);
@@ -723,9 +723,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
   box-shadow: 0 24px 50px -25px rgba(74, 55, 47, 0.4);
 }
 .service-card h2 {
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.5rem;
   color: var(--ink);
 }
@@ -742,9 +742,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
   text-align: center;
 }
 .services-cta p {
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
   color: var(--ink);
   margin-bottom: 1.6rem;
@@ -784,9 +784,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .contact-info h1 {
   margin-top: 1rem;
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: clamp(2.4rem, 5.5vw, 3.8rem);
   line-height: 1.15;
   color: var(--ink);
@@ -1327,9 +1327,9 @@ body.subpage .top-nav:has(.nav-burger.open) {
 .nav-links li { list-style: none; overflow: visible; }
 
 .nav-links a {
-  font-family: 'Corinthia', cursive;
+  font-family: 'Lato', sans-serif;
   font-size: clamp(2rem, 5.5vw, 3.8rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--panel-text);
   display: inline-block;
   position: relative;
@@ -1443,8 +1443,8 @@ body.home .footer-info { display: none; }
   margin-bottom: 2.6rem;
 }
 .legal-section h2 {
-  font-family: 'Corinthia', cursive;
-  font-weight: 600;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
   font-size: 1.35rem;
   color: var(--ink);
 }
