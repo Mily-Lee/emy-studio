@@ -1039,7 +1039,7 @@ main.is-leaving {
   to { opacity: 1; transform: translateY(0); }
 }
 /* Boutons du site : pastilles sobres, même gabarit partout.
-   Principal plein (gris brun → terracotta au survol, flèche qui avance),
+   Principal plein (gris brun → terracotta au survol),
    secondaire en contour fin qui se remplit au survol. */
 .btn {
   display: inline-flex;
@@ -1067,11 +1067,6 @@ main.is-leaving {
   border-color: var(--panel);
 }
 .btn-primary:hover { color: var(--panel-text); background: var(--accent); border-color: var(--accent); }
-.btn-primary::after {
-  content: '→';
-  transition: translate 0.3s var(--ease);
-}
-.btn-primary:hover::after { translate: 4px 0; }
 .btn:active { scale: 0.97; }
 .btn:disabled { background: var(--panel); border-color: var(--panel); }
 
