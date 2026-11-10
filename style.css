@@ -1547,7 +1547,7 @@ body.home .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-
   body.home main,
   body.home .site-footer { transition: filter 0.4s var(--ease); }
   body.home.menu-open main,
-  body.home.menu-open .site-footer { filter: blur(6px); }
+  body.home.menu-open .site-footer { filter: blur(12px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
