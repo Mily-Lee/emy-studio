@@ -34,7 +34,7 @@ document.addEventListener('keydown', (e) => {
 // Accueil : un clic hors du menu le referme
 document.addEventListener('click', (e) => {
   if (document.body.classList.contains('home') && burger.classList.contains('open')
-      && !e.target.closest('.nav-links, .nav-burger')) toggleMenu();
+      && !e.target.closest('.nav-links a, .nav-burger')) toggleMenu();
 });
 
 // Effet magnétique : le rond est attiré par le curseur quand il s'approche
