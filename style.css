@@ -88,7 +88,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .about-page {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 8rem 1.5rem 6rem;
+  padding: 5rem 1.5rem 6rem;
 }
 
 .about-hero {
@@ -246,7 +246,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .realisations-page {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 8rem 1.5rem 6rem;
+  padding: 5rem 1.5rem 6rem;
 }
 
 .realisations-header {
@@ -655,7 +655,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .services-page {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 8rem 1.5rem 6rem;
+  padding: 5rem 1.5rem 6rem;
 }
 
 .services-header {
@@ -744,7 +744,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .contact-page {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 8rem 1.5rem 6rem;
+  padding: 5rem 1.5rem 6rem;
 }
 
 .contact-header {
@@ -1166,7 +1166,7 @@ html {
 
 /* Mobile : marge réduite entre le menu et le haut des sous-pages */
 @media (max-width: 720px) {
-  .about-page, .realisations-page, .services-page, .contact-page { padding-top: 6.5rem; }
+  .about-page, .realisations-page, .services-page, .contact-page { padding-top: 4.5rem; }
 }
 
 /* ====================================
