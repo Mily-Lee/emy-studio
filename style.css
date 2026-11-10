@@ -1,12 +1,12 @@
 :root {
-  --bg: #FCFAF7;           /* Crème — fond */
-  --ink: #33241E;          /* Espresso — texte & titres */
-  --ink-soft: #75665F;     /* Taupe grisé — texte secondaire */
-  --accent: #DB8159;       /* Terracotta — mots en couleur, liens, icônes */
-  --sand: #F1E6DF;         /* Rose terre très clair — cartes & tags */
-  --panel: #423934;        /* Gris brun chaud — menu en coin, bouton principal */
+  --bg: #FCFAF7;           /* Crème - fond */
+  --ink: #33241E;          /* Espresso - texte & titres */
+  --ink-soft: #75665F;     /* Taupe grisé - texte secondaire */
+  --accent: #DB8159;       /* Terracotta - mots en couleur, liens, icônes */
+  --sand: #F1E6DF;         /* Rose terre très clair - cartes & tags */
+  --panel: #423934;        /* Gris brun chaud - menu en coin, bouton principal */
   --panel-text: #FCFAF7;
-  --rose: #A87A67;         /* Rose terre — touche secondaire (« voir le projet ») */
+  --rose: #A87A67;         /* Rose terre - touche secondaire (« voir le projet ») */
   --ease: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
@@ -407,7 +407,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 /* ====================================
-   MODALE PROJET — popup fluide
+   MODALE PROJET - popup fluide
    ==================================== */
 .project-modal {
   position: fixed;
@@ -866,7 +866,7 @@ main.is-leaving {
   opacity: 0;
 }
 
-/* ===== Wordmark central — imposant, en italique (accueil) ===== */
+/* ===== Wordmark central - imposant, en italique (accueil) ===== */
 .cover {
   min-height: 100vh;
   display: flex;
@@ -1018,7 +1018,7 @@ main.is-leaving {
 }
 
 /* ====================================
-   MENU MAGNÉTIQUE « GOOEY » — tout le site
+   MENU MAGNÉTIQUE « GOOEY » - tout le site
    Un quart de rond plein, collé au coin haut droit (bords droits en haut
    et à droite, comme une part de camembert) ; à l'ouverture, les liens
    en verre dépoli en jaillissent.

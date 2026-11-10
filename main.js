@@ -217,7 +217,7 @@ document.addEventListener('click', async (e) => {
 
 initGallery();
 
-// ===== Navigation sans rechargement — le menu reste en place =====
+// ===== Navigation sans rechargement - le menu reste en place =====
 // On ne remplace que le contenu de <main>, jamais le header/burger/menu.
 function setActiveLinks(page) {
   document.querySelectorAll('.nav-links a').forEach(a => {
