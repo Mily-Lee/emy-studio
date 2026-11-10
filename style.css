@@ -953,6 +953,10 @@ main.is-leaving {
   text-align: center;
   padding: 2rem;
 }
+/* Mobile : le titre descend sous le rond du menu */
+@media (max-width: 720px) {
+  .cover { padding-top: 7rem; }
+}
 .wordmark {
   opacity: 0;
   transform: translateY(18px);
