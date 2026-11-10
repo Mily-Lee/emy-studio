@@ -1124,8 +1124,9 @@ main.is-leaving {
 
 /* ====================================
    MENU MAGNÉTIQUE « GOOEY » — tout le site
-   Un quart de rond en coin de page, attiré par la souris, qui s'étire comme une goutte (.goo, filtre
-   SVG #goo) ; à l'ouverture, les liens en verre dépoli en jaillissent.
+   Un quart de rond plein, collé au coin haut droit (bords droits en haut
+   et à droite, comme une part de camembert) ; à l'ouverture, les liens
+   en verre dépoli en jaillissent.
    ==================================== */
 html {
   --goo-b: 110px;     /* rayon du quart de rond, en coin de page */
@@ -1139,7 +1140,6 @@ html {
   html { --goo-b: 92px; --goo-pw: 170px; --goo-ph: 44px; --menu-right: 1rem; }
 }
 
-.goo,
 .nav-links {
   position: fixed;
   inset: 0 var(--menu-right) auto auto;
@@ -1155,27 +1155,6 @@ html {
   list-style: none;
   pointer-events: none;
 }
-.goo {
-  inset: 0 0 auto auto;
-  z-index: 1120;
-  filter: url(#goo);
-}
-.goo span { display: block; background: var(--ink); }
-/* Le quart de rond : une ancre fixe + une goutte qui suit le bouton magnétique */
-.goo .goo-anchor,
-.goo .goo-follow {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: var(--goo-b);
-  height: var(--goo-b);
-  border-radius: 0 0 0 100%;
-}
-.goo .goo-follow {
-  translate: var(--mx, 0px) var(--my, 0px);
-  transition: translate 0.35s var(--goo-spring);
-}
-
 /* Fermé : chaque pastille est ramassée au cœur du quart de rond
    (centre de gravité ≈ 0,42 × rayon depuis le coin) */
 .nav-links li {
@@ -1232,12 +1211,11 @@ html {
 .nav-links a.active,
 .nav-links a:hover { color: var(--accent); }
 
-/* Le bouton : zone cliquable transparente en quart de rond, la forme est dans .goo */
+/* Le bouton : quart de rond plein */
 .nav-burger {
   position: fixed;
   z-index: 1150;
   border: none;
-  background: transparent;
   cursor: pointer;
   top: 0;
   right: 0;
@@ -1249,9 +1227,10 @@ html {
   align-items: flex-start;
   justify-content: flex-end;
   border-radius: 0 0 0 100%;
-  translate: var(--mx, 0px) var(--my, 0px);
-  transition: translate 0.35s var(--goo-spring);
+  background: var(--ink);
+  transition: background 0.3s var(--ease);
 }
+.nav-burger:hover { background: var(--accent); }
 .nav-burger::after {
   content: 'Menu';
   font-family: 'Lato', sans-serif;
@@ -1293,7 +1272,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .goo *, .nav-links *, .nav-burger { transition: none !important; }
+  .nav-links *, .nav-burger { transition: none !important; }
 }
 
 /* Mobile : marge réduite entre le menu et le haut des sous-pages */
