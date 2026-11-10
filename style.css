@@ -1094,38 +1094,40 @@ main.is-leaving {
   box-shadow: 0 8px 20px -8px rgba(51, 36, 30, 0.18);
 }
 
-/* Accueil : mêmes pastilles en verre dépoli que le menu */
+/* Accueil : deux pastilles sobres, même gabarit.
+   Principal plein (gris brun → terracotta au survol), secondaire en contour fin. */
 .hero-actions .btn,
 .hero-actions .btn:hover,
 .hero-actions .btn:active {
-  width: var(--goo-pw);
-  height: var(--goo-ph);
-  padding: 0;
-  border-radius: calc(var(--goo-ph) / 2);
+  height: 50px;
+  padding: 0 1.9rem;
+  gap: 0.6rem;
+  border-radius: 25px;
   font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
   color: var(--ink);
-  background: rgba(252, 250, 247, 0.8);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  backdrop-filter: blur(14px) saturate(160%);
-  border: 1px solid rgba(51, 36, 30, 0.18);
-  box-shadow: 0 10px 30px -10px rgba(51, 36, 30, 0.35),
-              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  box-shadow: none;
   transform: none;
-  transition: color 0.3s var(--ease), background 0.3s var(--ease), scale 0.15s var(--ease);
+  transition: color 0.3s var(--ease), background 0.3s var(--ease),
+              border-color 0.3s var(--ease), scale 0.15s var(--ease);
 }
-.hero-actions .btn:hover { color: var(--accent); background: rgba(252, 250, 247, 1); }
-/* « Mes réalisations » reste le bouton principal, en brun */
+.hero-actions .btn:hover { color: var(--bg); background: var(--ink); }
 .hero-actions .btn-primary,
 .hero-actions .btn-primary:active {
   color: var(--panel-text);
   background: var(--panel);
   border-color: var(--panel);
-  box-shadow: 0 10px 30px -10px rgba(51, 36, 30, 0.5),
-              inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
-.hero-actions .btn-primary:hover { color: var(--accent); background: var(--ink); }
+.hero-actions .btn-primary:hover { color: var(--panel-text); background: var(--accent); border-color: var(--accent); }
+/* Petite flèche qui avance au survol */
+.hero-actions .btn-primary::after {
+  content: '→';
+  transition: translate 0.3s var(--ease);
+}
+.hero-actions .btn-primary:hover::after { translate: 4px 0; }
 .hero-actions .btn:active { scale: 0.97; }
 
 @media (prefers-reduced-motion: reduce) {
