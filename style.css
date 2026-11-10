@@ -1,9 +1,10 @@
 :root {
   --bg: #373634;
-  --ink: #4A372F;
-  --ink-soft: #5D514B;
+  --ink: #FCFAF7;          /* Crème — texte & titres */
+  --brown: #4A372F;        /* Brun — surfaces foncées (menu, bouton principal) */
+  --ink-soft: #D8CFC7;     /* Crème grisé — texte secondaire */
   --accent: #DB8159;
-  --sand: #E8D9C8;
+  --sand: #44423F;         /* Surface cartes / tags, un ton au-dessus du fond */
   --panel: #4A372F;
   --panel-text: #FCFAF7;
   --rose: #DB8159;          /* = accent : un seul ton chaud */
@@ -388,14 +389,14 @@ html { scrollbar-color: var(--accent) var(--bg); }
 
 /* Fond clair (Demacia) : texte foncé, pas de gradient sombre nécessaire */
 .project-tile--light .project-tile-title {
-  color: var(--ink);
+  color: var(--brown);
 }
 .project-tile--light:hover .project-tile-title,
 .project-tile--light:focus-visible .project-tile-title {
   color: var(--accent);
 }
 .project-tile--light .project-tile-cta {
-  color: var(--ink-soft);
+  color: #5D514B;
 }
 
 .project-tag {
@@ -1128,7 +1129,7 @@ main.is-leaving {
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
-  color: var(--ink);
+  color: var(--brown);
   background: rgba(252, 250, 247, 0.8);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   backdrop-filter: blur(14px) saturate(160%);
@@ -1149,7 +1150,7 @@ main.is-leaving {
   box-shadow: 0 10px 30px -10px rgba(74, 55, 47, 0.5),
               inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
-.hero-actions .btn-primary:hover { color: var(--accent); background: var(--ink); }
+.hero-actions .btn-primary:hover { color: var(--accent); background: #3A2B25; }
 .hero-actions .btn:active { scale: 0.97; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1226,9 +1227,9 @@ html {
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
-  color: var(--ink);
+  color: var(--brown);
   /* Flou spatial : verre dépoli qui laisse deviner la page derrière */
-  background: rgba(252, 250, 247, 0.42);
+  background: rgba(252, 250, 247, 0.85);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   backdrop-filter: blur(14px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.7);
@@ -1242,7 +1243,7 @@ html {
   opacity: 1;
   transition-delay: calc(var(--i) * 0.06s), 0s, 0s;
 }
-.nav-links a:hover { background: rgba(252, 250, 247, 0.65); }
+.nav-links a:hover { background: rgba(252, 250, 247, 1); }
 .nav-links a.active,
 .nav-links a:hover { color: var(--accent); }
 
@@ -1258,7 +1259,7 @@ html {
   height: var(--goo-b);
   padding: 0;
   border-radius: 0 0 0 100%;
-  background: var(--ink);
+  background: var(--brown);
   transition: background 0.3s var(--ease);
 }
 .nav-burger:hover { background: var(--accent); }
