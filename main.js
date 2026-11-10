@@ -81,6 +81,8 @@ function openProjectModal(tile) {
   const fontsWrap = document.getElementById('modalFontsWrap');
   const fontsEl = document.getElementById('modalFonts');
   const linkEl = document.getElementById('modalLink');
+  const siteLinkEl = document.getElementById('modalSiteLink');
+  const actionsEl = document.getElementById('modalActions');
   const soonEl = document.getElementById('modalSoon');
 
   const imgsRaw = tile.dataset.imgs || '';
@@ -153,14 +155,15 @@ function openProjectModal(tile) {
     fontsEl.appendChild(span);
   });
 
-  if (tile.dataset.url) {
-    linkEl.href = tile.dataset.url;
-    linkEl.style.display = 'inline-flex';
-    soonEl.style.display = 'none';
-  } else {
-    linkEl.style.display = 'none';
-    soonEl.style.display = 'inline-block';
+  // Lien discret sous le titre + grand bouton sous les visuels
+  const url = tile.dataset.url;
+  if (url) {
+    linkEl.href = siteLinkEl.href = url;
+    siteLinkEl.textContent = `${new URL(url).hostname.replace(/^www\./, '')} ↗`;
   }
+  siteLinkEl.style.display = url ? 'inline-block' : 'none';
+  actionsEl.style.display = url ? 'flex' : 'none';
+  soonEl.style.display = url ? 'none' : 'inline-block';
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');

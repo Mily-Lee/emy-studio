@@ -632,21 +632,29 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: var(--text-sm);
   color: var(--ink-soft);
 }
-.modal-body .btn {
-  margin-top: clamp(1.7rem, 2.5vw, 2.4rem);
-}
-@media (max-width: 720px) {
-  /* Centré (le JS l'affiche en inline-flex, d'où left + translate) */
-  .modal-body .btn {
-    position: relative;
-    left: 50%;
-    translate: -50% 0;
-  }
-}
-.modal-body #modalLink,
+/* Lien discret vers le site, sous le titre */
+.modal-site-link,
 .modal-body #modalSoon {
   display: none;
-  margin-top: 1.7rem;
+  margin-top: 0.8rem;
+}
+.modal-site-link {
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+  transition: color 0.3s var(--ease);
+}
+.modal-site-link:hover { color: var(--accent); }
+
+/* Grand bouton « Voir le projet », sous les visuels */
+.modal-actions {
+  display: none;
+  flex: none;
+  justify-content: center;
+  padding: 0.5rem 1.5rem clamp(2.5rem, 6vw, 4rem);
 }
 
 /* ====================================
