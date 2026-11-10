@@ -1388,6 +1388,156 @@ body.subpage .top-nav:has(.nav-burger.open) {
   .nav-links { gap: 1rem; }
 }
 
+/* ====================================
+   ACCUEIL — MENU MAGNÉTIQUE « GOOEY »
+   Un rond qui suit la souris ; à l'ouverture, les liens s'en détachent
+   comme des gouttes. Les formes vivent dans .goo (flouté + contrasté par
+   le filtre SVG #goo, ce qui les fait fusionner) ; le texte des liens est
+   posé par-dessus, net, avec exactement la même géométrie.
+   ==================================== */
+body.home {
+  --goo-b: 64px;      /* diamètre du rond */
+  --goo-pw: 190px;    /* largeur d'une pastille */
+  --goo-ph: 48px;     /* hauteur d'une pastille */
+  --goo-gap: 10px;
+  --goo-top: 1.8rem;
+  --goo-right: 1.8rem;
+  --goo-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (max-width: 720px) {
+  body.home { --goo-b: 56px; --goo-pw: 170px; --goo-ph: 44px; --goo-top: 1rem; --goo-right: 1rem; }
+}
+
+.goo { display: none; }
+body.home .goo,
+body.home .nav-links {
+  position: fixed;
+  top: var(--goo-top);
+  right: var(--goo-right);
+  left: auto;
+  bottom: auto;
+  inset: var(--goo-top) var(--goo-right) auto auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: var(--goo-gap);
+  padding-top: calc(var(--goo-b) + var(--goo-gap));
+  margin: 0;
+  list-style: none;
+  pointer-events: none;
+}
+body.home .goo {
+  z-index: 1090;
+  filter: url(#goo);
+}
+body.home .goo span,
+body.home .nav-links a {
+  width: var(--goo-pw);
+  height: var(--goo-ph);
+  border-radius: calc(var(--goo-ph) / 2);
+}
+body.home .goo span { display: block; background: var(--ink); }
+/* Le rond : une ancre fixe + une goutte qui suit le bouton magnétique */
+body.home .goo .goo-anchor,
+body.home .goo .goo-follow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--goo-b);
+  height: var(--goo-b);
+  border-radius: 50%;
+}
+body.home .goo .goo-follow {
+  translate: var(--mx, 0px) var(--my, 0px);
+  transition: translate 0.35s var(--goo-spring);
+}
+
+/* Fermé : chaque pastille est ramassée sous le rond */
+body.home .goo .goo-item,
+body.home .nav-links li {
+  transform:
+    translate(calc(var(--goo-pw) / 2 - var(--goo-b) / 2),
+              calc(-1 * (var(--goo-b) / 2 + var(--goo-gap) + var(--goo-ph) / 2 + var(--i) * (var(--goo-ph) + var(--goo-gap)))))
+    scale(0.3);
+  transition: transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.2);
+  transition-delay: calc((4 - var(--i)) * 0.04s);
+}
+body.home .nav-links li:nth-child(1), body.home .goo .goo-item:nth-of-type(3) { --i: 0; }
+body.home .nav-links li:nth-child(2), body.home .goo .goo-item:nth-of-type(4) { --i: 1; }
+body.home .nav-links li:nth-child(3), body.home .goo .goo-item:nth-of-type(5) { --i: 2; }
+body.home .nav-links li:nth-child(4), body.home .goo .goo-item:nth-of-type(6) { --i: 3; }
+body.home .nav-links li:nth-child(5), body.home .goo .goo-item:nth-of-type(7) { --i: 4; }
+
+/* Ouvert : les gouttes jaillissent une à une, avec un rebond */
+body.home .goo.open .goo-item,
+body.home .nav-links.open li {
+  transform: none;
+  transition: transform 0.7s var(--goo-spring);
+  transition-delay: calc(var(--i) * 0.06s);
+}
+
+body.home .nav-links {
+  z-index: 1100;
+  background: none;
+  clip-path: none;
+}
+body.home .nav-links::before { display: none; }
+body.home .nav-links.open li { pointer-events: auto; }
+body.home .nav-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--panel-text);
+  transform: none;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease), color 0.3s var(--ease);
+}
+body.home .nav-links.open a {
+  opacity: 1;
+  transition-delay: calc(0.18s + var(--i) * 0.06s);
+}
+body.home .nav-links a.active,
+body.home .nav-links a:hover { color: var(--accent); }
+body.home .nav-links a::after { display: none; }
+
+/* Le bouton : zone cliquable transparente, la forme est dans .goo */
+body.home .nav-burger,
+body.home .nav-burger:hover,
+body.home .nav-burger.open {
+  top: var(--goo-top);
+  right: var(--goo-right);
+  width: var(--goo-b);
+  height: var(--goo-b);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transform: none;
+  translate: var(--mx, 0px) var(--my, 0px);
+  transition: translate 0.35s var(--goo-spring);
+}
+body.home .nav-burger span { display: none; }
+body.home .nav-burger::after {
+  content: 'Menu';
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--panel-text);
+}
+body.home .nav-burger.open::after { content: 'Fermer'; }
+body.home .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.home .goo *, body.home .nav-links *, body.home .nav-burger { transition: none !important; }
+}
+
 /* Mobile : marge réduite entre le menu et le haut des sous-pages */
 @media (max-width: 720px) {
   .about-page, .realisations-page, .services-page, .contact-page { padding-top: 6.5rem; }

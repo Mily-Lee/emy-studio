@@ -1,9 +1,26 @@
 const burger = document.querySelector('.nav-burger');
 const links = document.querySelector('.nav-links');
 
+// ===== Accueil : menu magnétique « gooey » =====
+// Calque de formes (rond + 5 pastilles) fusionnées par un filtre SVG ;
+// le CSS ne l'affiche que sur body.home.
+document.body.insertAdjacentHTML('beforeend', `
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="goo" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"/>
+    </filter>
+  </svg>
+  <div class="goo" aria-hidden="true">
+    <span class="goo-anchor"></span><span class="goo-follow"></span>
+    ${'<span class="goo-item"></span>'.repeat(5)}
+  </div>`);
+const goo = document.querySelector('.goo');
+
 function toggleMenu() {
   const isOpen = burger.classList.toggle('open');
   links.classList.toggle('open');
+  goo.classList.toggle('open', isOpen);
   burger.setAttribute('aria-expanded', isOpen);
   document.body.style.overflow = isOpen ? 'hidden' : '';
 }
@@ -13,6 +30,28 @@ burger.addEventListener('click', toggleMenu);
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && burger.classList.contains('open')) toggleMenu();
 });
+
+// Accueil : un clic hors du menu le referme
+document.addEventListener('click', (e) => {
+  if (document.body.classList.contains('home') && burger.classList.contains('open')
+      && !e.target.closest('.nav-links, .nav-burger')) toggleMenu();
+});
+
+// Effet magnétique : le rond est attiré par le curseur quand il s'approche
+if (matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+  const root = document.documentElement;
+  window.addEventListener('mousemove', (e) => {
+    let mx = 0, my = 0;
+    if (document.body.classList.contains('home')) {
+      const r = goo.querySelector('.goo-anchor').getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      if (Math.hypot(dx, dy) < 130) { mx = dx * 0.35; my = dy * 0.35; }
+    }
+    root.style.setProperty('--mx', `${mx}px`);
+    root.style.setProperty('--my', `${my}px`);
+  });
+}
 
 // ===== Bouton retour en haut =====
 // Créé une seule fois et attaché au body (jamais touché par la navigation AJAX).
