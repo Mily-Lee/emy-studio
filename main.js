@@ -1,9 +1,8 @@
 const burger = document.querySelector('.nav-burger');
 const links = document.querySelector('.nav-links');
 
-// ===== Accueil : menu magnétique « gooey » =====
+// ===== Menu magnétique « gooey » (tout le site) =====
 // Le rond (ancre + goutte qui suit le curseur) fusionné par un filtre SVG ;
-// le CSS ne l'affiche que sur body.home.
 document.body.insertAdjacentHTML('beforeend', `
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <filter id="goo" x="-50%" y="-50%" width="200%" height="200%">
@@ -31,10 +30,9 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && burger.classList.contains('open')) toggleMenu();
 });
 
-// Accueil : un clic hors du menu le referme
+// Un clic hors du menu le referme
 document.addEventListener('click', (e) => {
-  if (document.body.classList.contains('home') && burger.classList.contains('open')
-      && !e.target.closest('.nav-links a, .nav-burger')) toggleMenu();
+  if (burger.classList.contains('open') && !e.target.closest('.nav-links a, .nav-burger')) toggleMenu();
 });
 
 // Effet magnétique : le rond est attiré par le curseur quand il s'approche
@@ -42,12 +40,10 @@ if (matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').ma
   const root = document.documentElement;
   window.addEventListener('mousemove', (e) => {
     let mx = 0, my = 0;
-    if (document.body.classList.contains('home')) {
-      const r = goo.querySelector('.goo-anchor').getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width / 2);
-      const dy = e.clientY - (r.top + r.height / 2);
-      if (Math.hypot(dx, dy) < 130) { mx = dx * 0.35; my = dy * 0.35; }
-    }
+    const r = goo.querySelector('.goo-anchor').getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width / 2);
+    const dy = e.clientY - (r.top + r.height / 2);
+    if (Math.hypot(dx, dy) < 130) { mx = dx * 0.35; my = dy * 0.35; }
     root.style.setProperty('--mx', `${mx}px`);
     root.style.setProperty('--my', `${my}px`);
   });
@@ -264,7 +260,7 @@ initContactForm();
 // ===== Navigation sans rechargement — le menu reste en place =====
 // On ne remplace que le contenu de <main>, jamais le header/burger/menu.
 function setActiveLinks(page) {
-  document.querySelectorAll('.nav-links a, .top-nav-links a').forEach(a => {
+  document.querySelectorAll('.nav-links a').forEach(a => {
     a.classList.toggle('active', a.getAttribute('href') === page);
   });
 }
@@ -285,11 +281,6 @@ async function navigateTo(page, addToHistory = true) {
 
     document.body.className = nextDoc.body.className;
     document.title = nextDoc.title;
-    // Le burger vit dans .top-nav sur les sous-pages, hors de .top-nav sur l'accueil
-    // (où la barre est masquée) : on reprend la place qu'il a dans la page cible.
-    const topNav = document.querySelector('.top-nav');
-    if (nextDoc.querySelector('.top-nav .nav-burger')) topNav.appendChild(burger);
-    else topNav.after(burger);
     current.replaceWith(document.adoptNode(nextMain));
     setActiveLinks(page);
     initGallery();

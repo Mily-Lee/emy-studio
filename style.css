@@ -1123,9 +1123,7 @@ main.is-leaving {
 }
 
 /* ====================================
-   MENU DESKTOP — barre horizontale classique (sous-pages)
-   le burger prend le relais uniquement en responsive,
-   la page d'accueil garde le burger à toutes les tailles
+   BARRE DU HAUT (sous-pages) — logo seul, le menu est le rond gooey
    ==================================== */
 .top-nav {
   display: none;
@@ -1143,19 +1141,9 @@ body.subpage .top-nav {
   box-shadow: 0 12px 24px -18px rgba(74, 55, 47, 0.5);
   z-index: 1100;
 }
-body.subpage .top-nav-links {
-  display: none;
-}
 @media (min-width: 900px) {
   body.subpage .top-nav {
     padding: 1.6rem 2.5rem;
-  }
-  body.subpage .top-nav-links {
-    display: flex;
-  }
-  body.subpage .nav-burger,
-  body.subpage .nav-links {
-    display: none;
   }
 }
 .top-nav-logo {
@@ -1169,235 +1157,12 @@ body.subpage .top-nav-links {
 .top-nav-logo .rose {
   color: var(--rose);
 }
-.top-nav-links {
-  display: flex;
-  gap: 2.4rem;
-  list-style: none;
-}
-.top-nav-links a {
-  position: relative;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: var(--ink);
-}
-.top-nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.35s var(--ease);
-}
-.top-nav-links a:hover::after,
-.top-nav-links a.active::after {
-  width: 100%;
-}
-.top-nav-links a.active {
-  color: var(--accent);
-}
-
 /* ====================================
-   BURGER — grille 2x2, converge en croix
-   ==================================== */
-.nav-burger {
-  position: fixed;
-  top: 1.8rem;
-  right: 1.8rem;
-  width: 36px;
-  height: 36px;
-  padding: 6px;
-  box-sizing: content-box;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  z-index: 1150;
-  transition: transform 0.6s var(--ease);
-}
-@media (max-width: 720px) {
-  .nav-burger { top: 0.4rem; right: 1.2rem; }
-}
-.nav-burger:hover { transform: rotate(90deg); }
-.nav-burger.open { transform: rotate(180deg); }
-
-/* Sur les sous-pages, le burger est imbriqué dans .top-nav :
-   centrage automatique avec le logo, quelle que soit la hauteur de la barre. */
-.top-nav .nav-burger {
-  position: absolute;
-  top: 50%;
-  right: 1.2rem;
-  /* translate/scale séparés de transform : le rotate du survol s'y ajoute,
-     et le centrage n'est pas réduit par le scale */
-  translate: 0 -50%;
-  scale: 0.85;
-}
-/* Menu ouvert : la barre passe devant le panneau (sinon il recouvre la croix),
-   sans fond ni logo pour ne laisser que la croix */
-body.subpage .top-nav:has(.nav-burger.open) {
-  z-index: 1160;
-  background: transparent;
-  box-shadow: none;
-}
-.top-nav:has(.nav-burger.open) .top-nav-logo { visibility: hidden; }
-@media (max-width: 720px) {
-  /* Barre plus basse : logo et burger remontent ensemble, restent centrés */
-  body.subpage .top-nav { padding-top: calc(1.3rem - 9px); padding-bottom: calc(1.3rem - 9px); }
-}
-
-.nav-burger span {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: var(--ink);
-  border-radius: 3px;
-  transition: transform 0.5s var(--ease);
-  animation: burger-pulse 4.8s ease-in-out infinite;
-}
-.nav-burger span:nth-child(1) { top: 6px; left: 6px; animation-delay: 0s; }
-.nav-burger span:nth-child(2) { top: 6px; right: 6px; animation-delay: 1.2s; }
-.nav-burger span:nth-child(4) { bottom: 6px; right: 6px; animation-delay: 2.4s; }
-.nav-burger span:nth-child(3) { bottom: 6px; left: 6px; animation-delay: 3.6s; }
-
-/* Repère l'oeil : chaque carré passe brièvement en terracotta, l'un après l'autre */
-@keyframes burger-pulse {
-  0%, 20%, 100% { background: var(--ink); }
-  5%, 15% { background: var(--accent); }
-}
-
-.nav-burger:hover span {
-  animation: none;
-  background: var(--accent);
-  transform: scale(0.85);
-}
-
-.nav-burger.open span { animation: none; }
-
-@media (prefers-reduced-motion: reduce) {
-  .nav-burger span { animation: none; }
-}
-
-/* Ouvert : les 4 carrés convergent au centre et forment une croix claire sur fond sombre */
-.nav-burger.open span {
-  background: var(--panel-text);
-  width: 30px;
-  height: 2.5px;
-  border-radius: 2px;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-}
-.nav-burger.open span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
-.nav-burger.open span:nth-child(2) { transform: translate(-50%, -50%) rotate(-45deg); }
-.nav-burger.open span:nth-child(3),
-.nav-burger.open span:nth-child(4) { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-
-/* ====================================
-   PANNEAU PLEIN ECRAN — révélation circulaire
-   ==================================== */
-.nav-links {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100dvh;
-  background: var(--panel);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  z-index: 1100;
-  clip-path: circle(0% at calc(100% - 3rem) 3rem);
-  transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.18, 1);
-  pointer-events: none;
-}
-.nav-links::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.25;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.75 0 0 0 0 0.65 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  background-size: 220px 220px;
-  pointer-events: none;
-}
-.nav-links.open {
-  clip-path: circle(150% at calc(100% - 3rem) 3rem);
-  pointer-events: auto;
-}
-
-.nav-links li { list-style: none; overflow: visible; }
-
-.nav-links a {
-  font-family: 'Lato', sans-serif;
-  font-size: clamp(2rem, 5.5vw, 3.8rem);
-  font-weight: 700;
-  color: var(--panel-text);
-  display: inline-block;
-  position: relative;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-              color 0.4s var(--ease);
-}
-.nav-links.open a { opacity: 1; transform: translateY(0); }
-.nav-links.open li:nth-child(1) a { transition-delay: 0.35s; }
-.nav-links.open li:nth-child(2) a { transition-delay: 0.43s; }
-.nav-links.open li:nth-child(3) a { transition-delay: 0.51s; }
-.nav-links.open li:nth-child(4) a { transition-delay: 0.59s; }
-.nav-links.open li:nth-child(5) a { transition-delay: 0.67s; }
-
-/* Mot cursif révélé au survol (desktop) */
-.nav-links a::after {
-  content: attr(data-word);
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  margin-left: 1.5rem;
-  transform: translateY(-65%) translateX(-20px) rotate(-4deg);
-  font-family: 'Italianno', cursive;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  color: var(--accent);
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
-}
-.nav-links a:hover { color: var(--accent); }
-.nav-links a:hover::after {
-  opacity: 1;
-  transform: translateY(-65%) translateX(0) rotate(-4deg);
-}
-
-@media (max-width: 900px) {
-  .nav-links a::after {
-    content: '';
-    left: 0; right: 0; bottom: -6px; top: auto;
-    margin-left: 0; width: auto; height: 10px;
-    font-size: unset; color: unset; white-space: unset;
-    transform: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 12' preserveAspectRatio='none'><path d='M 2,7 Q 30,2 60,6 T 120,7 T 180,4 T 218,7' stroke='%23DB8159' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    clip-path: inset(0 100% 0 0);
-    opacity: 1;
-    transition: clip-path 0.7s var(--ease);
-  }
-  .nav-links a:hover::after { clip-path: inset(0 0 0 0); transform: none; }
-}
-@media (max-width: 600px) {
-  .nav-links { gap: 1rem; }
-}
-
-/* ====================================
-   ACCUEIL — MENU MAGNÉTIQUE « GOOEY »
+   MENU MAGNÉTIQUE « GOOEY » — tout le site
    Un rond qui suit la souris et s'étire comme une goutte (.goo, filtre
    SVG #goo) ; à l'ouverture, les liens en verre dépoli en jaillissent.
    ==================================== */
-body.home {
+html {
   --goo-b: 64px;      /* diamètre du rond */
   --goo-pw: 190px;    /* largeur d'une pastille */
   --goo-ph: 48px;     /* hauteur d'une pastille */
@@ -1407,12 +1172,15 @@ body.home {
   --goo-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 @media (max-width: 720px) {
-  body.home { --goo-b: 56px; --goo-pw: 170px; --goo-ph: 44px; --goo-top: 1rem; --goo-right: 1rem; }
+  html { --goo-b: 56px; --goo-pw: 170px; --goo-ph: 44px; --goo-top: 1rem; --goo-right: 1rem; }
 }
+/* Sous-pages : le rond se cale dans la barre du haut */
+body.subpage { --goo-top: 0.6rem; --goo-right: 2.5rem; }
+@media (max-width: 900px) { body.subpage { --goo-right: 1.5rem; } }
+@media (max-width: 720px) { body.subpage { --goo-b: 50px; --goo-top: 3px; --goo-right: 1rem; } }
 
-.goo { display: none; }
-body.home .goo,
-body.home .nav-links {
+.goo,
+.nav-links {
   position: fixed;
   top: var(--goo-top);
   right: var(--goo-right);
@@ -1431,19 +1199,14 @@ body.home .nav-links {
   list-style: none;
   pointer-events: none;
 }
-body.home .goo {
-  z-index: 1090;
+.goo {
+  z-index: 1120;
   filter: url(#goo);
 }
-body.home .nav-links a {
-  width: var(--goo-pw);
-  height: var(--goo-ph);
-  border-radius: calc(var(--goo-ph) / 2);
-}
-body.home .goo span { display: block; background: var(--ink); }
+.goo span { display: block; background: var(--ink); }
 /* Le rond : une ancre fixe + une goutte qui suit le bouton magnétique */
-body.home .goo .goo-anchor,
-body.home .goo .goo-follow {
+.goo .goo-anchor,
+.goo .goo-follow {
   position: absolute;
   top: 0;
   right: 0;
@@ -1451,13 +1214,13 @@ body.home .goo .goo-follow {
   height: var(--goo-b);
   border-radius: 50%;
 }
-body.home .goo .goo-follow {
+.goo .goo-follow {
   translate: var(--mx, 0px) var(--my, 0px);
   transition: translate 0.35s var(--goo-spring);
 }
 
 /* Fermé : chaque pastille est ramassée sous le rond */
-body.home .nav-links li {
+.nav-links li {
   transform:
     translate(calc(var(--goo-pw) / 2 - var(--goo-b) / 2),
               calc(-1 * (var(--goo-b) / 2 + var(--goo-gap) + var(--goo-ph) / 2 + var(--i) * (var(--goo-ph) + var(--goo-gap)))))
@@ -1465,30 +1228,30 @@ body.home .nav-links li {
   transition: transform 0.45s cubic-bezier(0.55, 0, 0.8, 0.2);
   transition-delay: calc((4 - var(--i)) * 0.04s);
 }
-body.home .nav-links li:nth-child(1) { --i: 0; }
-body.home .nav-links li:nth-child(2) { --i: 1; }
-body.home .nav-links li:nth-child(3) { --i: 2; }
-body.home .nav-links li:nth-child(4) { --i: 3; }
-body.home .nav-links li:nth-child(5) { --i: 4; }
+.nav-links li:nth-child(1) { --i: 0; }
+.nav-links li:nth-child(2) { --i: 1; }
+.nav-links li:nth-child(3) { --i: 2; }
+.nav-links li:nth-child(4) { --i: 3; }
+.nav-links li:nth-child(5) { --i: 4; }
 
 /* Ouvert : les gouttes jaillissent une à une, avec un rebond */
-body.home .nav-links.open li {
+.nav-links.open li {
   transform: none;
   transition: transform 0.7s var(--goo-spring);
   transition-delay: calc(var(--i) * 0.06s);
 }
 
-body.home .nav-links {
-  z-index: 1100;
-  background: none;
-  clip-path: none;
-}
-body.home .nav-links::before { display: none; }
-body.home .nav-links.open li { pointer-events: auto; }
-body.home .nav-links a {
+.nav-links { z-index: 1130; }
+.nav-links.open li { pointer-events: auto; }
+.nav-links a {
+  width: var(--goo-pw);
+  height: var(--goo-ph);
+  border-radius: calc(var(--goo-ph) / 2);
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   color: var(--ink);
@@ -1499,24 +1262,25 @@ body.home .nav-links a {
   border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 10px 30px -10px rgba(74, 55, 47, 0.35),
               inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transform: none;
   opacity: 0;
   transition: opacity 0.3s var(--ease), color 0.3s var(--ease),
               background 0.3s var(--ease);
 }
-body.home .nav-links.open a {
+.nav-links.open a {
   opacity: 1;
   transition-delay: calc(var(--i) * 0.06s), 0s, 0s;
 }
-body.home .nav-links a:hover { background: rgba(252, 250, 247, 0.65); }
-body.home .nav-links a.active,
-body.home .nav-links a:hover { color: var(--accent); }
-body.home .nav-links a::after { display: none; }
+.nav-links a:hover { background: rgba(252, 250, 247, 0.65); }
+.nav-links a.active,
+.nav-links a:hover { color: var(--accent); }
 
 /* Le bouton : zone cliquable transparente, la forme est dans .goo */
-body.home .nav-burger,
-body.home .nav-burger:hover,
-body.home .nav-burger.open {
+.nav-burger {
+  position: fixed;
+  z-index: 1150;
+  border: none;
+  background: transparent;
+  cursor: pointer;
   top: var(--goo-top);
   right: var(--goo-right);
   width: var(--goo-b);
@@ -1526,12 +1290,10 @@ body.home .nav-burger.open {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transform: none;
   translate: var(--mx, 0px) var(--my, 0px);
   transition: translate 0.35s var(--goo-spring);
 }
-body.home .nav-burger span { display: none; }
-body.home .nav-burger::after {
+.nav-burger::after {
   content: 'Menu';
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -1539,20 +1301,23 @@ body.home .nav-burger::after {
   letter-spacing: 0.06em;
   color: var(--panel-text);
 }
-body.home .nav-burger.open::after { content: 'Fermer'; }
-body.home .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.nav-burger.open::after { content: 'Fermer'; }
+.nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
-/* Mobile : menu ouvert, la page derrière se floute légèrement */
+/* Mobile : menu ouvert, la page derrière se floute */
 @media (max-width: 720px) {
-  body.home main,
-  body.home .site-footer { transition: filter 0.4s var(--ease); }
-  body.home.menu-open main,
-  body.home.menu-open .site-footer { filter: blur(12px); }
+  main,
+  .top-nav,
+  .site-footer { transition: filter 0.4s var(--ease); }
+  body.menu-open main,
+  body.menu-open .top-nav,
+  body.menu-open .site-footer { filter: blur(12px); }
+  body.subpage .nav-burger::after { font-size: 0.72rem; }
 }
 
 /* Mobile : boutons centrés dans la page ; fermés, ils restent ramassés sous le rond */
 @media (max-width: 720px) {
-  body.home .nav-links {
+  .nav-links {
     inset: 0;
     width: 100%;
     height: 100dvh;
@@ -1560,7 +1325,7 @@ body.home .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-
     align-items: center;
     justify-content: center;
   }
-  body.home .nav-links li {
+  .nav-links li {
     transform:
       translate(calc(50vw - var(--goo-right) - var(--goo-b) / 2),
                 calc(var(--goo-top) + var(--goo-b) / 2 - 50dvh
@@ -1568,11 +1333,11 @@ body.home .nav-burger:focus-visible { outline: 2px solid var(--accent); outline-
                      - var(--i) * (var(--goo-ph) + var(--goo-gap)) - var(--goo-ph) / 2))
       scale(0.3);
   }
-  body.home .nav-links.open li { transform: none; }
+  .nav-links.open li { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.home .goo *, body.home .nav-links *, body.home .nav-burger { transition: none !important; }
+  .goo *, .nav-links *, .nav-burger { transition: none !important; }
 }
 
 /* Mobile : marge réduite entre le menu et le haut des sous-pages */
