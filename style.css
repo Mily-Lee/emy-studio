@@ -1267,7 +1267,13 @@ html {
     padding: 0;
     align-items: center;
     justify-content: center;
+    /* voile brun sur la page floutée : les boutons clairs ressortent */
+    background: rgba(74, 55, 47, 0);
+    transition: background 0.4s var(--ease);
   }
+  .nav-links.open { background: rgba(74, 55, 47, 0.6); }
+  .nav-links a { background: rgba(252, 250, 247, 0.88); }
+  .nav-links a:hover { background: rgba(252, 250, 247, 1); }
   .nav-links li {
     transform:
       translate(calc(50vw - 0.42 * var(--goo-b)),
