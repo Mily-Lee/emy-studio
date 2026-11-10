@@ -1375,7 +1375,7 @@ body.subpage .top-nav:has(.nav-burger.open) {
     margin-left: 0; width: auto; height: 10px;
     font-size: unset; color: unset; white-space: unset;
     transform: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 12' preserveAspectRatio='none'><path d='M 2,7 Q 30,2 60,6 T 120,7 T 180,4 T 218,7' stroke='%23D8A68F' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 12' preserveAspectRatio='none'><path d='M 2,7 Q 30,2 60,6 T 120,7 T 180,4 T 218,7' stroke='%23DB8159' stroke-width='1.8' fill='none' stroke-linecap='round'/></svg>");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     clip-path: inset(0 100% 0 0);
