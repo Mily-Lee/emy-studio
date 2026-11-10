@@ -52,7 +52,7 @@ function applyFontPreview(el, name) {
     link.href = `https://fonts.googleapis.com/css2?family=${spec.query}&text=${encodeURIComponent(name)}&display=swap`;
     document.head.appendChild(link);
   }
-  el.style.fontFamily = `'${spec.family}', 'Manrope', sans-serif`;
+  el.style.fontFamily = `'${spec.family}', 'Instrument Sans', sans-serif`;
   if (spec.stretch) el.style.fontStretch = spec.stretch;
 }
 

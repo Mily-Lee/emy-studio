@@ -16,8 +16,10 @@ body {
   background: var(--bg);
   color: var(--ink);
   min-height: 100vh;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   overflow-x: clip;
+  /* Instrument Serif n'existe qu'en 400 : pas de faux gras */
+  font-synthesis: none;
 }
 
 /* ===== Grain — texture filmique subtile sur tout le site ===== */
@@ -121,7 +123,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 .about-intro .eyebrow {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -130,7 +132,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .about-intro h1 {
   margin-top: 1rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
@@ -143,7 +145,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .about-intro .about-lead {
   margin-top: 1.4rem;
   max-width: 34rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 400;
   line-height: 1.75;
   font-size: 1.05rem;
@@ -169,7 +171,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 .about-num {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: 1.4rem;
@@ -177,7 +179,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 .about-section h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
@@ -185,7 +187,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-bottom: 1rem;
 }
 .about-section p {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 400;
   line-height: 1.75;
   color: var(--ink-soft);
@@ -219,7 +221,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   }
 }
 .about-skill-label {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 600;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
@@ -265,7 +267,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .realisations-header .eyebrow {
   margin-top: 0; /* sinon hérite du margin de .realisations-header p */
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -274,7 +276,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .realisations-header p {
   margin-top: 1.2rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   line-height: 1.75;
   color: var(--ink-soft);
   font-size: calc(1.05rem - 2px);
@@ -362,7 +364,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   transform: translateY(-4px);
 }
 .project-tile-title {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 1.05rem;
@@ -376,7 +378,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .project-tile-cta {
   display: block;
   margin-bottom: 0.25rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -585,7 +587,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .modal-body h2 {
   margin-top: 0.8rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: clamp(1.8rem, 4.5vw, 3.2rem);
@@ -593,7 +595,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .modal-detail {
   margin-top: 1.2rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   line-height: 1.75;
   color: var(--ink-soft);
   font-size: clamp(0.95rem, 1.4vw, 1.15rem);
@@ -603,7 +605,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .modal-meta-label {
   display: block;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -620,7 +622,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 0.85rem;
   color: var(--ink-soft);
 }
@@ -633,7 +635,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .modal-body #modalFonts,
 .modal-body #modalTools {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 0.95rem;
   color: var(--ink-soft);
 }
@@ -671,7 +673,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .services-header .eyebrow {
   margin-top: 0; /* sinon hérite du margin de .services-header p */
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -680,7 +682,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .services-header h1 {
   margin-top: 1rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: clamp(2.2rem, 5vw, 3.4rem);
@@ -692,7 +694,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .services-header p {
   margin-top: 1.2rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   line-height: 1.75;
   color: var(--ink-soft);
   font-size: 1.05rem;
@@ -721,7 +723,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   box-shadow: 0 24px 50px -25px rgba(74, 55, 47, 0.4);
 }
 .service-card h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: 1.5rem;
@@ -729,7 +731,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .service-card p {
   margin-top: 0.9rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   line-height: 1.65;
   color: var(--ink-soft);
   font-size: 0.95rem;
@@ -740,7 +742,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   text-align: center;
 }
 .services-cta p {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
@@ -773,7 +775,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 .contact-info .eyebrow {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -782,7 +784,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .contact-info h1 {
   margin-top: 1rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: clamp(2.4rem, 5.5vw, 3.8rem);
@@ -794,7 +796,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .contact-lead {
   margin-top: 1.4rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   line-height: 1.7;
   color: var(--ink-soft);
   font-size: 1.05rem;
@@ -810,7 +812,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--ink);
@@ -848,7 +850,7 @@ a.contact-detail-item:hover {
   gap: 0.5rem;
 }
 .form-group label {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -858,7 +860,7 @@ a.contact-detail-item:hover {
 .form-group input,
 .form-group select,
 .form-group textarea {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 0.95rem;
   color: var(--ink);
   background: var(--bg);
@@ -902,7 +904,7 @@ a.contact-detail-item:hover {
   align-items: flex-start;
   gap: 0.7rem;
   cursor: pointer;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 0.82rem;
   line-height: 1.5;
   color: var(--ink-soft);
@@ -917,7 +919,7 @@ a.contact-detail-item:hover {
 }
 
 .form-status {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 0.88rem;
   min-height: 1.2em;
 }
@@ -957,7 +959,7 @@ main.is-leaving {
   animation: reveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 .wordmark h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   font-size: clamp(3.2rem, 12vw, 9rem);
@@ -993,7 +995,7 @@ main.is-leaving {
 }
 .wordmark .eyebrow {
   margin-top: 1.4rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
   text-transform: uppercase;
@@ -1009,14 +1011,14 @@ main.is-leaving {
   gap: 0.5rem;
 }
 .wordmark .tagline {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 600;
   line-height: 1.6;
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   color: var(--ink);
 }
 .wordmark .subtagline {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 400;
   line-height: 1.6;
   font-size: clamp(0.9rem, 1.3vw, 1.05rem);
@@ -1063,7 +1065,7 @@ main.is-leaving {
   align-items: center;
   justify-content: center;
   padding: 0.95rem 2.3rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 600;
   font-size: 0.88rem;
   letter-spacing: 0.03em;
@@ -1153,7 +1155,7 @@ body.subpage .top-nav-links {
   }
 }
 .top-nav-logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-style: italic;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -1170,7 +1172,7 @@ body.subpage .top-nav-links {
 }
 .top-nav-links a {
   position: relative;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
   color: var(--ink);
@@ -1325,7 +1327,7 @@ body.subpage .top-nav:has(.nav-burger.open) {
 .nav-links li { list-style: none; overflow: visible; }
 
 .nav-links a {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-size: clamp(2rem, 5.5vw, 3.8rem);
   font-weight: 500;
   color: var(--panel-text);
@@ -1406,7 +1408,7 @@ body.subpage .top-nav:has(.nav-burger.open) {
   align-items: center;
   justify-content: space-between;
   gap: 1rem 2rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   font-size: 0.85rem;
   color: var(--ink-soft);
 }
@@ -1441,14 +1443,14 @@ body.home .footer-info { display: none; }
   margin-bottom: 2.6rem;
 }
 .legal-section h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Instrument Serif', serif;
   font-weight: 600;
   font-size: 1.35rem;
   color: var(--ink);
 }
 .legal-section p {
   margin-top: 0.8rem;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   line-height: 1.75;
   color: var(--ink-soft);
 }
