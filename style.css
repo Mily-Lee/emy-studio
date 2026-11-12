@@ -887,6 +887,17 @@ main.is-leaving {
   text-align: center;
   padding: 2rem;
 }
+/* Photo de bureau en fond, voilée de crème pour garder le titre lisible */
+body.home {
+  background:
+    linear-gradient(rgba(252, 250, 247, 0.72), rgba(252, 250, 247, 0.72)),
+    url("assets/hero-bureau.jpg") center / cover no-repeat,
+    var(--bg);
+  background:
+    linear-gradient(rgba(252, 250, 247, 0.72), rgba(252, 250, 247, 0.72)),
+    image-set(url("assets/hero-bureau.webp") type("image/webp"), url("assets/hero-bureau.jpg") type("image/jpeg")) center / cover no-repeat,
+    var(--bg);
+}
 /* Mobile : le titre descend sous le rond du menu */
 @media (max-width: 720px) {
   .cover { padding-top: 22px; }
