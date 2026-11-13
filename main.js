@@ -246,6 +246,69 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const chapters = [...document.querySelectorAll('.chapter')];
 if (chapters.length && !reduceMotion.matches) {
   const clamp = (v) => Math.min(Math.max(v, 0), 1);
+  // Puzzle : l'image de l'atelier découpée en éclats de papier déchiré.
+  // Les bords sont partagés entre voisins, donc les morceaux s'emboîtent exactement.
+  const fits = [];
+  document.querySelectorAll('.puzzle').forEach(box => {
+    let seed = 7;
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const portrait = window.innerHeight > window.innerWidth;
+    const cols = portrait ? 3 : 5, rows = portrait ? 5 : 4;
+    const V = [];
+    for (let j = 0; j <= rows; j++) {
+      V[j] = [];
+      for (let i = 0; i <= cols; i++) {
+        const ex = i === 0 || i === cols, ey = j === 0 || j === rows;
+        V[j][i] = [i / cols * 100 + (ex ? 0 : (rnd() - 0.5) * 40 / cols),
+                   j / rows * 100 + (ey ? 0 : (rnd() - 0.5) * 40 / rows)];
+      }
+    }
+    const edges = new Map();
+    const torn = (a, b, straight) => {
+      const back = edges.get(b + '>' + a);
+      if (back) return back.slice().reverse();
+      const pts = [];
+      const dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy);
+      if (!straight) for (let k = 1; k < 7; k++) {
+        const t = k / 7, off = (rnd() - 0.5) * 2.2;
+        pts.push([a[0] + dx * t - dy / len * off, a[1] + dy * t + dx / len * off]);
+      }
+      edges.set(a + '>' + b, pts);
+      return pts;
+    };
+    const pieces = [];
+    for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+      const tl = V[j][i], tr = V[j][i + 1], br = V[j + 1][i + 1], bl = V[j + 1][i];
+      const poly = [tl, ...torn(tl, tr, j === 0), tr, ...torn(tr, br, i + 1 === cols),
+                    br, ...torn(br, bl, j + 1 === rows), bl, ...torn(bl, tl, i === 0)];
+      const xs = poly.map(p => p[0]), ys = poly.map(p => p[1]);
+      const x = Math.min(...xs), y = Math.min(...ys), w = Math.max(...xs) - x, h = Math.max(...ys) - y;
+      const el = document.createElement('div');
+      el.className = 'note piece';
+      el.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;` +
+        `--x:${(tl[0] + tr[0] + br[0] + bl[0]) / 4};--y:${(tl[1] + tr[1] + br[1] + bl[1]) / 4};--r:0`;
+      const img = document.createElement('span');
+      img.style.backgroundImage = `url(${box.dataset.img})`;
+      img.style.clipPath = `polygon(${poly.map(p => `${(p[0] - x) / w * 100}% ${(p[1] - y) / h * 100}%`).join(',')})`;
+      el.appendChild(img);
+      box.appendChild(el);
+      pieces.push([img, x, y]);
+    }
+    // Image entière posée par-dessus quand tout est assemblé : aucune jointure visible
+    const full = document.createElement('div');
+    full.className = 'puzzle-full';
+    full.style.backgroundImage = `url(${box.dataset.img})`;
+    box.appendChild(full);
+    fits.push(() => {
+      const W = box.clientWidth, H = box.clientHeight, ratio = +box.dataset.ratio;
+      const iw = Math.max(W, H * ratio), ih = iw / ratio, ox = (W - iw) / 2, oy = (H - ih) / 2;
+      pieces.forEach(([img, x, y]) => {
+        img.style.backgroundSize = `${iw}px ${ih}px`;
+        img.style.backgroundPosition = `${ox - x / 100 * W}px ${oy - y / 100 * H}px`;
+      });
+    });
+  });
+
   const scenes = chapters.map(chapter => {
     const scene = chapter.querySelector('.paper-scene');
     const notes = [...scene.querySelectorAll('.note')].map((el, i) => {
@@ -256,20 +319,21 @@ if (chapters.length && !reduceMotion.matches) {
       const len = Math.hypot(dx, dy);
       if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : part sur le côté
       const n = Math.hypot(dx, dy);
-      // data-last : arrive en dernier et repart en dernier (la photo)
-      return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), last: el.hasAttribute('data-last'), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
+      return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), piece: el.classList.contains('piece'), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
     });
     return {
       chapter, scene, notes,
       outgoing: chapter.firstElementChild,                       // section qui se termine
       header: scene.querySelector('.paper-sticky').firstElementChild, // titre de la suivante
       veil: scene.querySelector('.paper-veil'),
+      full: scene.querySelector('.puzzle-full'),
     };
   });
 
   const place = (n, dist, rot, scale) => {
     n.el.style.transform =
-      `translate(-50%, -50%) translate(${n.ux * dist}px, ${n.uy * dist}px) rotate(${rot}deg) scale(${scale})`;
+      (n.piece ? '' : 'translate(-50%, -50%) ') +
+      `translate(${n.ux * dist}px, ${n.uy * dist}px) rotate(${rot}deg) scale(${scale})`;
   };
 
   const renderScene = (sc, W, H) => {
@@ -287,17 +351,19 @@ if (chapters.length && !reduceMotion.matches) {
       });
       sc.outgoing.style.transform = q ? `scale(${1 - 0.07 * q})` : '';
       sc.outgoing.style.opacity = 1 - 0.5 * q;
+      if (sc.full) sc.full.style.opacity = q >= 1 ? 1 : 0;
       sc.header.style.opacity = 0;
     } else {
       // Envol : le centre s'ouvre d'abord, les bords suivent
       const u = clamp((p - 0.55) / 0.45);
       sc.notes.forEach(n => {
-        const t = clamp((u - 0.1 - (n.last ? 1 : n.d) * 0.3) / 0.5);
+        const t = clamp((u - 0.1 - n.d * 0.3) / 0.5);
         const e = t * t * (3 - 2 * t) * t;
         place(n, e * far, n.r + n.spin * e, 1 + e * 0.12);
       });
       sc.outgoing.style.opacity = 0;
       sc.header.style.opacity = 1;
+      if (sc.full) sc.full.style.opacity = u <= 0.1 ? 1 : 0;
     }
     // Voile abricot sous les papiers au moment où tout est couvert : l'échange ne se voit pas
     sc.veil.style.opacity = clamp(1 - Math.abs(p - 0.5) / 0.07);
@@ -312,6 +378,7 @@ if (chapters.length && !reduceMotion.matches) {
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
   // Section plus haute que l'écran : elle défile jusqu'à son bas, puis se fige
   const pin = () => {
+    fits.forEach(f => f());
     scenes.forEach(sc => { sc.outgoing.style.top = Math.min(0, window.innerHeight - sc.outgoing.offsetHeight) + 'px'; });
     onScroll();
   };

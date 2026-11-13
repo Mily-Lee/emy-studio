@@ -1619,38 +1619,20 @@ html { scroll-behavior: smooth; }
   transform: translate(-50%, -50%) rotate(var(--r));
   will-change: transform;
 }
-.note > img:first-child {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 12px 18px rgba(24, 61, 64, 0.2));
+.note.piece {
+  transform: none;
+  filter: drop-shadow(0 10px 16px rgba(24, 61, 64, 0.22));
 }
-.note--wire   { width: clamp(240px, 38vw, 620px); }
-.note--tall   { width: clamp(180px, 22vw, 340px); }
-.note--postit { width: clamp(140px, 17vw, 270px); }
-.note--wide   { width: clamp(190px, 24vw, 380px); }
-/* Polaroïd : la photo de l'atelier */
-.note--photo  { width: clamp(200px, 24vw, 360px); }
-.note--photo > img:first-child {
-  background: #fffaf3;
-  padding: 5% 5% 18%;
-  box-sizing: border-box;
-}
-/* Bout de scotch qui tient la feuille */
-.note-tape {
+.note.piece > span {
   position: absolute;
-  top: -5%;
-  left: 50%;
-  width: 38%;
-  transform: translate(-50%, -30%) rotate(var(--tr));
-  opacity: 0.92;
+  inset: 0;
+  background-repeat: no-repeat;
 }
-@media (max-width: 720px) {
-  .note--wire   { width: 80vw; }
-  .note--tall   { width: 52vw; }
-  .note--postit { width: 40vw; }
-  .note--wide   { width: 54vw; }
-  .note--photo  { width: 58vw; }
+.puzzle-full {
+  position: absolute;
+  inset: 0;
+  background: center / cover no-repeat;
+  opacity: 0;
 }
 /* Sans JavaScript ou animations coupées : pas de scène, le titre s'affiche directement */
 .chapter:not(.is-live) .paper-sticky {
