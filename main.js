@@ -241,7 +241,7 @@ if (spied.length) {
 }
 
 // ===== Transition « bureau de la créatrice » =====
-// Dès l'accueil, quelques post-it dépassent des bords. Au scroll, l'accueil se fige
+// Au scroll, l'accueil se fige
 // et recule doucement pendant que les papiers glissent un à un pour le recouvrir ;
 // puis ils s'écartent depuis le centre pour dévoiler les réalisations.
 // Tout suit le scroll, dans les deux sens.
@@ -263,7 +263,6 @@ if (intro && scene && !reduceMotion.matches) {
     const n = Math.hypot(dx, dy);
     return {
       el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1),
-      peek: el.hasAttribute('data-peek'),
       spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18),
     };
   });
@@ -287,8 +286,7 @@ if (intro && scene && !reduceMotion.matches) {
       notes.forEach(n => {
         const t = clamp((q - (1 - n.d) * 0.45) / 0.55);
         const e = 1 - Math.pow(1 - t, 3);
-        const start = n.peek ? Math.min(W, H) * 0.07 : far;
-        place(n, start * (1 - e), n.r - n.spin * 0.6 * (1 - e), 1);
+        place(n, far * (1 - e), n.r - n.spin * 0.6 * (1 - e), 1);
       });
       hero.style.transform = `scale(${1 - 0.07 * q})`;
       hero.style.opacity = 1 - 0.5 * q;

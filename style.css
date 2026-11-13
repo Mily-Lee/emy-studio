@@ -1575,16 +1575,6 @@ html { scroll-behavior: smooth; }
   opacity: 0;
   pointer-events: none;
 }
-/* Les post-it qui attendent sur les bords respirent doucement */
-.note[data-peek] > img:first-child { animation: note-breathe 4s ease-in-out infinite alternate; }
-.note[data-peek]:nth-child(2n) > img:first-child { animation-duration: 5s; }
-@keyframes note-breathe {
-  from { translate: 0 0; rotate: -1deg; }
-  to   { translate: 0 -5px; rotate: 1deg; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .note[data-peek] > img:first-child { animation: none; }
-}
 
 /* Ancre « Réalisations » : tombe au moment où tout est dégagé */
 .scene-anchor {
