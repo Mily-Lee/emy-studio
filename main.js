@@ -408,75 +408,18 @@ if (pops.length && 'IntersectionObserver' in window) {
   pops.forEach(el => popObserver.observe(el));
 }
 
-// ===== La méthode : un fil relie les étapes 1 à 6 pendant le scroll =====
+// ===== La méthode : les ronds se remplissent un à un pendant le scroll =====
 document.querySelectorAll('.process').forEach(process => {
-  const list = process.querySelector('.process-steps');
-  const steps = [...list.querySelectorAll('.process-step')];
-  const track = list.querySelector('.process-track');
-  const ink = list.querySelector('.process-ink');
-  if (!ink) return;
-  let total = 0, marks = [];
-
-  // Polyligne aux angles arrondis
-  const rounded = (pts, r) => {
-    let d = `M${pts[0][0]},${pts[0][1]}`;
-    for (let i = 1; i < pts.length - 1; i++) {
-      const [px, py] = pts[i - 1], [x, y] = pts[i], [nx, ny] = pts[i + 1];
-      const a = Math.min(r, Math.hypot(x - px, y - py) / 2), b = Math.min(r, Math.hypot(nx - x, ny - y) / 2);
-      const ax = x + (px - x) / Math.hypot(px - x, py - y) * a, ay = y + (py - y) / Math.hypot(px - x, py - y) * a;
-      const bx = x + (nx - x) / Math.hypot(nx - x, ny - y) * b, by = y + (ny - y) / Math.hypot(nx - x, ny - y) * b;
-      d += ` L${ax},${ay} Q${x},${y} ${bx},${by}`;
-    }
-    const last = pts[pts.length - 1];
-    return d + ` L${last[0]},${last[1]}`;
-  };
-
-  const build = () => {
-    const c = steps.map(el => {
-      const cs = getComputedStyle(el, '::before');
-      const w = parseFloat(cs.width);
-      return [el.offsetLeft + parseFloat(cs.left) + w / 2, el.offsetTop + parseFloat(cs.top) + w / 2, el];
-    });
-    const pts = [[c[0][0], c[0][1]]], at = [0];
-    const probe = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    list.querySelector('svg').appendChild(probe);
-    for (let i = 1; i < c.length; i++) {
-      const [ax, ay] = c[i - 1], [bx, by] = c[i];
-      if (bx < ax - 10 && by > ay + 10) {
-        // Retour à la ligne : le fil sort à droite, descend entre les rangées et revient à gauche
-        const out = list.clientWidth + 16, mid = c[i][2].offsetTop - 22, back = bx - 40;
-        pts.push([out, ay], [out, mid], [back, mid], [back, by]);
-      }
-      pts.push([bx, by]);
-      probe.setAttribute('d', rounded(pts, 18));
-      at.push(probe.getTotalLength());
-    }
-    probe.remove();
-    const d = rounded(pts, 18);
-    track.setAttribute('d', d);
-    ink.setAttribute('d', d);
-    total = ink.getTotalLength();
-    marks = at;
-    ink.style.strokeDasharray = `${total} ${total}`;
-    update();
-  };
-
-  const update = () => {
-    const r = list.getBoundingClientRect(), H = window.innerHeight;
-    const p = Math.min(Math.max((H * 0.8 - r.top) / (r.height + H * 0.1), 0), 1);
-    const len = reduceMotion.matches ? total : p * total;
-    ink.style.strokeDashoffset = total - len;
-    steps.forEach((el, i) => el.classList.toggle('is-reached', len >= marks[i] - 1));
-  };
-
+  const steps = [...process.querySelectorAll('.process-step')];
   let busy = false;
-  window.addEventListener('scroll', () => {
-    if (!busy) { busy = true; requestAnimationFrame(() => { busy = false; update(); }); }
-  }, { passive: true });
-  window.addEventListener('resize', build);
-  window.addEventListener('load', build);
+  const update = () => {
+    busy = false;
+    const line = window.innerHeight * 0.75;
+    steps.forEach(el => el.classList.toggle('is-reached', el.getBoundingClientRect().top < line));
+  };
+  window.addEventListener('scroll', () => { if (!busy) { busy = true; requestAnimationFrame(update); } }, { passive: true });
   process.classList.add('is-live');
-  build();
+  update();
 });
 
 // ===== Fond qui change de couleur selon la section =====
