@@ -3,7 +3,7 @@
   --ink: #183D40;          /* Bleu canard profond - texte & titres */
   --ink-soft: #46696C;     /* Bleu gris (#547D80 foncé pour la lisibilité) - texte secondaire */
   --accent: #805E54;       /* Brun rosé - mots en couleur, liens, icônes */
-  --sand: #FFB8A3;         /* Corail pâle - cartes & tags */
+  --sand: #FFEBCF;         /* Abricot très clair - cartes & tags */
   --panel: #183D40;        /* Bleu canard profond - menu en coin, bouton principal, pied de page */
   --panel-text: #FFD9A3;
   --rose: #806D54;         /* Brun olive - touche secondaire (« voir le projet ») */
@@ -945,7 +945,7 @@ main.is-leaving {
   animation: halo-in 2.5s ease 0.2s forwards, halo-a 16s ease-in-out infinite alternate;
 }
 .cover::before {
-  background: radial-gradient(closest-side, rgba(255, 184, 163, 0.7), rgba(255, 184, 163, 0.25) 55%, transparent);
+  background: radial-gradient(closest-side, rgba(255, 244, 228, 0.85), rgba(255, 244, 228, 0.3) 55%, transparent);
   transform: translate(-62%, -55%);
 }
 .cover::after {
