@@ -1461,6 +1461,7 @@ body.home .footer-bottom {
 @keyframes hp-unroll { to { clip-path: inset(0 0 0 0 round 1.25rem); } }
 
 .hp-title {
+  text-align: center;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.2em;
