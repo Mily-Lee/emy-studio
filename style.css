@@ -1345,3 +1345,64 @@ body.home .footer-bottom {
   text-decoration-color: var(--accent);
 }
 .legal-section a:hover { color: var(--accent); }
+
+/* ====================================
+   MENU ORDINATEUR - barre fixe en haut,
+   liens centrés en petites majuscules.
+   Le quart de rond reste pour le mobile.
+   ==================================== */
+@media (min-width: 721px) {
+  .nav-burger { display: none; }
+  .nav-links {
+    inset: 0 0 auto 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.6rem, 3.5vw, 3rem);
+    padding: 1.6rem 2rem;
+    pointer-events: auto;
+    background: rgba(255, 217, 163, 0.75);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .nav-links li,
+  .nav-links.open li {
+    transform: none;
+    transition: none;
+    pointer-events: auto;
+  }
+  .nav-links a,
+  .nav-links.open a {
+    position: relative;
+    width: auto;
+    height: auto;
+    padding: 0.3rem 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    opacity: 1;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s var(--ease);
+  }
+  .nav-links a:hover { background: none; }
+  /* Fin trait sous le lien actif ou survolé */
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0.2em; /* compense l'espacement après la dernière lettre */
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.35s var(--ease);
+  }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { transform: scaleX(1); }
+}
