@@ -1404,3 +1404,34 @@ body.home .footer-bottom {
   .nav-links a:hover::after,
   .nav-links a.active::after { transform: scaleX(1); }
 }
+
+/* Accueil : « Mes réalisations » et « Mes offres » au style des liens du menu */
+.hero-actions { gap: clamp(1.6rem, 3.5vw, 3rem); }
+.hero-actions .btn,
+.hero-actions .btn:hover {
+  position: relative;
+  height: auto;
+  padding: 0.3rem 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.hero-actions .btn:hover { color: var(--accent); }
+.hero-actions .btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.2em;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.35s var(--ease);
+}
+.hero-actions .btn:hover::after,
+.hero-actions .btn:focus-visible::after { transform: scaleX(1); }
