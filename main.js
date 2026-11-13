@@ -256,7 +256,8 @@ if (chapters.length && !reduceMotion.matches) {
       const len = Math.hypot(dx, dy);
       if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : part sur le côté
       const n = Math.hypot(dx, dy);
-      return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
+      // data-last : arrive en dernier et repart en dernier (la photo)
+      return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), last: el.hasAttribute('data-last'), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
     });
     return {
       chapter, scene, notes,
@@ -291,7 +292,7 @@ if (chapters.length && !reduceMotion.matches) {
       // Envol : le centre s'ouvre d'abord, les bords suivent
       const u = clamp((p - 0.55) / 0.45);
       sc.notes.forEach(n => {
-        const t = clamp((u - 0.1 - n.d * 0.3) / 0.5);
+        const t = clamp((u - 0.1 - (n.last ? 1 : n.d) * 0.3) / 0.5);
         const e = t * t * (3 - 2 * t) * t;
         place(n, e * far, n.r + n.spin * e, 1 + e * 0.12);
       });

@@ -1629,6 +1629,13 @@ html { scroll-behavior: smooth; }
 .note--tall   { width: clamp(180px, 22vw, 340px); }
 .note--postit { width: clamp(140px, 17vw, 270px); }
 .note--wide   { width: clamp(190px, 24vw, 380px); }
+/* Polaroïd : la photo de l'atelier */
+.note--photo  { width: clamp(200px, 24vw, 360px); }
+.note--photo > img:first-child {
+  background: #fffaf3;
+  padding: 5% 5% 18%;
+  box-sizing: border-box;
+}
 /* Bout de scotch qui tient la feuille */
 .note-tape {
   position: absolute;
@@ -1643,6 +1650,7 @@ html { scroll-behavior: smooth; }
   .note--tall   { width: 52vw; }
   .note--postit { width: 40vw; }
   .note--wide   { width: 54vw; }
+  .note--photo  { width: 58vw; }
 }
 /* Sans JavaScript ou animations coupées : pas de scène, le titre s'affiche directement */
 .chapter:not(.is-live) .paper-sticky {
