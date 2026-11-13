@@ -930,8 +930,7 @@ main.is-leaving {
 }
 
 /* ===== Halo terracotta qui respire derrière le titre ===== */
-.cover::before,
-.cover::after {
+.cover::before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -948,22 +947,11 @@ main.is-leaving {
   background: radial-gradient(closest-side, rgba(255, 244, 228, 0.85), rgba(255, 244, 228, 0.3) 55%, transparent);
   transform: translate(-62%, -55%);
 }
-.cover::after {
-  background: radial-gradient(closest-side, rgba(162, 249, 255, 0.45), rgba(162, 249, 255, 0.12) 55%, transparent);
-  transform: translate(-38%, -45%);
-  animation-name: halo-in, halo-b;
-  animation-duration: 2.5s, 19s;
-}
 @keyframes halo-in { to { opacity: 1; } }
 @keyframes halo-a {
   0%   { transform: translate(-62%, -55%) scale(1); }
   50%  { transform: translate(-48%, -60%) scale(1.12); }
   100% { transform: translate(-56%, -42%) scale(0.95); }
-}
-@keyframes halo-b {
-  0%   { transform: translate(-38%, -45%) scale(1); }
-  50%  { transform: translate(-52%, -38%) scale(0.9); }
-  100% { transform: translate(-44%, -58%) scale(1.1); }
 }
 /* Le mot est peint d'emblée en couleur d'accent ; une copie brune posée dessus
    s'efface en fondu. Animer directement la couleur laissait la queue du y
@@ -1019,7 +1007,7 @@ main.is-leaving {
 @media (prefers-reduced-motion: reduce) {
   .wordmark h1, .wordmark .tagline-group, .hero-actions { animation: none; opacity: 1; transform: none; }
   .wordmark h1 { -webkit-mask-image: none; mask-image: none; }
-  .cover::before, .cover::after { animation: none; opacity: 1; }
+  .cover::before { animation: none; opacity: 1; }
 }
 
 /* ===== Boutons de l'accueil : apparition en fondu ===== */
