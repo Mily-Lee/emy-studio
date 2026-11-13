@@ -1408,7 +1408,9 @@ body.home .footer-bottom {
 /* Accueil : « Mes réalisations » et « Mes offres » au style des liens du menu */
 .hero-actions { gap: clamp(1.6rem, 3.5vw, 3rem); }
 .hero-actions .btn,
-.hero-actions .btn:hover {
+.hero-actions .btn:hover,
+.home-projects .btn,
+.home-projects .btn:hover {
   position: relative;
   height: auto;
   padding: 0.3rem 0;
@@ -1421,8 +1423,10 @@ body.home .footer-bottom {
   text-transform: uppercase;
   color: var(--ink);
 }
-.hero-actions .btn:hover { color: var(--accent); }
-.hero-actions .btn::after {
+.hero-actions .btn:hover,
+.home-projects .btn:hover { color: var(--accent); }
+.hero-actions .btn::after,
+.home-projects .btn::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1434,4 +1438,100 @@ body.home .footer-bottom {
   transition: transform 0.35s var(--ease);
 }
 .hero-actions .btn:hover::after,
-.hero-actions .btn:focus-visible::after { transform: scaleX(1); }
+.hero-actions .btn:focus-visible::after,
+.home-projects .btn:hover::after,
+.home-projects .btn:focus-visible::after { transform: scaleX(1); }
+
+/* ====================================
+   ACCUEIL - encadré « Dernières réalisations »
+   Se déroule de haut en bas une fois la signature écrite,
+   puis les 4 derniers projets s'y posent un à un.
+   ==================================== */
+.home-projects {
+  width: min(100%, 17rem);
+  margin: 3.5rem auto 0;
+  padding: 1.4rem 1.3rem 1.2rem;
+  text-align: left;
+  background: var(--sand);
+  border: 1px solid rgba(24, 61, 64, 0.12);
+  border-radius: 1.25rem;
+  clip-path: inset(0 0 100% 0 round 1.25rem);
+  animation: hp-unroll 0.9s cubic-bezier(0.65, 0, 0.35, 1) 2.6s forwards;
+}
+@keyframes hp-unroll { to { clip-path: inset(0 0 0 0 round 1.25rem); } }
+
+.hp-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+}
+.home-projects ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.home-projects li {
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: hp-item 0.6s cubic-bezier(0.16, 1, 0.3, 1) calc(3.3s + var(--n) * 0.25s) forwards;
+}
+@keyframes hp-item { to { opacity: 1; transform: none; } }
+.home-projects li a {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  border-radius: 0.8rem;
+}
+.hp-visual {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease);
+}
+.hp-visual img { max-width: 70%; max-height: 70%; object-fit: contain; }
+.home-projects li a:hover .hp-visual { transform: scale(1.06); }
+.hp-text { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.hp-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.hp-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  transition: color 0.3s var(--ease);
+}
+.home-projects li a:hover .hp-name { color: var(--accent); }
+.home-projects > .btn {
+  display: table;
+  margin: 1.3rem auto 0;
+  opacity: 0;
+  animation: hp-item 0.6s ease 4.4s forwards;
+}
+
+/* Écran large : l'encadré se place à gauche, centré en hauteur */
+.cover { flex-direction: column; }
+@media (min-width: 1200px) {
+  .home-projects {
+    position: absolute;
+    left: clamp(1.5rem, 3vw, 3.5rem);
+    top: 50%;
+    translate: 0 -50%;
+    margin: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-projects, .home-projects li, .home-projects > .btn { animation: none; opacity: 1; transform: none; clip-path: none; }
+}
