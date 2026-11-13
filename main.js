@@ -343,7 +343,7 @@ if (pops.length && 'IntersectionObserver' in window) {
 // ===== Fond qui change de couleur selon la section =====
 // La section qui passe au milieu de l'écran donne sa couleur au fond (data-bg).
 {
-  const BG = { grey: '#D5DEDE' };
+  const BG = { pale: '#FFEBCF' };   // abricot clair
   const tinted = [...document.querySelectorAll('[data-bg]')];
 
   let busy = false;
