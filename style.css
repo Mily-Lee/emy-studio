@@ -1303,25 +1303,8 @@ html {
 }
 
 /* Accueil : seulement le copyright, discret, en bas du premier écran */
-body.home .site-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 1.2rem;
-  margin: 0;
-  padding: 0;
-  background: none;
-  color: var(--ink-soft);
-}
-body.home .footer-main,
-body.home .footer-legal { display: none; }
-body.home .footer-bottom {
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  border: none;
-  font-size: 0.75rem;
-}
+/* Accueil : pas de pied de page pour le moment */
+body.home .site-footer { display: none; }
 
 /* ===== Mentions légales ===== */
 .legal-section {
