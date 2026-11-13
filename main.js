@@ -340,41 +340,14 @@ if (pops.length && 'IntersectionObserver' in window) {
   pops.forEach(el => popObserver.observe(el));
 }
 
-// ===== Fond qui change de couleur selon la section + trait de feutre =====
+// ===== Fond qui change de couleur selon la section =====
 // La section qui passe au milieu de l'écran donne sa couleur au fond (data-bg) ;
 // pour les réalisations, le gris arrive pile quand les post-it s'écartent.
-// Dans la marge, un trait de feutre se dessine au fil du scroll et relie les sections.
 {
   const BG = { grey: '#D5DEDE' };
   const tinted = [...document.querySelectorAll('[data-bg]')];
   const paperScene = document.querySelector('.paper-scene');
   const sceneVeil = paperScene && paperScene.querySelector('.paper-veil');
-  const flow = document.querySelector('.flow');
-  const felt = flow && flow.querySelector('.felt-line');
-  const feltPath = felt && felt.querySelector('path');
-  let feltLength = 0;
-
-  const buildFelt = () => {
-    if (!felt) return;
-    const W = window.innerWidth;
-    const margin = (W - Math.min(W, 1152)) / 2;   // espace libre à gauche du contenu (72rem)
-    felt.classList.toggle('is-on', margin > 90);
-    if (margin <= 90) return;
-    const h = flow.offsetHeight, cx = margin * 0.5, amp = margin * 0.28;
-    const pts = [];
-    for (let y = 40, k = 0; y < h - 40; y += 230, k++) pts.push([cx + Math.sin(k * 1.35) * amp, y]);
-    // Courbe lisse passant par les points (Catmull-Rom → Bézier)
-    let d = `M${pts[0][0].toFixed(1)},${pts[0][1]}`;
-    for (let i = 0; i < pts.length - 1; i++) {
-      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
-      const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
-      const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
-      d += ` C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${p2[0].toFixed(1)},${p2[1]}`;
-    }
-    feltPath.setAttribute('d', d);
-    feltLength = feltPath.getTotalLength();
-    feltPath.style.strokeDasharray = feltLength;
-  };
 
   let busy = false;
   const update = () => {
@@ -392,19 +365,11 @@ if (pops.length && 'IntersectionObserver' in window) {
     });
     document.body.style.backgroundColor = color;
     if (sceneVeil) sceneVeil.style.backgroundColor = color;
-    if (feltLength) {
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const r = flow.getBoundingClientRect();
-      const frac = reduce ? 1 : Math.min(Math.max((H * 0.65 - r.top) / r.height, 0), 1);
-      feltPath.style.strokeDashoffset = feltLength * (1 - frac);
-    }
   };
   const queue = () => { if (!busy) { busy = true; requestAnimationFrame(update); } };
-  const rebuild = () => { buildFelt(); queue(); };
   window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', rebuild);
-  window.addEventListener('load', rebuild);
-  rebuild();
+  window.addEventListener('resize', queue);
+  queue();
 }
 
 // ===== Pied de page : année du copyright =====
