@@ -1553,8 +1553,39 @@ html { scroll-behavior: smooth; }
    ==================================== */
 .paper-scene {
   position: relative;
-  height: 260vh;
+  z-index: 1;
 }
+/* Version animée : l'accueil se fige, la scène vient se superposer à son dernier écran */
+.intro.is-live .cover {
+  position: sticky;
+  transform-origin: 50% 40%;
+  will-change: transform, opacity;
+}
+.intro.is-live .paper-scene {
+  height: 300vh;
+  margin-top: -100vh;
+}
+.intro.is-live .paper-scene,
+.intro.is-live .paper-sticky { pointer-events: none; }
+.intro.is-live .paper-sticky .realisations-header { position: relative; opacity: 0; }
+.paper-veil {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  opacity: 0;
+  pointer-events: none;
+}
+/* Les post-it qui attendent sur les bords respirent doucement */
+.note[data-peek] > img:first-child { animation: note-breathe 4s ease-in-out infinite alternate; }
+.note[data-peek]:nth-child(2n) > img:first-child { animation-duration: 5s; }
+@keyframes note-breathe {
+  from { translate: 0 0; rotate: -1deg; }
+  to   { translate: 0 -5px; rotate: 1deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .note[data-peek] > img:first-child { animation: none; }
+}
+
 /* Ancre « Réalisations » : tombe au moment où tout est dégagé */
 .scene-anchor {
   position: absolute;
@@ -1613,10 +1644,10 @@ html { scroll-behavior: smooth; }
   .note--wide   { width: 54vw; }
 }
 /* Sans JavaScript ou animations coupées : pas de scène, le titre s'affiche directement */
-.paper-scene:not(.is-live) { height: auto; }
-.paper-scene:not(.is-live) .paper-sticky {
+.intro:not(.is-live) .paper-sticky {
   position: static;
   height: auto;
   padding: 5rem 1.5rem 0;
 }
-.paper-scene:not(.is-live) .paper-notes { display: none; }
+.intro:not(.is-live) .paper-notes,
+.intro:not(.is-live) .paper-veil { display: none; }

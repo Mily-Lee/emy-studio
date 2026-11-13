@@ -241,44 +241,79 @@ if (spied.length) {
 }
 
 // ===== Transition « bureau de la créatrice » =====
-// Les post-it et croquis recouvrent l'écran, puis s'écartent depuis le centre
-// au fil du scroll pour dévoiler les réalisations. Suit le scroll dans les deux sens.
+// Dès l'accueil, quelques post-it dépassent des bords. Au scroll, l'accueil se fige
+// et recule doucement pendant que les papiers glissent un à un pour le recouvrir ;
+// puis ils s'écartent depuis le centre pour dévoiler les réalisations.
+// Tout suit le scroll, dans les deux sens.
+const intro = document.querySelector('.intro');
 const scene = document.querySelector('.paper-scene');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (scene && !reduceMotion.matches) {
+if (intro && scene && !reduceMotion.matches) {
+  const hero = intro.querySelector('.cover');
+  const header = scene.querySelector('.realisations-header');
+  const veil = scene.querySelector('.paper-veil');
+  const clamp = (v) => Math.min(Math.max(v, 0), 1);
   const notes = [...scene.querySelectorAll('.note')].map((el, i) => {
     const x = parseFloat(el.style.getPropertyValue('--x'));
     const y = parseFloat(el.style.getPropertyValue('--y'));
     const r = parseFloat(el.style.getPropertyValue('--r'));
     let dx = x - 50, dy = y - 50;
-    const len = Math.hypot(dx, dy) || 1;
+    const len = Math.hypot(dx, dy);
     if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : part sur le côté
     const n = Math.hypot(dx, dy);
-    return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
+    return {
+      el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1),
+      peek: el.hasAttribute('data-peek'),
+      spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18),
+    };
   });
+
+  const place = (n, dist, rot, scale) => {
+    n.el.style.transform =
+      `translate(-50%, -50%) translate(${n.ux * dist}px, ${n.uy * dist}px) rotate(${rot}deg) scale(${scale})`;
+  };
 
   let ticking = false;
   const render = () => {
     ticking = false;
-    const rect = scene.getBoundingClientRect();
-    const travel = scene.offsetHeight - window.innerHeight;
-    const p = Math.min(Math.max(-rect.top / travel, 0), 1);
-    const far = Math.max(window.innerWidth, window.innerHeight) * 1.1;
-    notes.forEach(n => {
-      // Le centre s'ouvre d'abord, les bords suivent
-      const t = Math.min(Math.max((p - 0.1 - n.d * 0.3) / 0.5, 0), 1);
-      const e = t * t * (3 - 2 * t) * t;   // départ doux, puis s'envole
-      n.el.style.transform =
-        `translate(-50%, -50%) translate(${n.ux * e * far}px, ${n.uy * e * far}px) ` +
-        `rotate(${n.r + n.spin * e}deg) scale(${1 + e * 0.12})`;
-    });
-    scene.classList.toggle('is-open', p > 0.95);
+    const W = window.innerWidth, H = window.innerHeight;
+    const far = Math.max(W, H) * 1.1;
+    const travel = scene.offsetHeight - H;
+    const p = clamp(-scene.getBoundingClientRect().top / travel);
+
+    if (p < 0.5) {
+      // Arrivée : les bords d'abord, le centre en dernier
+      const q = clamp(p / 0.45);
+      notes.forEach(n => {
+        const t = clamp((q - (1 - n.d) * 0.45) / 0.55);
+        const e = 1 - Math.pow(1 - t, 3);
+        const start = n.peek ? Math.min(W, H) * 0.07 : far;
+        place(n, start * (1 - e), n.r - n.spin * 0.6 * (1 - e), 1);
+      });
+      hero.style.transform = `scale(${1 - 0.07 * q})`;
+      hero.style.opacity = 1 - 0.5 * q;
+      header.style.opacity = 0;
+    } else {
+      // Envol : le centre s'ouvre d'abord, les bords suivent
+      const u = clamp((p - 0.55) / 0.45);
+      notes.forEach(n => {
+        const t = clamp((u - 0.1 - n.d * 0.3) / 0.5);
+        const e = t * t * (3 - 2 * t) * t;
+        place(n, e * far, n.r + n.spin * e, 1 + e * 0.12);
+      });
+      hero.style.opacity = 0;
+      header.style.opacity = 1;
+    }
+    // Voile abricot sous les papiers au moment où tout est couvert : l'échange ne se voit pas
+    veil.style.opacity = clamp(1 - Math.abs(p - 0.5) / 0.07);
   };
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
+  // Accueil plus haut que l'écran (mobile) : il défile jusqu'à son bas, puis se fige
+  const pinHero = () => { hero.style.top = Math.min(0, window.innerHeight - hero.offsetHeight) + 'px'; onScroll(); };
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  scene.classList.add('is-live');
-  render();
+  window.addEventListener('resize', pinHero);
+  intro.classList.add('is-live');
+  pinHero();
 }
 
 // ===== Pied de page : année du copyright =====
