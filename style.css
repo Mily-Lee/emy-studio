@@ -1536,15 +1536,6 @@ body.home .site-footer { display: none; }
     margin: 0;
   }
 }
-/* Ordinateur : pas de cadre, juste le titre, les projets et le lien */
-@media (min-width: 721px) {
-  .home-projects {
-    background: none;
-    border: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .home-projects, .home-projects li, .home-projects > .btn { animation: none; opacity: 1; transform: none; filter: none; }
   .home-projects .hp-visual, .home-projects .hp-text { animation: none; opacity: 1; transform: none; }
