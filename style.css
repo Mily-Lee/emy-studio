@@ -1428,10 +1428,14 @@ body.home .site-footer { display: none; }
   background: var(--sand);
   border: 1px solid rgba(24, 61, 64, 0.12);
   border-radius: 1.25rem;
-  clip-path: inset(0 0 100% 0 round 1.25rem);
-  animation: hp-unroll 0.9s cubic-bezier(0.65, 0, 0.35, 1) 2.6s forwards;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: hp-soft-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) 2.4s forwards;
 }
-@keyframes hp-unroll { to { clip-path: inset(0 0 0 0 round 1.25rem); } }
+/* Arrivée moelleuse : fondu, légère montée et flou qui se dissipe */
+@keyframes hp-soft-in {
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
 
 .hp-title {
   text-align: center;
@@ -1450,10 +1454,10 @@ body.home .site-footer { display: none; }
 }
 .home-projects li {
   opacity: 0;
-  transform: translateY(-8px);
-  animation: hp-item 0.6s cubic-bezier(0.16, 1, 0.3, 1) calc(3.3s + var(--n) * 0.25s) forwards;
+  transform: translateY(14px);
+  filter: blur(6px);
+  animation: hp-soft-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) calc(2.9s + var(--n) * 0.2s) forwards;
 }
-@keyframes hp-item { to { opacity: 1; transform: none; } }
 .home-projects li a {
   display: flex;
   align-items: center;
@@ -1492,7 +1496,9 @@ body.home .site-footer { display: none; }
   display: table;
   margin: 1.3rem auto 0;
   opacity: 0;
-  animation: hp-item 0.6s ease 4.4s forwards;
+  transform: translateY(10px);
+  filter: blur(6px);
+  animation: hp-soft-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) 3.8s forwards;
 }
 
 /* Écran large : l'encadré se place à gauche, centré en hauteur */
@@ -1516,5 +1522,5 @@ body.home .site-footer { display: none; }
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .home-projects, .home-projects li, .home-projects > .btn { animation: none; opacity: 1; transform: none; clip-path: none; }
+  .home-projects, .home-projects li, .home-projects > .btn { animation: none; opacity: 1; transform: none; filter: none; }
 }
