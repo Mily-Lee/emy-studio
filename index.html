@@ -72,15 +72,36 @@
     </aside>
     </section>
 
-    <div class="paper-gap" aria-hidden="true"></div>
-
-    <section id="realisations" class="section-realisations">
-      <div class="realisations-page">
-      <div class="realisations-header">
+    <!-- Transition : un bureau couvert de post-it et de croquis qui s'écartent au scroll -->
+    <section class="paper-scene" aria-labelledby="realisations-title">
+      <span class="scene-anchor" id="realisations"></span>
+      <div class="paper-sticky">
+        <div class="realisations-header">
         <p class="eyebrow">Réalisations</p>
-        <h1>Des projets qui racontent <span class="accent-word">une histoire</span>.</h1>
+        <h1 id="realisations-title">Des projets qui racontent <span class="accent-word">une histoire</span>.</h1>
         <p>Voici quelques-uns de mes projets, de la conception à la mise en ligne. Cliquez sur une vignette pour découvrir les détails.</p>
       </div>
+        <div class="paper-notes" aria-hidden="true">
+        <div class="note note--wire" style="--x: 20; --y: 22; --r: -6deg"><img src="assets/transition/wire-accueil.webp" alt="" /><img class="note-tape" src="assets/transition/scotch.webp" alt="" style="--tr: -4deg" /></div>
+        <div class="note note--wire" style="--x: 78; --y: 20; --r: 5deg"><img src="assets/transition/wire-grille.webp" alt="" /><img class="note-tape" src="assets/transition/scotch.webp" alt="" style="--tr: 6deg" /></div>
+        <div class="note note--wire" style="--x: 22; --y: 76; --r: 4deg"><img src="assets/transition/wire-typo.webp" alt="" /></div>
+        <div class="note note--wire" style="--x: 76; --y: 80; --r: -4deg"><img src="assets/transition/wire-contact.webp" alt="" /><img class="note-tape" src="assets/transition/scotch.webp" alt="" style="--tr: -3deg" /></div>
+        <div class="note note--wire" style="--x: 50; --y: 96; --r: -2deg"><img src="assets/transition/wire-nuancier.webp" alt="" /></div>
+        <div class="note note--tall" style="--x: 52; --y: 50; --r: 3deg"><img src="assets/transition/wire-mobile.webp" alt="" /><img class="note-tape" src="assets/transition/scotch.webp" alt="" style="--tr: 2deg" /></div>
+        <div class="note note--postit" style="--x: 40; --y: 10; --r: 7deg"><img src="assets/transition/postit-client.webp" alt="" /></div>
+        <div class="note note--postit" style="--x: 62; --y: 8; --r: -8deg"><img src="assets/transition/postit-mobile.webp" alt="" /></div>
+        <div class="note note--postit" style="--x: 6; --y: 48; --r: -10deg"><img src="assets/transition/postit-idee.webp" alt="" /></div>
+        <div class="note note--wide" style="--x: 93; --y: 48; --r: 8deg"><img src="assets/transition/postit-checklist.webp" alt="" /></div>
+        <div class="note note--postit" style="--x: 34; --y: 48; --r: -6deg"><img src="assets/transition/postit-aa.webp" alt="" /></div>
+        <div class="note note--postit" style="--x: 68; --y: 46; --r: 9deg"><img src="assets/transition/postit-bouton.webp" alt="" /></div>
+        <div class="note note--postit" style="--x: 8; --y: 94; --r: 6deg"><img src="assets/transition/postit-palette.webp" alt="" /></div>
+        <div class="note note--postit" style="--x: 92; --y: 94; --r: -7deg"><img src="assets/transition/postit-air.webp" alt="" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-realisations">
+      <div class="realisations-page">
       <div class="projects-grid">
 
         <button type="button" class="project-tile"
@@ -194,8 +215,6 @@
       </div>
     </section>
 
-    <div class="paper-gap" aria-hidden="true"></div>
-
     <section id="services" class="section">
       <div class="services-page">
 
@@ -231,8 +250,6 @@
 
     </div>
     </section>
-
-    <div class="paper-gap" aria-hidden="true"></div>
 
     <section id="apropos" class="section">
       <div class="about-page">
@@ -324,8 +341,6 @@
     </div>
     </section>
 
-    <div class="paper-gap" aria-hidden="true"></div>
-
     <section id="contact" class="section">
       <div class="contact-page">
 
@@ -411,27 +426,6 @@
       </div>
     </div>
   </main>
-
-  <!-- Transition « bureau de la créatrice » : post-it et croquis entre chaque section -->
-  <div class="paper-overlay" aria-hidden="true">
-    <div class="paper-veil"></div>
-    <div class="paper-notes">
-      <div class="note note--wire" style="--x: 20; --y: 22; --r: -6deg"><img src="assets/transition/wire-accueil.webp" alt="" /><img class="note-tape" src="assets/transition/scotch.webp" alt="" style="--tr: -4deg" /></div>
-      <div class="note note--wire" style="--x: 78; --y: 20; --r: 5deg"><img src="assets/transition/wire-grille.webp" alt="" /><img class="note-tape" src="assets/transition/scotch.webp" alt="" style="--tr: 6deg" /></div>
-      <div class="note note--wire" style="--x: 22; --y: 76; --r: 4deg"><img src="assets/transition/wire-typo.webp" alt="" /></div>
-      <div class="note note--wire" style="--x: 76; --y: 80; --r: -4deg"><img src="assets/transition/wire-contact.webp" alt="" /><img class="note-tape" src="assets/transition/scotch.webp" alt="" style="--tr: -3deg" /></div>
-      <div class="note note--wire" style="--x: 50; --y: 96; --r: -2deg"><img src="assets/transition/wire-nuancier.webp" alt="" /></div>
-      <div class="note note--tall" style="--x: 52; --y: 50; --r: 3deg"><img src="assets/transition/wire-mobile.webp" alt="" /><img class="note-tape" src="assets/transition/scotch.webp" alt="" style="--tr: 2deg" /></div>
-      <div class="note note--postit" style="--x: 40; --y: 10; --r: 7deg"><img src="assets/transition/postit-client.webp" alt="" /></div>
-      <div class="note note--postit" style="--x: 62; --y: 8; --r: -8deg"><img src="assets/transition/postit-mobile.webp" alt="" /></div>
-      <div class="note note--postit" style="--x: 6; --y: 48; --r: -10deg"><img src="assets/transition/postit-idee.webp" alt="" /></div>
-      <div class="note note--wide" style="--x: 93; --y: 48; --r: 8deg"><img src="assets/transition/postit-checklist.webp" alt="" /></div>
-      <div class="note note--postit" style="--x: 34; --y: 48; --r: -6deg"><img src="assets/transition/postit-aa.webp" alt="" /></div>
-      <div class="note note--postit" style="--x: 68; --y: 46; --r: 9deg"><img src="assets/transition/postit-bouton.webp" alt="" /></div>
-      <div class="note note--postit" style="--x: 8; --y: 94; --r: 6deg"><img src="assets/transition/postit-palette.webp" alt="" /></div>
-      <div class="note note--postit" style="--x: 92; --y: 94; --r: -7deg"><img src="assets/transition/postit-air.webp" alt="" /></div>
-    </div>
-  </div>
 
   <footer class="site-footer">
     <div class="footer-main">

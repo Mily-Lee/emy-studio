@@ -225,90 +225,60 @@ links.addEventListener('click', (e) => {
 
 // Le lien de la section affichée s'allume pendant le défilement
 const navAnchors = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-const spied = navAnchors.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+const spied = navAnchors
+  .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+  .map(el => el && el.classList.contains('scene-anchor') ? document.querySelector('.section-realisations') : el)
+  .filter(Boolean);
 if (spied.length) {
   const spy = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+      let id = entry.target.id || 'realisations';
+      navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   spied.forEach(el => spy.observe(el));
 }
 
-// ===== Transition « bureau de la créatrice » entre chaque section =====
-// Entre deux sections, un espace d'un écran de haut (.paper-gap) :
-//  - 1re moitié du trajet : la section qui se termine reste figée en bas d'écran
-//    et les post-it / croquis viennent la recouvrir, des bords vers le centre ;
-//  - 2de moitié : la section suivante est figée en haut d'écran, et les papiers
-//    s'écartent depuis le centre pour la dévoiler.
-// Tout suit le scroll, dans les deux sens.
-const overlay = document.querySelector('.paper-overlay');
-const gaps = [...document.querySelectorAll('.paper-gap')];
+// ===== Transition « bureau de la créatrice » =====
+// Les post-it et croquis recouvrent l'écran, puis s'écartent depuis le centre
+// au fil du scroll pour dévoiler les réalisations. Suit le scroll dans les deux sens.
+const scene = document.querySelector('.paper-scene');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (overlay && gaps.length && !reduceMotion.matches) {
-  document.body.classList.add('paper-live');
-  const veil = overlay.querySelector('.paper-veil');
-  const notes = [...overlay.querySelectorAll('.note')].map((el, i) => {
+if (scene && !reduceMotion.matches) {
+  const notes = [...scene.querySelectorAll('.note')].map((el, i) => {
     const x = parseFloat(el.style.getPropertyValue('--x'));
     const y = parseFloat(el.style.getPropertyValue('--y'));
     const r = parseFloat(el.style.getPropertyValue('--r'));
     let dx = x - 50, dy = y - 50;
-    const len = Math.hypot(dx, dy);
+    const len = Math.hypot(dx, dy) || 1;
     if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : part sur le côté
     const n = Math.hypot(dx, dy);
     return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
   });
-  const pairs = gaps.map(gap => ({ gap, prev: gap.previousElementSibling, next: gap.nextElementSibling }));
-  const sections = [...new Set(pairs.flatMap(p => [p.prev, p.next]))];
 
-  // u = 0 : écran couvert ; u = 1 : papiers envolés hors de l'écran
-  const pose = (u) => {
+  let ticking = false;
+  const render = () => {
+    ticking = false;
+    const rect = scene.getBoundingClientRect();
+    const travel = scene.offsetHeight - window.innerHeight;
+    const p = Math.min(Math.max(-rect.top / travel, 0), 1);
     const far = Math.max(window.innerWidth, window.innerHeight) * 1.1;
     notes.forEach(n => {
-      const t = Math.min(Math.max((u - 0.1 - n.d * 0.3) / 0.5, 0), 1);
+      // Le centre s'ouvre d'abord, les bords suivent
+      const t = Math.min(Math.max((p - 0.1 - n.d * 0.3) / 0.5, 0), 1);
       const e = t * t * (3 - 2 * t) * t;   // départ doux, puis s'envole
       n.el.style.transform =
         `translate(-50%, -50%) translate(${n.ux * e * far}px, ${n.uy * e * far}px) ` +
         `rotate(${n.r + n.spin * e}deg) scale(${1 + e * 0.12})`;
     });
-    // Voile abricot sous les papiers quand tout est couvert : on ne voit jamais l'échange des sections
-    veil.style.opacity = Math.max(0, 1 - u / 0.12);
-  };
-
-  let ticking = false;
-  const render = () => {
-    ticking = false;
-    const H = window.innerHeight;
-    const shift = new Map(sections.map(s => [s, 0]));
-    const hidden = new Set();
-    let active = null;
-    pairs.forEach(({ gap, prev, next }) => {
-      const s = H - gap.getBoundingClientRect().top;   // 0 → 2H pendant la transition
-      if (s <= 0 || s >= 2 * H) return;
-      if (s < H) {
-        shift.set(prev, s);              // la section qui part reste figée en bas
-        hidden.add(next);
-        active = 1 - s / H;
-      } else {
-        shift.set(next, -(2 * H - s));   // la suivante est figée en haut
-        hidden.add(prev);
-        active = (s - H) / H;
-      }
-    });
-    sections.forEach(sec => {
-      const y = shift.get(sec);
-      sec.style.transform = y ? `translateY(${y}px)` : '';
-      sec.style.visibility = hidden.has(sec) ? 'hidden' : '';
-    });
-    overlay.classList.toggle('is-active', active !== null);
-    if (active !== null) pose(active);
+    scene.classList.toggle('is-open', p > 0.95);
   };
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
-  const sizeGaps = () => { gaps.forEach(g => { g.style.height = window.innerHeight + 'px'; }); onScroll(); };
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', sizeGaps);
-  sizeGaps();
+  window.addEventListener('resize', onScroll);
+  scene.classList.add('is-live');
+  render();
 }
 
 // ===== Pied de page : année du copyright =====

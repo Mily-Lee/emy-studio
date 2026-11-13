@@ -1543,38 +1543,42 @@ html {
    ==================================== */
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.section-realisations .realisations-page { padding-top: 1rem; }
 
 /* ====================================
    TRANSITION « BUREAU DE LA CRÉATRICE »
-   Entre deux sections : post-it et croquis recouvrent la section
-   qui se termine, puis s'écartent pour dévoiler la suivante.
-   Piloté par main.js (calque fixe + espaces .paper-gap).
+   Une scène épinglée : post-it et croquis couvrent l'écran,
+   puis s'écartent au scroll (piloté par main.js) pour
+   dévoiler le titre des réalisations.
    ==================================== */
-.paper-gap { display: none; }
-.paper-overlay { display: none; }
-body.paper-live .paper-gap { display: block; height: 100vh; }
-body.paper-live .onepage > section {
-  min-height: 100vh;
-  will-change: transform;
+.paper-scene {
+  position: relative;
+  height: 260vh;
 }
-body.paper-live .paper-overlay {
-  display: block;
-  position: fixed;
-  inset: 0;
-  z-index: 1100; /* sous le menu (1130+) */
-  pointer-events: none;
-  visibility: hidden;
-}
-body.paper-live .paper-overlay.is-active { visibility: visible; }
-.paper-veil {
+/* Ancre « Réalisations » : tombe au moment où tout est dégagé */
+.scene-anchor {
   position: absolute;
-  inset: 0;
-  background: var(--bg);
-  opacity: 0;
+  left: 0;
+  top: calc(100% - 100vh);
+}
+.paper-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 0 1.5rem;
+}
+.paper-sticky .realisations-header {
+  margin: 0 auto;
+  text-align: center;
 }
 .paper-notes {
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 .note {
   position: absolute;
@@ -1608,3 +1612,11 @@ body.paper-live .paper-overlay.is-active { visibility: visible; }
   .note--postit { width: 40vw; }
   .note--wide   { width: 54vw; }
 }
+/* Sans JavaScript ou animations coupées : pas de scène, le titre s'affiche directement */
+.paper-scene:not(.is-live) { height: auto; }
+.paper-scene:not(.is-live) .paper-sticky {
+  position: static;
+  height: auto;
+  padding: 5rem 1.5rem 0;
+}
+.paper-scene:not(.is-live) .paper-notes { display: none; }
