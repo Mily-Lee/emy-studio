@@ -196,7 +196,6 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ===== Copie de l'email au clic (page Contact) =====
-// Délégué sur le document : marche aussi après une navigation AJAX.
 document.addEventListener('click', async (e) => {
   const card = e.target.closest('[data-copy]');
   if (!card) return;
@@ -218,66 +217,69 @@ document.addEventListener('click', async (e) => {
 
 initGallery();
 
-// ===== Navigation sans rechargement - le menu reste en place =====
-// On ne remplace que le contenu de <main>, jamais le header/burger/menu.
-function setActiveLinks(page) {
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === page);
+// ===== One page : liens du menu =====
+// Un clic sur un lien du menu referme le menu mobile avant de glisser vers la section.
+links.addEventListener('click', (e) => {
+  if (e.target.closest('a') && burger.classList.contains('open')) toggleMenu();
+});
+
+// Le lien de la section affichée s'allume pendant le défilement
+const navAnchors = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+const spied = navAnchors
+  .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+  .map(el => el && el.classList.contains('scene-anchor') ? document.querySelector('.section-realisations') : el)
+  .filter(Boolean);
+if (spied.length) {
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      let id = entry.target.id || 'realisations';
+      navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  spied.forEach(el => spy.observe(el));
+}
+
+// ===== Transition « bureau de la créatrice » =====
+// Les post-it et croquis recouvrent l'écran, puis s'écartent depuis le centre
+// au fil du scroll pour dévoiler les réalisations. Suit le scroll dans les deux sens.
+const scene = document.querySelector('.paper-scene');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (scene && !reduceMotion.matches) {
+  const notes = [...scene.querySelectorAll('.note')].map((el, i) => {
+    const x = parseFloat(el.style.getPropertyValue('--x'));
+    const y = parseFloat(el.style.getPropertyValue('--y'));
+    const r = parseFloat(el.style.getPropertyValue('--r'));
+    let dx = x - 50, dy = y - 50;
+    const len = Math.hypot(dx, dy) || 1;
+    if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : part sur le côté
+    const n = Math.hypot(dx, dy);
+    return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
   });
+
+  let ticking = false;
+  const render = () => {
+    ticking = false;
+    const rect = scene.getBoundingClientRect();
+    const travel = scene.offsetHeight - window.innerHeight;
+    const p = Math.min(Math.max(-rect.top / travel, 0), 1);
+    const far = Math.max(window.innerWidth, window.innerHeight) * 1.1;
+    notes.forEach(n => {
+      // Le centre s'ouvre d'abord, les bords suivent
+      const t = Math.min(Math.max((p - 0.1 - n.d * 0.3) / 0.5, 0), 1);
+      const e = t * t * (3 - 2 * t) * t;   // départ doux, puis s'envole
+      n.el.style.transform =
+        `translate(-50%, -50%) translate(${n.ux * e * far}px, ${n.uy * e * far}px) ` +
+        `rotate(${n.r + n.spin * e}deg) scale(${1 + e * 0.12})`;
+    });
+    scene.classList.toggle('is-open', p > 0.95);
+  };
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  scene.classList.add('is-live');
+  render();
 }
-
-async function navigateTo(page, addToHistory = true) {
-  const current = document.querySelector('main');
-
-  try {
-    const response = await fetch(page);
-    if (!response.ok) throw new Error('Page introuvable');
-    const html = await response.text();
-    const nextDoc = new DOMParser().parseFromString(html, 'text/html');
-    const nextMain = nextDoc.querySelector('main');
-    if (!nextMain) throw new Error('Pas de <main> dans la page cible');
-
-    current.classList.add('is-leaving');
-    await new Promise(resolve => setTimeout(resolve, 250));
-
-    document.body.className = nextDoc.body.className;
-    document.title = nextDoc.title;
-    current.replaceWith(document.adoptNode(nextMain));
-    setActiveLinks(page);
-    initGallery();
-
-    if (addToHistory) history.pushState({ page }, '', page);
-    window.scrollTo(0, 0);
-
-    if (burger.classList.contains('open')) toggleMenu();
-  } catch (err) {
-    window.location.href = page;
-  }
-}
-
-document.addEventListener('click', (e) => {
-  const link = e.target.closest('a');
-  if (!link) return;
-
-  const href = link.getAttribute('href');
-  if (!href || !href.endsWith('.html')) return;
-  if (link.target === '_blank') return;
-
-  e.preventDefault();
-
-  const current = location.pathname.split('/').pop() || 'index.html';
-  if (href === current) {
-    if (burger.classList.contains('open')) toggleMenu();
-    return;
-  }
-
-  navigateTo(href);
-});
-
-window.addEventListener('popstate', () => {
-  const page = location.pathname.split('/').pop() || 'index.html';
-  navigateTo(page, false);
-});
 
 // ===== Pied de page : année du copyright =====
 document.querySelector('.footer-year').textContent = new Date().getFullYear();

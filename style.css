@@ -1291,9 +1291,6 @@ html {
 }
 
 /* Accueil : seulement le copyright, discret, en bas du premier écran */
-/* Accueil : pas de pied de page pour le moment */
-body.home .site-footer { display: none; }
-
 /* ===== Mentions légales ===== */
 .legal-section {
   max-width: 44rem;
@@ -1540,3 +1537,86 @@ body.home .site-footer { display: none; }
   .home-projects, .home-projects li, .home-projects > .btn { animation: none; opacity: 1; transform: none; filter: none; }
   .home-projects .hp-visual, .home-projects .hp-text { animation: none; opacity: 1; transform: none; }
 }
+
+/* ====================================
+   ONE PAGE - défilement doux vers les sections
+   ==================================== */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.section-realisations .realisations-page { padding-top: 1rem; }
+
+/* ====================================
+   TRANSITION « BUREAU DE LA CRÉATRICE »
+   Une scène épinglée : post-it et croquis couvrent l'écran,
+   puis s'écartent au scroll (piloté par main.js) pour
+   dévoiler le titre des réalisations.
+   ==================================== */
+.paper-scene {
+  position: relative;
+  height: 260vh;
+}
+/* Ancre « Réalisations » : tombe au moment où tout est dégagé */
+.scene-anchor {
+  position: absolute;
+  left: 0;
+  top: calc(100% - 100vh);
+}
+.paper-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 0 1.5rem;
+}
+.paper-sticky .realisations-header {
+  margin: 0 auto;
+  text-align: center;
+}
+.paper-notes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.note {
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  transform: translate(-50%, -50%) rotate(var(--r));
+  will-change: transform;
+}
+.note > img:first-child {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 12px 18px rgba(24, 61, 64, 0.2));
+}
+.note--wire   { width: clamp(240px, 38vw, 620px); }
+.note--tall   { width: clamp(180px, 22vw, 340px); }
+.note--postit { width: clamp(140px, 17vw, 270px); }
+.note--wide   { width: clamp(190px, 24vw, 380px); }
+/* Bout de scotch qui tient la feuille */
+.note-tape {
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  width: 38%;
+  transform: translate(-50%, -30%) rotate(var(--tr));
+  opacity: 0.92;
+}
+@media (max-width: 720px) {
+  .note--wire   { width: 80vw; }
+  .note--tall   { width: 52vw; }
+  .note--postit { width: 40vw; }
+  .note--wide   { width: 54vw; }
+}
+/* Sans JavaScript ou animations coupées : pas de scène, le titre s'affiche directement */
+.paper-scene:not(.is-live) { height: auto; }
+.paper-scene:not(.is-live) .paper-sticky {
+  position: static;
+  height: auto;
+  padding: 5rem 1.5rem 0;
+}
+.paper-scene:not(.is-live) .paper-notes { display: none; }

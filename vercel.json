@@ -10,6 +10,26 @@
       ],
       "destination": "https://www.emystudio.fr/:path*",
       "permanent": true
+    },
+    {
+      "source": "/realisations.html",
+      "destination": "/#realisations",
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/#services",
+      "permanent": true
+    },
+    {
+      "source": "/apropos.html",
+      "destination": "/#apropos",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/#contact",
+      "permanent": true
     }
   ],
   "headers": [
