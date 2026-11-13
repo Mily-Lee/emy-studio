@@ -341,30 +341,21 @@ if (pops.length && 'IntersectionObserver' in window) {
 }
 
 // ===== Fond qui change de couleur selon la section =====
-// La section qui passe au milieu de l'écran donne sa couleur au fond (data-bg) ;
-// pour les réalisations, le gris arrive pile quand les post-it s'écartent.
+// La section qui passe au milieu de l'écran donne sa couleur au fond (data-bg).
 {
   const BG = { grey: '#D5DEDE' };
   const tinted = [...document.querySelectorAll('[data-bg]')];
-  const paperScene = document.querySelector('.paper-scene');
-  const sceneVeil = paperScene && paperScene.querySelector('.paper-veil');
 
   let busy = false;
   const update = () => {
     busy = false;
-    const H = window.innerHeight, mid = H / 2;
+    const mid = window.innerHeight / 2;
     let color = '';
-    if (paperScene) {
-      const r = paperScene.getBoundingClientRect();
-      const p = -r.top / (paperScene.offsetHeight - H);
-      if (p >= 0.5 && r.bottom > mid) color = BG.grey;
-    }
     tinted.forEach(el => {
       const r = el.getBoundingClientRect();
       if (r.top <= mid && r.bottom >= mid) color = BG[el.dataset.bg] || '';
     });
     document.body.style.backgroundColor = color;
-    if (sceneVeil) sceneVeil.style.backgroundColor = color;
   };
   const queue = () => { if (!busy) { busy = true; requestAnimationFrame(update); } };
   window.addEventListener('scroll', queue, { passive: true });

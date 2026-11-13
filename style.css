@@ -1672,4 +1672,3 @@ body.pops-live .pop-in {
   body.pops-live .pop-in:not(.is-in) { opacity: 1; translate: none; scale: none; }
 }
 
-.paper-veil { transition: background-color 0.9s ease; }
