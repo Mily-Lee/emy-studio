@@ -225,45 +225,44 @@ links.addEventListener('click', (e) => {
 
 // Le lien de la section affichée s'allume pendant le défilement
 const navAnchors = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-const spied = navAnchors
-  .map(a => document.getElementById(a.getAttribute('href').slice(1)))
-  .map(el => el && el.classList.contains('scene-anchor') ? document.querySelector('.section-realisations') : el)
-  .filter(Boolean);
+const spied = document.querySelectorAll('[data-section]');
 if (spied.length) {
   const spy = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      let id = entry.target.id || 'realisations';
+      const id = entry.target.dataset.section;
       navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
     });
   }, { rootMargin: '-45% 0px -50% 0px' });
   spied.forEach(el => spy.observe(el));
 }
 
-// ===== Transition « bureau de la créatrice » =====
-// Au scroll, l'accueil se fige
-// et recule doucement pendant que les papiers glissent un à un pour le recouvrir ;
-// puis ils s'écartent depuis le centre pour dévoiler les réalisations.
-// Tout suit le scroll, dans les deux sens.
-const intro = document.querySelector('.intro');
-const scene = document.querySelector('.paper-scene');
+// ===== Transition « bureau de la créatrice », entre chaque section =====
+// Chaque .chapter = une section + une scène de papiers. À la fin de la section,
+// elle se fige et recule doucement pendant que post-it et croquis glissent un à un
+// pour la recouvrir ; puis ils s'écartent depuis le centre pour dévoiler le titre
+// de la section suivante. Tout suit le scroll, dans les deux sens.
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (intro && scene && !reduceMotion.matches) {
-  const hero = intro.querySelector('.cover');
-  const header = scene.querySelector('.realisations-header');
-  const veil = scene.querySelector('.paper-veil');
+const chapters = [...document.querySelectorAll('.chapter')];
+if (chapters.length && !reduceMotion.matches) {
   const clamp = (v) => Math.min(Math.max(v, 0), 1);
-  const notes = [...scene.querySelectorAll('.note')].map((el, i) => {
-    const x = parseFloat(el.style.getPropertyValue('--x'));
-    const y = parseFloat(el.style.getPropertyValue('--y'));
-    const r = parseFloat(el.style.getPropertyValue('--r'));
-    let dx = x - 50, dy = y - 50;
-    const len = Math.hypot(dx, dy);
-    if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : part sur le côté
-    const n = Math.hypot(dx, dy);
+  const scenes = chapters.map(chapter => {
+    const scene = chapter.querySelector('.paper-scene');
+    const notes = [...scene.querySelectorAll('.note')].map((el, i) => {
+      const x = parseFloat(el.style.getPropertyValue('--x'));
+      const y = parseFloat(el.style.getPropertyValue('--y'));
+      const r = parseFloat(el.style.getPropertyValue('--r'));
+      let dx = x - 50, dy = y - 50;
+      const len = Math.hypot(dx, dy);
+      if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : part sur le côté
+      const n = Math.hypot(dx, dy);
+      return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
+    });
     return {
-      el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1),
-      spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18),
+      chapter, scene, notes,
+      outgoing: chapter.firstElementChild,                       // section qui se termine
+      header: scene.querySelector('.paper-sticky').firstElementChild, // titre de la suivante
+      veil: scene.querySelector('.paper-veil'),
     };
   });
 
@@ -272,46 +271,55 @@ if (intro && scene && !reduceMotion.matches) {
       `translate(-50%, -50%) translate(${n.ux * dist}px, ${n.uy * dist}px) rotate(${rot}deg) scale(${scale})`;
   };
 
-  let ticking = false;
-  const render = () => {
-    ticking = false;
-    const W = window.innerWidth, H = window.innerHeight;
+  const renderScene = (sc, W, H) => {
+    const rect = sc.scene.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > H) return;   // hors écran : rien à calculer
     const far = Math.max(W, H) * 1.1;
-    const travel = scene.offsetHeight - H;
-    const p = clamp(-scene.getBoundingClientRect().top / travel);
-
+    const p = clamp(-rect.top / (sc.scene.offsetHeight - H));
     if (p < 0.5) {
       // Arrivée : les bords d'abord, le centre en dernier
       const q = clamp(p / 0.45);
-      notes.forEach(n => {
+      sc.notes.forEach(n => {
         const t = clamp((q - (1 - n.d) * 0.45) / 0.55);
         const e = 1 - Math.pow(1 - t, 3);
         place(n, far * (1 - e), n.r - n.spin * 0.6 * (1 - e), 1);
       });
-      hero.style.transform = `scale(${1 - 0.07 * q})`;
-      hero.style.opacity = 1 - 0.5 * q;
-      header.style.opacity = 0;
+      sc.outgoing.style.transform = q ? `scale(${1 - 0.07 * q})` : '';
+      sc.outgoing.style.opacity = 1 - 0.5 * q;
+      sc.header.style.opacity = 0;
     } else {
       // Envol : le centre s'ouvre d'abord, les bords suivent
       const u = clamp((p - 0.55) / 0.45);
-      notes.forEach(n => {
+      sc.notes.forEach(n => {
         const t = clamp((u - 0.1 - n.d * 0.3) / 0.5);
         const e = t * t * (3 - 2 * t) * t;
         place(n, e * far, n.r + n.spin * e, 1 + e * 0.12);
       });
-      hero.style.opacity = 0;
-      header.style.opacity = 1;
+      sc.outgoing.style.opacity = 0;
+      sc.header.style.opacity = 1;
     }
     // Voile abricot sous les papiers au moment où tout est couvert : l'échange ne se voit pas
-    veil.style.opacity = clamp(1 - Math.abs(p - 0.5) / 0.07);
+    sc.veil.style.opacity = clamp(1 - Math.abs(p - 0.5) / 0.07);
+  };
+
+  let ticking = false;
+  const render = () => {
+    ticking = false;
+    const W = window.innerWidth, H = window.innerHeight;
+    scenes.forEach(sc => renderScene(sc, W, H));
   };
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
-  // Accueil plus haut que l'écran (mobile) : il défile jusqu'à son bas, puis se fige
-  const pinHero = () => { hero.style.top = Math.min(0, window.innerHeight - hero.offsetHeight) + 'px'; onScroll(); };
+  // Section plus haute que l'écran : elle défile jusqu'à son bas, puis se fige
+  const pin = () => {
+    scenes.forEach(sc => { sc.outgoing.style.top = Math.min(0, window.innerHeight - sc.outgoing.offsetHeight) + 'px'; });
+    onScroll();
+  };
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', pinHero);
-  intro.classList.add('is-live');
-  pinHero();
+  window.addEventListener('resize', pin);
+  chapters.forEach(c => c.classList.add('is-live'));
+  pin();
+  // Les images chargées tard changent la hauteur des sections : on recalcule
+  window.addEventListener('load', pin);
 }
 
 // ===== Pied de page : année du copyright =====

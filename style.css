@@ -1556,18 +1556,28 @@ html { scroll-behavior: smooth; }
   z-index: 1;
 }
 /* Version animée : l'accueil se fige, la scène vient se superposer à son dernier écran */
-.intro.is-live .cover {
+.chapter.is-live > :first-child {
   position: sticky;
+  min-height: 100vh;
   transform-origin: 50% 40%;
   will-change: transform, opacity;
 }
-.intro.is-live .paper-scene {
+.chapter.is-live .paper-scene {
   height: 300vh;
   margin-top: -100vh;
 }
-.intro.is-live .paper-scene,
-.intro.is-live .paper-sticky { pointer-events: none; }
-.intro.is-live .paper-sticky .realisations-header { position: relative; opacity: 0; }
+.chapter.is-live .paper-scene,
+.chapter.is-live .paper-sticky { pointer-events: none; }
+.chapter.is-live .paper-sticky > :first-child { position: relative; opacity: 0; }
+/* Titres de section posés dans la scène */
+.paper-sticky > :first-child { width: min(100%, 72rem); margin: 0 auto; }
+.paper-sticky .services-header,
+.paper-sticky .contact-header { text-align: center; margin-left: auto; margin-right: auto; }
+.paper-sticky .about-hero { margin-bottom: 0; }
+@media (max-width: 799px) {
+  .paper-sticky .about-hero { gap: 1.5rem; }
+  .paper-sticky .about-photo img { width: min(60vw, 32vh); margin: 0 auto; }
+}
 .paper-veil {
   position: absolute;
   inset: 0;
@@ -1634,10 +1644,10 @@ html { scroll-behavior: smooth; }
   .note--wide   { width: 54vw; }
 }
 /* Sans JavaScript ou animations coupées : pas de scène, le titre s'affiche directement */
-.intro:not(.is-live) .paper-sticky {
+.chapter:not(.is-live) .paper-sticky {
   position: static;
   height: auto;
   padding: 5rem 1.5rem 0;
 }
-.intro:not(.is-live) .paper-notes,
-.intro:not(.is-live) .paper-veil { display: none; }
+.chapter:not(.is-live) .paper-notes,
+.chapter:not(.is-live) .paper-veil { display: none; }
