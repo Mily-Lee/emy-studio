@@ -1,7 +1,7 @@
 :root {
-  --bg: #FCFAF7;           /* Crème - fond */
-  --ink: #33241E;          /* Espresso - texte & titres */
-  --ink-soft: #75665F;     /* Taupe grisé - texte secondaire */
+  --bg: #FFD9A3;           /* Abricot - fond */
+  --ink: #183D40;          /* Bleu canard profond - texte & titres */
+  --ink-soft: #476A6B;     /* Bleu canard adouci - texte secondaire */
   --accent: #DB8159;       /* Terracotta - mots en couleur, liens, icônes */
   --sand: #F1E6DF;         /* Rose terre très clair - cartes & tags */
   --panel: #423934;        /* Gris brun chaud - menu en coin, bouton principal */
@@ -853,12 +853,12 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .contact-card--main:hover { background: #4D433D; }
 .contact-card--main .contact-card-icon { color: var(--panel); background: var(--panel-text); }
 .contact-card--main:hover .contact-card-icon { color: var(--panel-text); }
-.contact-card--main .contact-card-label { color: rgba(252, 250, 247, 0.65); }
+.contact-card--main .contact-card-label { color: rgba(255, 217, 163, 0.65); }
 .contact-card--main .contact-card-value { font-size: clamp(1.4rem, 4.5vw, 2.4rem); }
 .contact-card-hint {
   margin-top: 0.4rem;
   font-size: 0.85rem;
-  color: rgba(252, 250, 247, 0.65);
+  color: rgba(255, 217, 163, 0.65);
   transition: color 0.3s var(--ease);
 }
 .contact-card.is-copied .contact-card-hint { color: var(--accent); font-weight: 700; }
@@ -1140,7 +1140,7 @@ html {
   letter-spacing: 0.02em;
   color: var(--ink);
   /* Verre dépoli qui laisse deviner la page derrière */
-  background: rgba(252, 250, 247, 0.42);
+  background: rgba(255, 217, 163, 0.42);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   backdrop-filter: blur(14px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.7);
@@ -1154,7 +1154,7 @@ html {
   opacity: 1;
   transition-delay: calc(var(--i) * 0.06s), 0s, 0s;
 }
-.nav-links a:hover { background: rgba(252, 250, 247, 0.65); }
+.nav-links a:hover { background: rgba(255, 217, 163, 0.65); }
 .nav-links a.active,
 .nav-links a:hover { color: var(--accent); }
 
@@ -1219,8 +1219,8 @@ html {
     transition: background 0.4s var(--ease);
   }
   .nav-links.open { background: rgba(51, 36, 30, 0.6); }
-  .nav-links a { background: rgba(252, 250, 247, 0.88); }
-  .nav-links a:hover { background: rgba(252, 250, 247, 1); }
+  .nav-links a { background: rgba(255, 217, 163, 0.88); }
+  .nav-links a:hover { background: rgba(255, 217, 163, 1); }
   .nav-links li {
     transform:
       translate(calc(50vw - 0.42 * var(--menu-r)),
@@ -1250,7 +1250,7 @@ html {
   padding: clamp(2.8rem, 6vw, 4rem) max(1.5rem, (100% - 72rem) / 2) 1.8rem;
   font-family: 'Lato', sans-serif;
   font-size: var(--text-sm);
-  color: rgba(252, 250, 247, 0.72);
+  color: rgba(255, 217, 163, 0.72);
   background: var(--panel);
 }
 .site-footer a { transition: color 0.3s var(--ease); }
@@ -1296,7 +1296,7 @@ html {
   gap: 0.6rem 2rem;
   margin-top: clamp(2.2rem, 5vw, 3rem);
   padding-top: 1.4rem;
-  border-top: 1px solid rgba(252, 250, 247, 0.15);
+  border-top: 1px solid rgba(255, 217, 163, 0.15);
   font-size: 0.82rem;
 }
 
