@@ -993,14 +993,16 @@ main.is-leaving {
   .wordmark h1 .accent-word::before { display: none; }
 }
 .wordmark .tagline-group {
-  margin: 3rem auto 0;
+  margin: 2rem auto 0;
   max-width: 34rem;
 }
 .wordmark .tagline {
   font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  line-height: 1.6;
-  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.8;
+  font-size: clamp(0.72rem, 0.68rem + 0.2vw, 0.82rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
   color: var(--ink);
 }
 @media (min-width: 900px) {
