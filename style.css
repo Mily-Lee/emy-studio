@@ -735,6 +735,111 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: var(--text);
 }
 
+/* ----- La méthode : les étapes d'un projet ----- */
+.process {
+  margin-top: clamp(4.5rem, 10vw, 7rem);
+}
+.process-header {
+  text-align: center;
+  max-width: 34rem;
+  margin: 0 auto clamp(2.5rem, 6vw, 3.5rem);
+}
+.process-header .eyebrow {
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+.process-header h2 {
+  margin-top: 0.8rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--ink);
+}
+.process-header p {
+  margin-top: 0.9rem;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+/* Mobile : une ligne pointillée verticale relie les étapes */
+.process-steps {
+  list-style: none;
+  counter-reset: step;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 2rem;
+}
+.process-steps::before {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  border-left: 2px dashed rgba(24, 61, 64, 0.3);
+}
+.process-step {
+  counter-increment: step;
+  position: relative;
+  padding-left: 4.4rem;
+}
+.process-step::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: -0.35rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.process-step h3 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+.process-step p {
+  margin-top: 0.5rem;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  font-size: var(--text);
+}
+/* Ordinateur : deux rangées de trois, la ligne pointillée passe sous les numéros */
+@media (min-width: 800px) {
+  .process-steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2.4rem;
+  }
+  .process-steps::before { display: none; }
+  .process-step {
+    padding-left: 0;
+    padding-top: 4.2rem;
+  }
+  .process-step::before { top: 0; }
+  .process-step::after {
+    content: "";
+    position: absolute;
+    top: 1.5rem;
+    left: 3.6rem;
+    right: -1.8rem;
+    border-top: 2px dashed rgba(24, 61, 64, 0.3);
+  }
+  .process-step:nth-child(3n)::after { display: none; }
+}
+
 .services-cta {
   margin-top: clamp(4rem, 8vw, 6rem);
   text-align: center;
