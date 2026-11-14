@@ -1431,12 +1431,17 @@ main.is-leaving {
   body.scrolled::before { opacity: 1; }
 }
 
-/* Accueil : « Mes réalisations » et « Mes offres » au style des liens du menu */
+/* Au style des liens du menu : « Mes réalisations » (accueil),
+   « Discutons de votre projet » (services), « Me contacter » (à propos) */
 .hero-actions { gap: clamp(1.6rem, 3.5vw, 3rem); }
 .hero-actions .btn,
 .hero-actions .btn:hover,
 .home-projects .btn,
-.home-projects .btn:hover {
+.services-cta .btn,
+.about-section .btn,
+.home-projects .btn:hover,
+.services-cta .btn:hover,
+.about-section .btn:hover {
   position: relative;
   height: auto;
   padding: 0.3rem 0;
@@ -1450,9 +1455,13 @@ main.is-leaving {
   color: var(--ink);
 }
 .hero-actions .btn:hover,
-.home-projects .btn:hover { color: var(--accent); }
+.home-projects .btn:hover,
+.services-cta .btn:hover,
+.about-section .btn:hover { color: var(--accent); }
 .hero-actions .btn::after,
-.home-projects .btn::after {
+.home-projects .btn::after,
+.services-cta .btn::after,
+.about-section .btn::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1466,7 +1475,11 @@ main.is-leaving {
 .hero-actions .btn:hover::after,
 .hero-actions .btn:focus-visible::after,
 .home-projects .btn:hover::after,
-.home-projects .btn:focus-visible::after { transform: scaleX(1); }
+.services-cta .btn:hover::after,
+.about-section .btn:hover::after,
+.home-projects .btn:focus-visible::after,
+.services-cta .btn:focus-visible::after,
+.about-section .btn:focus-visible::after { transform: scaleX(1); }
 
 /* ====================================
    ACCUEIL - encadré « Dernières réalisations »
