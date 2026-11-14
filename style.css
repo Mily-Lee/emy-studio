@@ -202,6 +202,38 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-top: 1.8rem;
 }
 
+/* 01 à 03 en cartes, au style des cartes de prestations et de la méthode */
+.about-cards {
+  display: grid;
+  gap: 1.2rem;
+}
+@media (min-width: 1000px) {
+  .about-cards { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}
+.about-section.about-card {
+  display: block;
+  background: var(--sand);
+  border-radius: 1.5rem;
+  padding: 2rem 1.9rem 2.2rem;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 50px -25px rgba(24, 61, 64, 0.4);
+}
+.about-card .about-num {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.3rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 0.95rem;
+}
+.about-card h2 { font-size: 1.3rem; margin-bottom: 0.7rem; }
+
 /* ====================================
    PAGE REALISATIONS
    ==================================== */
