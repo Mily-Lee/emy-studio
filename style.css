@@ -845,7 +845,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .process-steps { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
 
-/* « Une idée en tête ? » : un écran entier bleu canard, pour attirer l'œil */
+/* « Une idée en tête ? » : un écran entier dont le fond passe à l'abricot
+   clair en arrivant, comme derrière les réalisations (classe bg-on, main.js) */
 .services-cta {
   position: relative;
   z-index: 1;
@@ -858,23 +859,24 @@ html { scrollbar-color: var(--accent) var(--bg); }
   gap: 2.6rem;
   padding: 6rem 1.5rem;
   text-align: center;
-  background: var(--panel);
+  background: var(--bg);
+  transition: background-color 0.9s ease;
 }
+.services-cta.bg-on { background: #FFEBCF; }
 .services-cta p {
   max-width: 14ch;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: clamp(2.6rem, 7vw, 5rem);
   line-height: 1.08;
-  color: var(--panel-text);
+  color: var(--ink);
 }
-.services-cta p .accent-word { color: #F0A060; } /* orange abricot, lisible sur le bleu canard */
+.services-cta p .accent-word { color: #C2602A; } /* orange abricot, assez foncé pour rester lisible */
 .services-cta .btn,
 .services-cta .btn:hover {
   position: relative;
   height: auto;
   padding: 0.4rem 0;
-  gap: 0.8rem;
   border: none;
   border-radius: 0;
   background: none;
@@ -882,9 +884,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--panel-text);
+  color: var(--ink);
 }
-/* Trait toujours visible, qui passe à l'orange au survol ; la flèche avance */
+/* Trait toujours visible, qui s'épaissit au survol */
 .services-cta .btn::after {
   content: "";
   position: absolute;
@@ -895,11 +897,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
   background: currentColor;
   transition: height 0.3s var(--ease);
 }
-.services-cta .btn span { transition: translate 0.35s var(--ease); }
-.services-cta .btn:hover { color: #F0A060; }
+.services-cta .btn:hover { color: var(--accent); }
 .services-cta .btn:hover::after { height: 2px; }
-.services-cta .btn:hover span { translate: 0.4rem 0; }
-.services-cta .btn:focus-visible { outline: 2px solid var(--panel-text); outline-offset: 6px; }
+.services-cta .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 
 /* ====================================
    PAGE CONTACT

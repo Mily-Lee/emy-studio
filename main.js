@@ -449,7 +449,9 @@ document.querySelectorAll('.process').forEach(process => {
     let color = '';
     tinted.forEach(el => {
       const r = el.getBoundingClientRect();
-      if (r.top <= mid && r.bottom >= mid) color = BG[el.dataset.bg] || '';
+      const on = r.top <= mid && r.bottom >= mid;
+      el.classList.toggle('bg-on', on);   // pour les blocs qui ont leur propre fond
+      if (on) color = BG[el.dataset.bg] || '';
     });
     document.body.style.backgroundColor = color;
   };
