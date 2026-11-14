@@ -100,8 +100,10 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-bottom: clamp(4rem, 10vw, 7rem);
 }
 @media (min-width: 800px) {
+  /* Photo + texte calés sur leur largeur réelle, le bloc centré dans la page */
   .about-hero {
-    grid-template-columns: minmax(240px, 340px) 1fr;
+    grid-template-columns: minmax(240px, 340px) minmax(0, 34rem);
+    justify-content: center;
     gap: 4.5rem;
   }
 }
@@ -201,6 +203,12 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .about-section .btn {
   margin-top: 1.8rem;
 }
+/* Mot de fin et « Me contacter » centrés sous les cartes */
+.about-section.about-end {
+  display: block;
+  text-align: center;
+}
+.about-end p { margin: 0 auto; }
 
 /* 01 à 03 en cartes horizontales, l'une sous l'autre :
    le numéro à gauche, le texte à droite (empilés sur mobile) */
