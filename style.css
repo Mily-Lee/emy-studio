@@ -1183,15 +1183,10 @@ main.is-leaving {
 
 /* ====================================
    MENU - tout le site
-   Mobile : un quart de rond plein au coin haut droit ; à l'ouverture,
+   Mobile : une simple icône trois barres en haut à droite ; à l'ouverture,
    un panneau abricot plein écran avec les liens en texte, au style du
    menu ordinateur (petites majuscules espacées, trait sous le lien actif).
    ==================================== */
-html { --menu-r: 110px; }
-@media (max-width: 720px) {
-  html { --menu-r: 92px; }
-}
-
 .nav-links {
   position: fixed;
   z-index: 1130;
@@ -1260,44 +1255,44 @@ html { --menu-r: 110px; }
 .nav-links a:hover::after,
 .nav-links a.active::after { transform: scaleX(1); }
 
-/* Le bouton : quart de rond plein */
+/* Le bouton : trois barres sans fond, qui pivotent en croix à l'ouverture
+   (::before = haut + milieu en ombre, ::after = bas) */
 .nav-burger {
   position: fixed;
   z-index: 1150;
-  border: none;
-  cursor: pointer;
-  top: 0;
-  right: 0;
-  width: var(--menu-r);
-  height: var(--menu-r);
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 48px;
+  height: 48px;
   padding: 0;
-  border-radius: 0 0 0 100%;
-  background: var(--panel);
-  transition: background 0.3s var(--ease);
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ink);
+  transition: color 0.3s var(--ease);
 }
-.nav-burger:hover { background: var(--accent); }
-/* Icône au cœur de la part : 3 barres (::before = haut + milieu en ombre,
-   ::after = bas) qui pivotent en croix à l'ouverture */
+.nav-burger:hover { color: var(--accent); }
 .nav-burger::before,
 .nav-burger::after {
   content: '';
   position: absolute;
-  top: calc(0.36 * var(--menu-r));
-  right: calc(0.36 * var(--menu-r) - 12px);
+  top: 50%;
+  left: 12px;
   width: 24px;
-  height: 2.5px;
+  height: 2px;
+  margin-top: -1px;
   border-radius: 2px;
-  background: var(--panel-text);
+  background: currentColor;
   transition: transform 0.4s var(--ease), box-shadow 0.3s var(--ease);
 }
 .nav-burger::before {
   transform: translateY(-7px);
-  box-shadow: 0 7px 0 var(--panel-text);
+  box-shadow: 0 7px 0 currentColor;
 }
 .nav-burger::after { transform: translateY(7px); }
 .nav-burger.open::before { transform: rotate(45deg); box-shadow: 0 0 0 transparent; }
 .nav-burger.open::after { transform: rotate(-45deg); }
-.nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: -6px; }
+.nav-burger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
 @media (prefers-reduced-motion: reduce) {
   .nav-links, .nav-links *, .nav-burger { transition: none !important; }
@@ -1396,7 +1391,7 @@ html { --menu-r: 110px; }
 /* ====================================
    MENU ORDINATEUR - barre fixe en haut,
    liens centrés en petites majuscules.
-   Le quart de rond reste pour le mobile.
+   L'icône trois barres reste pour le mobile.
    ==================================== */
 @media (min-width: 721px) {
   .nav-burger { display: none; }

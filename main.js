@@ -1,7 +1,7 @@
 const burger = document.querySelector('.nav-burger');
 const links = document.querySelector('.nav-links');
 
-// ===== Menu en quart de rond (tout le site) =====
+// ===== Menu (icône trois barres sur mobile) =====
 function toggleMenu() {
   const isOpen = burger.classList.toggle('open');
   links.classList.toggle('open');
