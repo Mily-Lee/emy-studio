@@ -196,20 +196,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
   text-underline-offset: 3px;
 }
 
-.about-closing {
-  font-size: 1.1rem !important;
-  color: var(--ink) !important;
-}
-.about-section .btn {
-  margin-top: 1.8rem;
-}
-/* Mot de fin et « Me contacter » centrés sous les cartes */
-.about-section.about-end {
-  display: block;
-  text-align: center;
-}
-.about-end p { margin: 0 auto; }
-
 /* 01 à 03 en cartes horizontales, l'une sous l'autre :
    le numéro à gauche, le texte à droite (empilés sur mobile) */
 .about-cards {
@@ -845,10 +831,11 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .process-steps { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
 
-/* « Une idée en tête ? » : un écran entier dont le fond passe au bleu canard
+/* « Une idée en tête ? » (services) et le mot de fin d'À propos :
+   un écran entier dont le fond passe au bleu canard
    en arrivant, en fondu comme derrière les réalisations (classe bg-on, main.js) ;
    le texte passe à l'abricot en même temps */
-.services-cta {
+.cta-page {
   position: relative;
   z-index: 1;
   min-height: 100vh;
@@ -863,8 +850,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
   background: var(--bg);
   transition: background-color 0.9s ease;
 }
-.services-cta.bg-on { background: var(--panel); }
-.services-cta p {
+.cta-page.bg-on { background: var(--panel); }
+.cta-page p {
   max-width: 14ch;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -873,11 +860,11 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink);
   transition: color 0.9s ease;
 }
-.services-cta p .accent-word { color: #C2602A; transition: color 0.9s ease; }
-.services-cta.bg-on p { color: var(--panel-text); }
-.services-cta.bg-on p .accent-word { color: #F0A060; } /* orange abricot, lisible sur le bleu */
-.services-cta .btn,
-.services-cta .btn:hover {
+.cta-page p .accent-word { color: #C2602A; transition: color 0.9s ease; }
+.cta-page.bg-on p { color: var(--panel-text); }
+.cta-page.bg-on p .accent-word { color: #F0A060; } /* orange abricot, lisible sur le bleu */
+.cta-page .btn,
+.cta-page .btn:hover {
   position: relative;
   height: auto;
   padding: 0.4rem 0;
@@ -891,7 +878,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink);
 }
 /* Trait toujours visible, qui s'épaissit au survol */
-.services-cta .btn::after {
+.cta-page .btn::after {
   content: "";
   position: absolute;
   left: 0;
@@ -901,11 +888,17 @@ html { scrollbar-color: var(--accent) var(--bg); }
   background: currentColor;
   transition: height 0.3s var(--ease);
 }
-.services-cta .btn:hover { color: var(--accent); }
-.services-cta.bg-on .btn { color: var(--panel-text); transition: color 0.9s ease; }
-.services-cta.bg-on .btn:hover { color: #F0A060; transition-duration: 0.3s; }
-.services-cta .btn:hover::after { height: 2px; }
-.services-cta .btn:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+.cta-page .btn:hover { color: var(--accent); }
+.cta-page.bg-on .btn { color: var(--panel-text); transition: color 0.9s ease; }
+.cta-page.bg-on .btn:hover { color: #F0A060; transition-duration: 0.3s; }
+.cta-page .btn:hover::after { height: 2px; }
+.cta-page .btn:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+/* Variante paragraphe (À propos) : texte plus long, donc plus petit */
+.cta-page--text p {
+  max-width: 34ch;
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  line-height: 1.35;
+}
 
 /* ====================================
    PAGE CONTACT
@@ -1489,15 +1482,12 @@ main.is-leaving {
   body.scrolled::before { opacity: 1; }
 }
 
-/* Au style des liens du menu : « Mes réalisations » (accueil),
-   « Me contacter » (à propos) */
+/* Accueil : « Mes réalisations » au style des liens du menu */
 .hero-actions { gap: clamp(1.6rem, 3.5vw, 3rem); }
 .hero-actions .btn,
 .hero-actions .btn:hover,
 .home-projects .btn,
-.about-section .btn,
-.home-projects .btn:hover,
-.about-section .btn:hover {
+.home-projects .btn:hover {
   position: relative;
   height: auto;
   padding: 0.3rem 0;
@@ -1511,11 +1501,9 @@ main.is-leaving {
   color: var(--ink);
 }
 .hero-actions .btn:hover,
-.home-projects .btn:hover,
-.about-section .btn:hover { color: var(--accent); }
+.home-projects .btn:hover { color: var(--accent); }
 .hero-actions .btn::after,
-.home-projects .btn::after,
-.about-section .btn::after {
+.home-projects .btn::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1529,9 +1517,7 @@ main.is-leaving {
 .hero-actions .btn:hover::after,
 .hero-actions .btn:focus-visible::after,
 .home-projects .btn:hover::after,
-.about-section .btn:hover::after,
-.home-projects .btn:focus-visible::after,
-.about-section .btn:focus-visible::after { transform: scaleX(1); }
+.home-projects .btn:focus-visible::after { transform: scaleX(1); }
 
 /* ====================================
    ACCUEIL - encadré « Dernières réalisations »
