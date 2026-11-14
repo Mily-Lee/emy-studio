@@ -1813,11 +1813,17 @@ body.pops-live .pop-in {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5rem 1.5rem 3rem;
+  padding: 5rem 1.5rem 6rem; /* bas = hauteur du dégradé : il ne passe jamais sur le texte au repos */
 }
 .title-page > * {
   width: min(100%, 72rem);
   margin: 0 auto;
+}
+/* Mobile : photo d'À propos plus petite, pour que photo, titre et texte
+   tiennent dans un seul écran et se lisent avant que le contenu n'arrive */
+@media (max-width: 799px) {
+  .title-page .about-hero { gap: 1.6rem; }
+  .title-page .about-photo img { display: block; width: min(62vw, 34vh); margin: 0 auto; }
 }
 .title-page .services-header,
 .title-page .contact-header {
@@ -1837,8 +1843,8 @@ body.pops-live .pop-in {
   position: absolute;
   left: 0;
   right: 0;
-  top: -9rem;
-  height: 9rem;
+  top: -6rem;
+  height: 6rem;
   pointer-events: none;
   border-image: linear-gradient(rgba(255, 217, 163, 0), var(--bg)) fill 0 // 0 100vmax;
 }
