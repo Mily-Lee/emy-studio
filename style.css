@@ -194,45 +194,6 @@ html { scrollbar-color: var(--accent) var(--bg); }
   text-underline-offset: 3px;
 }
 
-.about-skills {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-}
-.about-skill-group {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.8rem;
-}
-@media (min-width: 700px) {
-  .about-skill-group {
-    grid-template-columns: 10rem 1fr;
-    align-items: baseline;
-  }
-}
-.about-skill-label {
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.about-skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  list-style: none;
-}
-.about-skill-tags li {
-  background: var(--sand);
-  color: var(--ink);
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-}
-
 .about-closing {
   font-size: 1.1rem !important;
   color: var(--ink) !important;
