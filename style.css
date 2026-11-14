@@ -866,84 +866,92 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: var(--text);
 }
 
-/* Encarts : l'email en grand (clic = copie), puis Instagram, LinkedIn */
-.contact-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+/* Variante épurée : pas d'encarts. L'email en très grand (clic = copie),
+   souligné d'un fin trait qui se dessine au survol, puis les réseaux en
+   petites majuscules, au style du menu. Tout est centré. */
+.contact-page { text-align: center; }
+.contact-header { margin-left: auto; margin-right: auto; }
+.contact-mail {
+  padding: clamp(2.5rem, 7vw, 4.5rem) 0;
+  border-top: 1px solid rgba(24, 61, 64, 0.18);
+  border-bottom: 1px solid rgba(24, 61, 64, 0.18);
 }
-@media (min-width: 720px) {
-  .contact-cards { grid-template-columns: repeat(2, 1fr); }
-  .contact-card--main { grid-column: 1 / -1; }
-}
-.contact-card {
-  display: flex;
+.contact-mail-btn {
+  display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.35rem;
-  width: 100%;
-  padding: 1.6rem 1.7rem;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+  border: none;
+  background: none;
   font-family: 'Lato', sans-serif;
-  text-align: left;
   color: var(--ink);
-  background: var(--sand);
-  border: 1.5px solid transparent;
-  border-radius: 22px;
   cursor: pointer;
-  transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), background 0.35s var(--ease);
 }
-.contact-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-}
-.contact-card:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-.contact-card-icon {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 0.8rem;
-  border-radius: 50%;
-  color: var(--panel-text);
-  background: var(--panel);
-  transition: background 0.35s var(--ease), color 0.35s var(--ease);
-}
-.contact-card:hover .contact-card-icon { background: var(--accent); }
-.contact-card-icon svg { width: 20px; height: 20px; }
-.contact-card-label {
-  font-size: 0.75rem;
+.contact-mail-value {
+  position: relative;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.contact-card-value {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: clamp(1.7rem, 7vw, 4.2rem);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
   overflow-wrap: anywhere;
-}
-
-/* Encart principal : plein gris brun, adresse en grand */
-.contact-card--main {
-  padding: clamp(1.8rem, 4vw, 2.6rem);
-  color: var(--panel-text);
-  background: var(--panel);
-}
-.contact-card--main:hover { background: #224E52; }
-.contact-card--main .contact-card-icon { color: var(--panel); background: var(--panel-text); }
-.contact-card--main:hover .contact-card-icon { color: var(--panel-text); }
-.contact-card--main .contact-card-label { color: rgba(255, 217, 163, 0.65); }
-.contact-card--main .contact-card-value { font-size: clamp(1.4rem, 4.5vw, 2.4rem); }
-.contact-card-hint {
-  margin-top: 0.4rem;
-  font-size: 0.85rem;
-  color: rgba(255, 217, 163, 0.65);
   transition: color 0.3s var(--ease);
 }
-.contact-card.is-copied .contact-card-hint { color: var(--accent); font-weight: 700; }
+.contact-mail-value::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.12em;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.45s var(--ease);
+}
+.contact-mail-btn:hover .contact-mail-value { color: var(--accent); }
+.contact-mail-btn:hover .contact-mail-value::after { transform: scaleX(1); }
+.contact-mail-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: 4px; }
+.contact-card-hint {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: color 0.3s var(--ease);
+}
+.contact-mail-btn.is-copied .contact-card-hint { color: var(--accent); }
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 6vw, 4rem);
+  margin-top: 2.2rem;
+  list-style: none;
+}
+.contact-links a {
+  position: relative;
+  padding: 0.3rem 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color 0.3s var(--ease);
+}
+.contact-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.2em;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.35s var(--ease);
+}
+.contact-links a:hover { color: var(--accent); }
+.contact-links a:hover::after { transform: scaleX(1); }
 
 .contact-location {
   margin-top: 2rem;
