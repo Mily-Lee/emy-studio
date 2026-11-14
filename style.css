@@ -845,8 +845,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .process-steps { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
 
-/* « Une idée en tête ? » : un écran entier dont le fond passe à l'abricot
-   clair en arrivant, comme derrière les réalisations (classe bg-on, main.js) */
+/* « Une idée en tête ? » : un écran entier dont le fond passe au bleu canard
+   en arrivant, en fondu comme derrière les réalisations (classe bg-on, main.js) ;
+   le texte passe à l'abricot en même temps */
 .services-cta {
   position: relative;
   z-index: 1;
@@ -862,7 +863,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   background: var(--bg);
   transition: background-color 0.9s ease;
 }
-.services-cta.bg-on { background: #FFEBCF; }
+.services-cta.bg-on { background: var(--panel); }
 .services-cta p {
   max-width: 14ch;
   font-family: 'Lato', sans-serif;
@@ -870,8 +871,11 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: clamp(2.6rem, 7vw, 5rem);
   line-height: 1.08;
   color: var(--ink);
+  transition: color 0.9s ease;
 }
-.services-cta p .accent-word { color: #C2602A; } /* orange abricot, assez foncé pour rester lisible */
+.services-cta p .accent-word { color: #C2602A; transition: color 0.9s ease; }
+.services-cta.bg-on p { color: var(--panel-text); }
+.services-cta.bg-on p .accent-word { color: #F0A060; } /* orange abricot, lisible sur le bleu */
 .services-cta .btn,
 .services-cta .btn:hover {
   position: relative;
@@ -898,8 +902,10 @@ html { scrollbar-color: var(--accent) var(--bg); }
   transition: height 0.3s var(--ease);
 }
 .services-cta .btn:hover { color: var(--accent); }
+.services-cta.bg-on .btn { color: var(--panel-text); transition: color 0.9s ease; }
+.services-cta.bg-on .btn:hover { color: #F0A060; transition-duration: 0.3s; }
 .services-cta .btn:hover::after { height: 2px; }
-.services-cta .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.services-cta .btn:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
 
 /* ====================================
    PAGE CONTACT
