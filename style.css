@@ -866,14 +866,14 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: var(--text);
 }
 
-/* Encarts : l'email en grand (clic = copie), puis téléphone, Instagram, LinkedIn */
+/* Encarts : l'email en grand (clic = copie), puis Instagram, LinkedIn */
 .contact-cards {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
 }
 @media (min-width: 720px) {
-  .contact-cards { grid-template-columns: repeat(3, 1fr); }
+  .contact-cards { grid-template-columns: repeat(2, 1fr); }
   .contact-card--main { grid-column: 1 / -1; }
 }
 .contact-card {
