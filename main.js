@@ -427,6 +427,15 @@ document.querySelectorAll('.process').forEach(process => {
   update();
 });
 
+// ===== Pages titre : un titre plus haut que l'écran défile jusqu'à son bas, puis se fige =====
+{
+  const titles = document.querySelectorAll('.title-page');
+  const pinTitles = () => titles.forEach(t => { t.style.top = Math.min(0, window.innerHeight - t.offsetHeight) + 'px'; });
+  window.addEventListener('resize', pinTitles);
+  window.addEventListener('load', pinTitles);
+  pinTitles();
+}
+
 // ===== Fond qui change de couleur selon la section =====
 // La section qui passe au milieu de l'écran donne sa couleur au fond (data-bg).
 {

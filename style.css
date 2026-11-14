@@ -1677,3 +1677,47 @@ body.pops-live .pop-in {
   body.pops-live .pop-in:not(.is-in) { opacity: 1; translate: none; scale: none; }
 }
 
+
+/* ====================================
+   PAGES TITRE - Services, À propos, Contact
+   Le titre occupe tout un écran, comme celui des réalisations ;
+   en défilant, le contenu remonte par-dessus et le recouvre.
+   ==================================== */
+.title-page {
+  position: sticky;
+  top: 0; /* recalé par main.js si le titre dépasse l'écran */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 1.5rem 3rem;
+}
+.title-page > * {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+}
+.title-page .services-header,
+.title-page .contact-header {
+  max-width: 40rem;
+  text-align: center;
+}
+/* Le contenu glisse sur le titre : fond plein sur toute la largeur
+   (border-image déborde sur les côtés sans créer de défilement horizontal),
+   précédé d'un dégradé qui efface le titre en douceur */
+.title-after {
+  position: relative;
+  z-index: 1;
+  border-image: conic-gradient(var(--bg) 0 0) fill 0 // 0 100vmax;
+}
+.title-after::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9rem;
+  height: 9rem;
+  pointer-events: none;
+  border-image: linear-gradient(rgba(255, 217, 163, 0), var(--bg)) fill 0 // 0 100vmax;
+}
