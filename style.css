@@ -202,13 +202,11 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-top: 1.8rem;
 }
 
-/* 01 à 03 en cartes, au style des cartes de prestations et de la méthode */
+/* 01 à 03 en cartes horizontales, l'une sous l'autre :
+   le numéro à gauche, le texte à droite (empilés sur mobile) */
 .about-cards {
   display: grid;
   gap: 1.2rem;
-}
-@media (min-width: 1000px) {
-  .about-cards { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
 .about-section.about-card {
   display: block;
@@ -233,6 +231,16 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 0.95rem;
 }
 .about-card h2 { font-size: 1.3rem; margin-bottom: 0.7rem; }
+@media (min-width: 700px) {
+  .about-section.about-card {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 2.2rem;
+    padding: 2.4rem 2.6rem;
+  }
+  .about-card .about-num { margin-bottom: 0; }
+  .about-card p { max-width: none; }
+}
 
 /* ====================================
    PAGE REALISATIONS
