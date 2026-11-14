@@ -13,6 +13,11 @@ function toggleMenu() {
 
 burger.addEventListener('click', toggleMenu);
 
+// Fond du menu dès qu'on quitte le haut de page
+const markScrolled = () => document.body.classList.toggle('scrolled', window.scrollY > 10);
+window.addEventListener('scroll', markScrolled, { passive: true });
+markScrolled();
+
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && burger.classList.contains('open')) toggleMenu();
 });
