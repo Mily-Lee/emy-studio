@@ -1465,6 +1465,34 @@ main.is-leaving {
   }
 }
 
+/* Mobile : logo « Emy Studio » à gauche du bandeau, à partir du titre des réalisations */
+.nav-logo {
+  position: fixed;
+  z-index: 1150;
+  top: 0.9rem;
+  left: 1.2rem;
+  font-family: 'Corinthia', cursive;
+  font-weight: 700;
+  font-size: 2.3rem;
+  line-height: 48px;
+  white-space: nowrap;
+  color: var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), visibility 0s linear 0.4s;
+}
+.nav-logo .accent-word { color: var(--accent); }
+body.show-logo .nav-logo {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+@media (min-width: 721px) {
+  .nav-logo { display: none; }
+}
+
 /* Mobile : même bandeau abricot derrière l'icône trois barres dès qu'on défile */
 @media (max-width: 720px) {
   body::before {

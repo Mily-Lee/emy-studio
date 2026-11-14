@@ -14,7 +14,12 @@ function toggleMenu() {
 burger.addEventListener('click', toggleMenu);
 
 // Fond du menu dès qu'on quitte le haut de page
-const markScrolled = () => document.body.classList.toggle('scrolled', window.scrollY > 10);
+// Mobile : le logo apparaît à gauche une fois arrivé au titre des réalisations
+const logoFrom = document.getElementById('realisations');
+const markScrolled = () => {
+  document.body.classList.toggle('scrolled', window.scrollY > 10);
+  if (logoFrom) document.body.classList.toggle('show-logo', logoFrom.getBoundingClientRect().top <= 1);
+};
 window.addEventListener('scroll', markScrolled, { passive: true });
 markScrolled();
 
