@@ -1652,7 +1652,7 @@ main.is-leaving {
   line-height: 1;
   color: var(--panel-text);
 }
-.footer-logo .accent-word { color: var(--accent); }
+.footer-logo .accent-word { color: #F0A060; } /* orange abricot, comme « Parlons-en. » sur le bleu */
 .footer-tagline {
   margin-top: 0.8rem;
   max-width: 22rem;
