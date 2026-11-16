@@ -1062,14 +1062,14 @@ html { scrollbar-color: var(--accent) var(--bg); }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(circle, #FFD9A3 1.3px, transparent 1.8px) center / 24px 24px;
+  background: radial-gradient(circle, #FFD9A3 1.3px, transparent 1.8px) center / 34px 34px;
   -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, #000 75%);
   mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, #000 75%);
   opacity: 0;
   transition: opacity 1.4s ease;
   pointer-events: none;
 }
-.cta-page.bg-on::before { opacity: 0.2; }
+.cta-page.bg-on::before { opacity: 0.13; }
 .cta-page p {
   max-width: 14ch;
   font-family: 'Lato', sans-serif;
