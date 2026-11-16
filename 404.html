@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page introuvable · Emy Studio</title>
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#FFD9A3" />
+<link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+<link rel="icon" type="image/png" href="/assets/icon-512.png?v=2" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2" />
+<link rel="preload" href="/assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/fonts/corinthia-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/style.css" />
+<style>
+  /* Page 404 : tout est ici pour ne rien ajouter aux autres pages.
+     Chemins absolus (/...) car la page peut s'afficher à n'importe quelle adresse. */
+  .lost {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    isolation: isolate;
+  }
+  /* Les petits points des écrans bleus, ici en bleu sur l'abricot */
+  .lost::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle, var(--ink) 1.3px, transparent 1.8px) center / 34px 34px;
+    -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, #000 80%);
+    mask-image: radial-gradient(ellipse at center, transparent 20%, #000 80%);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  /* Le E, accroché par un fil, qui se balance comme une enseigne décrochée */
+  .lost-sign {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-origin: 50% 0;
+    animation: swing 3.6s ease-in-out infinite;
+    margin-bottom: 0.4rem;
+  }
+  .lost-sign::before {
+    content: '';
+    width: 1.5px;
+    height: clamp(3rem, 9vh, 5rem);
+    background: var(--ink);
+    opacity: 0.45;
+  }
+  .lost-e {
+    font-family: 'Corinthia', cursive;
+    font-weight: 700;
+    font-size: clamp(9rem, 26vw, 15rem);
+    line-height: 0.8;
+    color: var(--ink);
+    margin-top: -0.05em;
+  }
+  @keyframes swing {
+    0%, 100% { rotate: 7deg; }
+    50% { rotate: -7deg; }
+  }
+  .lost-code {
+    font-weight: 700;
+    font-size: var(--text-sm);
+    letter-spacing: 0.25em;
+    color: var(--accent);
+  }
+  .lost h1 {
+    max-width: 18ch;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.12;
+    color: var(--ink);
+  }
+  .lost h1 .accent-word { color: #C2602A; }
+  .lost p.lost-text {
+    max-width: 34ch;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .lost-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lost-sign { animation: none; rotate: 4deg; }
+  }
+</style>
+</head>
+<body>
+  <main class="lost">
+    <div class="lost-sign" aria-hidden="true"><span class="lost-e">E</span></div>
+    <p class="lost-code">ERREUR 404</p>
+    <h1>Oups, cette page n'a pas encore été <span class="accent-word">dessinée.</span></h1>
+    <p class="lost-text">Elle s'est peut-être perdue entre deux maquettes… Pas de panique, le reste du site est bien là.</p>
+    <div class="lost-actions">
+      <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+      <a href="/#realisations" class="btn">Voir mes réalisations</a>
+    </div>
+  </main>
+</body>
+</html>
