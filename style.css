@@ -1,5 +1,7 @@
-/* Polices hébergées sur le site (aucun appel à Google Fonts).
-   Les polices « preview- » ne contiennent que les lettres de leur nom, pour les fiches projets. */
+/* Coucou toi qui fouilles dans mon CSS !
+   Les polices vivent ici, à la maison : pas de détour par Google Fonts, pas de mouchard.
+   Les fichiers « preview- » sont des polices au régime : juste les lettres de leur nom,
+   pour les fiches projets. Pourquoi charger tout l'alphabet quand on n'en montre que six ? */
 @font-face { font-family: 'Corinthia'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/corinthia-700-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: 'Corinthia'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/corinthia-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 @font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/lato-400-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
@@ -15,18 +17,18 @@
 @font-face { font-family: 'Archivo Expanded'; font-display: swap; src: url('assets/fonts/preview-archivo-expanded.woff2') format('woff2'); }
 
 :root {
-  --bg: #FFD9A3;           /* Abricot - fond */
-  --ink: #183D40;          /* Bleu canard profond - texte & titres */
-  --ink-soft: #46696C;     /* Bleu gris (#547D80 foncé pour la lisibilité) - texte secondaire */
-  --accent: #805E54;       /* Brun rosé - mots en couleur, liens, icônes */
-  --sand: #FFEBCF;         /* Abricot très clair - cartes & tags */
-  --panel: #183D40;        /* Bleu canard profond - menu en coin, bouton principal, pied de page */
+  --bg: #FFD9A3;           /* Abricot : le fond, la couleur doudou du site */
+  --ink: #183D40;          /* Bleu canard profond : textes et titres (les canards n'ont rien demandé) */
+  --ink-soft: #46696C;     /* Bleu gris, foncé exprès pour qu'on lise sans plisser les yeux : textes secondaires */
+  --accent: #805E54;       /* Brun rosé : mots en couleur, liens et icônes, la petite touche de blush */
+  --sand: #FFEBCF;         /* Abricot très clair : cartes et étiquettes */
+  --panel: #183D40;        /* Bleu canard encore : menu, bouton principal, pied de page. Oui, j'ai un chouchou. */
   --panel-text: #FFD9A3;
-  --rose: #806D54;         /* Brun olive - touche secondaire (« voir le projet ») */
+  --rose: #806D54;         /* Brun olive : la touche secondaire (« voir le projet ») */
   --ease: cubic-bezier(0.65, 0, 0.35, 1);
-  /* Tailles de texte : 17 px sur téléphone → 19 px sur ordinateur */
+  /* Texte de 17 px sur téléphone à 19 px sur ordinateur : ça grandit avec l'écran */
   --text: clamp(1.0625rem, 0.95rem + 0.4vw, 1.1875rem);
-  --text-sm: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem); /* infos secondaires : 15 → 16 px */
+  --text-sm: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem); /* Petits textes : 15 à 16 px, discrets mais lisibles */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,16 +40,16 @@ body {
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
   overflow-x: clip;
-  /* Pas de faux gras ni faux italique : on reste sur les graisses chargées */
+  /* Pas de faux gras ni de faux italique : on assume les graisses qu'on a chargées */
   font-synthesis: none;
   font-size: var(--text);
 }
 
 a { color: inherit; text-decoration: none; }
 
-/* ===== Barre de défilement aux couleurs du site ===== */
+/* ===== Barre de défilement assortie, parce que les détails, c'est mon truc ===== */
 html { scrollbar-color: var(--accent) var(--bg); }
-/* Safari (ignore scrollbar-color) */
+/* Pour Safari, qui fait toujours un peu sa diva avec scrollbar-color */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb {
@@ -57,7 +59,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink); }
 
-/* ===== Bouton retour en haut ===== */
+/* ===== Le petit bouton « on remonte ! » ===== */
 .scroll-top {
   position: fixed;
   bottom: 1.8rem;
@@ -100,7 +102,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 /* ====================================
-   PAGE A PROPOS
+   À PROPOS : la page où je parle de moi (promis, pas trop)
    ==================================== */
 .about-page {
   max-width: 72rem;
@@ -116,7 +118,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-bottom: clamp(4rem, 10vw, 7rem);
 }
 @media (min-width: 800px) {
-  /* Photo + texte calés sur leur largeur réelle, le bloc centré dans la page */
+  /* Photo et texte calés sur leur vraie largeur, le tout bien centré */
   .about-hero {
     grid-template-columns: minmax(240px, 340px) minmax(0, 34rem);
     justify-content: center;
@@ -212,8 +214,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
   text-underline-offset: 3px;
 }
 
-/* 01 à 03 en cartes horizontales, l'une sous l'autre :
-   le numéro à gauche, le texte à droite (empilés sur mobile) */
+/* 01 à 03 en cartes horizontales, rangées l'une sous l'autre :
+   le numéro à gauche, le texte à droite (et empilés sur mobile) */
 .about-cards {
   display: grid;
   gap: 1.2rem;
@@ -253,7 +255,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 /* ====================================
-   PAGE REALISATIONS
+   RÉALISATIONS : la vitrine, mes bébés
    ==================================== */
 .realisations-page {
   max-width: 72rem;
@@ -266,7 +268,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-bottom: clamp(3rem, 8vw, 5rem);
 }
 .realisations-header .eyebrow {
-  margin-top: 0; /* sinon hérite du margin de .realisations-header p */
+  margin-top: 0; /* sinon il hérite de la marge de .realisations-header p (l'héritage, toujours l'héritage) */
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
@@ -312,7 +314,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .project-tile { grid-column: span 1 !important; }
 }
 
-/* Vignette pleine image, tag + titre incrustés en bas ; le détail s'ouvre dans la modale */
+/* Vignette pleine image, étiquette et titre posés en bas ; les détails s'ouvrent dans la fiche */
 .project-tile {
   position: relative;
   display: block;
@@ -395,7 +397,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--rose);
 }
 
-/* Vignettes à fond clair : titre et étiquette en foncé */
+/* Vignettes à fond clair : titre et étiquette en foncé, sinon blanc sur blanc = magie noire */
 .project-tile--light .project-tile-title {
   color: var(--ink);
 }
@@ -430,7 +432,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 /* ====================================
-   MODALE PROJET - popup fluide
+   FICHE PROJET : la fenêtre qui s'ouvre au clic sur un projet
    ==================================== */
 .project-modal {
   position: fixed;
@@ -453,7 +455,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   -webkit-backdrop-filter: blur(8px);
 }
 
-/* La modale occupe tout l'écran, quelle que soit la taille */
+/* La fiche prend tout l'écran, quelle que soit sa taille */
 .modal-card {
   position: relative;
   display: flex;
@@ -493,7 +495,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   transform: rotate(90deg);
 }
 
-/* L'image (ou les images) arrive en dernier, dans la continuité du texte */
+/* Les images arrivent en dernier, dans la continuité du texte */
 .modal-visual {
   position: relative;
   flex: none;
@@ -506,10 +508,10 @@ html { scrollbar-color: var(--accent) var(--bg); }
   }
 }
 
-/* Vue d'ensemble : plusieurs images côte à côte plutôt qu'un carrousel */
+/* Plusieurs images côte à côte plutôt qu'un carrousel : personne n'aime les carrousels */
 .modal-gallery {
   width: 100%;
-  max-width: 69rem; /* = 72rem moins les marges, aligné sur le texte */
+  max-width: 69rem; /* 72rem moins les marges : bien aligné sur le texte */
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -526,7 +528,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   max-width: 56rem;
   height: auto;
   margin: 0 auto;
-  /* Le masque suit exactement l'image affichée (object-fit: contain, centrée) */
+  /* Le masque épouse exactement l'image affichée (contain + centrée) */
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-position: center;
@@ -555,7 +557,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .modal-gallery img:hover {
   transform: scale(1.02);
 }
-/* Une seule image : affichage entier, pas de recadrage forcé */
+/* Une seule image : on la montre en entier, pas de recadrage sauvage */
 .modal-gallery.single {
   grid-template-columns: 1fr;
   max-width: 46rem;
@@ -568,7 +570,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .modal-body {
   flex: none;
   width: 100%;
-  /* Même largeur et mêmes marges latérales que les pages du site */
+  /* Mêmes largeur et marges que le reste du site, on reste cohérente */
   max-width: 72rem;
   margin: 0 auto;
   padding: calc(4rem + env(safe-area-inset-top)) 1.5rem 2rem;
@@ -586,13 +588,13 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: clamp(1.8rem, 4.5vw, 3.2rem);
   color: var(--ink);
 }
-/* Une seule vidéo : entière, sans dépasser la hauteur de l'écran (mockup vertical) */
+/* Une seule vidéo : entière, sans dépasser la hauteur de l'écran */
 .modal-gallery.single video {
   width: auto;
   max-width: 100%;
   max-height: min(640px, 80vh);
 }
-/* Fiche projet, lue de haut en bas : titre → visuel → « Le projet » → « Identité visuelle » */
+/* La fiche se lit de haut en bas : titre, visuel, « Le projet », « Identité visuelle » */
 .modal-head { padding-bottom: 0; }
 .modal-content { padding-top: clamp(2.5rem, 6vw, 4.5rem); }
 .modal-section + .modal-section { margin-top: clamp(3rem, 7vw, 5rem); }
@@ -603,7 +605,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: clamp(1.4rem, 2.6vw, 2rem);
   color: var(--ink);
 }
-/* Logo du projet : grande carte pleine largeur, sur la couleur de la marque */
+/* Le logo du projet en grand, sur la couleur de sa marque */
 .modal-logo {
   display: flex;
   align-items: center;
@@ -618,7 +620,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   height: auto;
 }
 /* Cartes claires côte à côte (empilées sur mobile).
-   En flex : si une carte manque pour un projet, l'autre prend toute la ligne. */
+   En flex : si une carte manque, sa voisine prend toute la place sans rien dire. */
 .modal-row {
   display: flex;
   flex-direction: column;
@@ -655,7 +657,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink);
   margin-bottom: 1.2rem;
 }
-/* Typos : « Aa » en grand dans la police, puis son nom et son rôle */
+/* Typos : un grand « Aa » dans la police, puis son nom et son rôle */
 .modal-font {
   display: flex;
   align-items: center;
@@ -690,7 +692,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   text-transform: uppercase;
   color: var(--ink-soft);
 }
-/* Couleurs : une petite carte pleine par couleur, le code dedans */
+/* Couleurs : une carte par couleur, avec son code écrit dedans */
 .modal-swatches-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -709,7 +711,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 0.8rem;
   letter-spacing: 0.08em;
 }
-/* Outils : une pastille par outil */
+/* Outils : une pastille par outil, comme des stickers sur un ordi */
 .modal-tools {
   list-style: none;
   display: flex;
@@ -724,7 +726,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: var(--text-sm);
   color: var(--ink);
 }
-/* Déclinaisons : une carte par support (photo ou icône), avec son petit texte */
+/* Déclinaisons : une carte par support (photo ou icône) et son petit texte */
 .modal-extras {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
@@ -748,7 +750,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .modal-extra-visual:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
 
-/* Image agrandie en plein écran (<dialog>) */
+/* Image agrandie en plein écran, pour admirer les détails */
 .lightbox {
   width: 100vw;
   height: 100dvh;
@@ -792,7 +794,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 60%; /* t-shirt Megalith : le logo imprimé reste au centre du cadrage */
+  object-position: 50% 60%; /* T-shirt Megalith : le logo imprimé reste au centre, c'est lui la star */
 }
 .modal-extra-visual.is-contained {
   display: flex;
@@ -803,8 +805,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
   width: auto;
   height: auto;
   max-width: 80%;
-  max-height: 88%; /* flyer : affiché en entier */
-  filter: drop-shadow(0 14px 22px rgba(24, 61, 64, 0.28)); /* suit la forme de l’image (icône arrondie) */
+  max-height: 88%; /* Flyer : affiché en entier, pas question de lui couper la tête */
+  filter: drop-shadow(0 14px 22px rgba(24, 61, 64, 0.28)); /* suit la forme de l'image (icône arrondie) */
 }
 .modal-extra figcaption { padding: 1.6rem 1.6rem 1.9rem; }
 @media (min-width: 700px) {
@@ -840,7 +842,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .modal-site-link:hover { color: var(--accent); }
 
-/* Grand bouton « Voir le projet », sous les visuels */
+/* Le bouton « Voir le projet », sous les visuels */
 .modal-actions {
   display: none;
   flex: none;
@@ -849,7 +851,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 /* ====================================
-   PAGE SERVICES
+   SERVICES : ce que je sais faire (et j'adore le faire)
    ==================================== */
 .services-page {
   max-width: 72rem;
@@ -862,7 +864,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin-bottom: clamp(3rem, 8vw, 5rem);
 }
 .services-header .eyebrow {
-  margin-top: 0; /* sinon hérite du margin de .services-header p */
+  margin-top: 0; /* sinon il hérite de la marge de .services-header p */
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   letter-spacing: 0.35em;
@@ -935,7 +937,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: var(--text);
 }
 
-/* ----- La méthode : les étapes d'un projet ----- */
+/* ----- La méthode : les étapes d'un projet, sans surprise ----- */
 .process {
   margin-top: clamp(4.5rem, 10vw, 7rem);
 }
@@ -965,7 +967,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   line-height: 1.7;
   color: var(--ink-soft);
 }
-/* FAQ : questions qui s'ouvrent au clic (balises details/summary natives) */
+/* FAQ : les questions qu'on me pose tout le temps, qui s'ouvrent au clic */
 .faq { margin-top: clamp(4.5rem, 10vw, 7rem); scroll-margin-top: 2rem; }
 .faq-list {
   max-width: 48rem;
@@ -987,7 +989,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary:hover { color: var(--accent); }
 .faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
-/* Petit « + » qui devient « − » à l'ouverture */
+/* Le petit « + » qui devient « − » quand on ouvre. Un plus qui perd une jambe. */
 .faq-item summary::before,
 .faq-item summary::after {
   content: '';
@@ -1014,8 +1016,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
 @media (prefers-reduced-motion: reduce) {
   .faq-item p { animation: none; }
 }
-/* Chaque étape dans une carte, au style des cartes de prestations ;
-   le numéro en rond en haut de la carte */
+/* Chaque étape dans sa carte, comme les prestations,
+   avec son numéro dans un rond en haut */
 .process-steps {
   list-style: none;
   counter-reset: step;
@@ -1063,7 +1065,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink-soft);
   font-size: var(--text);
 }
-/* Les ronds se remplissent un à un pendant le scroll (JS) */
+/* Les ronds se remplissent un à un pendant qu'on défile (merci main.js) */
 .process.is-live .process-step::before {
   background: var(--sand);
   color: var(--ink);
@@ -1077,7 +1079,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   box-shadow: inset 0 0 0 2px var(--ink), 0 0 0 6px rgba(128, 94, 84, 0.18);
   scale: 1.08;
 }
-/* Tablette : deux colonnes ; ordinateur : deux rangées de trois */
+/* Tablette : deux colonnes. Ordinateur : deux rangées de trois. */
 @media (min-width: 640px) {
   .process-steps { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1085,10 +1087,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .process-steps { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
 
-/* « Une idée en tête ? » (services) et le mot de fin d'À propos :
-   un écran entier dont le fond passe au bleu canard
-   en arrivant, en fondu comme derrière les réalisations (classe bg-on, main.js) ;
-   le texte passe à l'abricot en même temps */
+/* « Une idée en tête ? » (Services) et le mot de la fin d'À propos :
+   un écran entier qui passe au bleu canard en fondu quand on arrive dessus
+   (classe bg-on, posée par main.js), et le texte passe à l'abricot en même temps */
 .cta-page {
   position: relative;
   z-index: 1;
@@ -1105,7 +1106,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   transition: background-color 0.9s ease;
 }
 .cta-page.bg-on { background: var(--panel); }
-/* Motif : grille de petits points abricot, plus présents vers les bords */
+/* Motif : petits points abricot, plus présents vers les bords. Discrets, comme moi. Enfin presque. */
 .cta-page::before {
   content: '';
   position: absolute;
@@ -1130,7 +1131,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .cta-page p .accent-word { color: #C2602A; transition: color 0.9s ease; }
 .cta-page.bg-on p { color: var(--panel-text); }
-.cta-page.bg-on p .accent-word { color: #F0A060; } /* orange abricot, lisible sur le bleu */
+.cta-page.bg-on p .accent-word { color: #F0A060; } /* orange abricot, bien lisible sur le bleu */
 .cta-page .btn,
 .cta-page .btn:hover,
 .modal-actions .btn,
@@ -1149,7 +1150,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   text-transform: uppercase;
   color: var(--ink);
 }
-/* Trait toujours visible, qui s'épaissit au survol */
+/* Trait toujours là, qui prend un peu de muscle au survol */
 .cta-page .btn::after,
 .modal-actions .btn::after,
 .lost-actions .btn::after {
@@ -1173,7 +1174,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .cta-page .btn:focus-visible,
 .modal-actions .btn:focus-visible,
 .lost-actions .btn:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
-/* Variante paragraphe (À propos) : texte plus long, donc plus petit */
+/* Version paragraphe (À propos) : texte plus long, donc un peu plus petit */
 .cta-page--text p {
   max-width: 34ch;
   font-size: clamp(1.5rem, 3.2vw, 2.4rem);
@@ -1181,7 +1182,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 
 /* ====================================
-   PAGE CONTACT
+   CONTACT : la page la plus importante (non, je ne suis pas objective)
    ==================================== */
 .contact-page {
   max-width: 72rem;
@@ -1218,12 +1219,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: var(--text);
 }
 
-/* Variante épurée : pas d'encarts. L'email en très grand (clic = copie),
-   souligné d'un fin trait qui se dessine au survol, puis les réseaux en
-   petites majuscules, au style du menu. Tout est centré. */
 .contact-page { text-align: center; }
 .contact-header { margin-left: auto; margin-right: auto; }
-/* Trois cartes côte à côte : email, réseaux, localisation */
+/* Trois cartes côte à côte : email, réseaux, localisation. Plus d'excuse pour ne pas m'écrire. */
 .contact-cards {
   display: grid;
   grid-template-columns: 1fr;
@@ -1358,7 +1356,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink);
 }
 
-/* Fondu doux lors du remplacement de contenu par la navigation AJAX */
+/* Fondu doux quand le contenu change */
 main {
   transition: opacity 0.25s ease;
 }
@@ -1366,7 +1364,7 @@ main.is-leaving {
   opacity: 0;
 }
 
-/* ===== Accueil : « Emy Studio » au centre ===== */
+/* ===== Accueil : « Emy Studio » au centre, la place d'honneur ===== */
 .cover {
   position: relative;
   isolation: isolate;
@@ -1377,7 +1375,7 @@ main.is-leaving {
   text-align: center;
   padding: 2rem;
 }
-/* Mobile : le titre descend sous le rond du menu */
+/* Mobile : le titre descend sous le menu, chacun chez soi */
 @media (max-width: 720px) {
   .cover { padding-top: 22px; }
 }
@@ -1387,13 +1385,13 @@ main.is-leaving {
   font-size: clamp(4.8rem, 18vw, 13.5rem);
   line-height: 1;
   color: var(--ink);
-  /* Boîte agrandie (marges négatives pour ne rien décaler) : le masque
-     d'écriture découpe à la boîte, la queue du y et le S doivent y tenir. */
+  /* Boîte agrandie (marges négatives pour ne rien décaler) : le masque d'écriture
+     coupe au bord de la boîte, et la queue du y et le S ont besoin de place. */
   padding: 0.1em 0.35em 0.35em;
   margin: -0.1em -0.35em -0.35em;
 }
 
-/* ===== Écriture à la main : l'encre se dépose de gauche à droite ===== */
+/* ===== Écriture à la main : l'encre se dépose de gauche à droite, comme au stylo ===== */
 @supports ((mask-image: linear-gradient(#000, #000)) or (-webkit-mask-image: linear-gradient(#000, #000))) {
   .wordmark h1 {
     -webkit-mask-image: linear-gradient(90deg, #000 46%, transparent 54%);
@@ -1410,14 +1408,14 @@ main.is-leaving {
 @keyframes write {
   to { -webkit-mask-position: 0 0; mask-position: 0 0; }
 }
-/* La phrase puis les boutons arrivent quand la signature se termine */
+/* La phrase puis les boutons arrivent quand la signature est terminée : on ne coupe pas la parole */
 .wordmark .tagline-group {
   opacity: 0;
   transform: translateY(14px);
   animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) 1.9s forwards;
 }
 
-/* ===== Halo terracotta qui respire derrière le titre ===== */
+/* ===== Halo crème qui respire doucement derrière le titre. Inspire... expire... ===== */
 .cover::before {
   content: "";
   position: absolute;
@@ -1441,9 +1439,9 @@ main.is-leaving {
   50%  { transform: translate(-48%, -60%) scale(1.12); }
   100% { transform: translate(-56%, -42%) scale(0.95); }
 }
-/* Le mot est peint d'emblée en couleur d'accent ; une copie brune posée dessus
-   s'efface en fondu. Animer directement la couleur laissait la queue du y
-   (qui déborde du titre) brune sur Safari iOS, qui ne la repeignait pas. */
+/* Le mot est peint tout de suite en couleur d'accent ; une copie brune posée dessus
+   s'efface en fondu. Animer la couleur directement laissait la queue du y brune
+   sur Safari iOS, qui refusait de la repeindre. Safari, on en reparlera. */
 .wordmark h1 .accent-word {
   position: relative;
   color: var(--accent);
@@ -1452,8 +1450,8 @@ main.is-leaving {
   content: attr(data-text);
   content: attr(data-text) / "";
   position: absolute;
-  /* Boîte élargie (gauche et bas) pour contenir la queue du y : Safari découpe
-     la copie à sa boîte. Le décalage left compense le padding-left. */
+  /* Boîte élargie (à gauche et en bas) pour loger la queue du y : Safari découpe
+     la copie au ras de sa boîte. Le décalage left compense le padding-left. */
   left: -0.25em;
   top: 0;
   padding: 0 0.25em 0.4em;
@@ -1498,7 +1496,7 @@ main.is-leaving {
   .cover::before { animation: none; opacity: 1; }
 }
 
-/* ===== Boutons de l'accueil : apparition en fondu ===== */
+/* ===== Boutons de l'accueil : ils arrivent en fondu, en toute discrétion ===== */
 .hero-actions {
   margin-top: 3rem;
   display: flex;
@@ -1512,9 +1510,9 @@ main.is-leaving {
 @keyframes buttons-reveal {
   to { opacity: 1; transform: translateY(0); }
 }
-/* Boutons du site : pastilles sobres, même gabarit partout.
-   Principal plein (gris brun → terracotta au survol),
-   secondaire en contour fin qui se remplit au survol. */
+/* Boutons du site : des pastilles sobres, même gabarit partout.
+   Le principal est plein (bleu canard, brun rosé au survol),
+   le secondaire a un fin contour qui se remplit au survol. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1549,10 +1547,10 @@ main.is-leaving {
 }
 
 /* ====================================
-   MENU - tout le site
-   Mobile : une simple icône trois barres en haut à droite ; à l'ouverture,
-   un panneau abricot plein écran avec les liens en texte, au style du
-   menu ordinateur (petites majuscules espacées, trait sous le lien actif).
+   MENU (tout le site)
+   Sur mobile : trois petites barres en haut à droite. On clique, et hop,
+   un panneau abricot plein écran avec les liens en texte, dans le même style
+   que le menu ordinateur (petites majuscules espacées, trait sous le lien actif).
    ==================================== */
 .nav-links {
   position: fixed;
@@ -1581,7 +1579,7 @@ main.is-leaving {
 .nav-links li:nth-child(3) { --i: 2; }
 .nav-links li:nth-child(4) { --i: 3; }
 .nav-links li:nth-child(5) { --i: 4; }
-/* Les liens montent doucement, un à un */
+/* Les liens montent doucement, un par un, chacun son tour */
 .nav-links li {
   opacity: 0;
   transform: translateY(12px);
@@ -1612,7 +1610,7 @@ main.is-leaving {
   content: "";
   position: absolute;
   left: 0;
-  right: 0.2em; /* compense l'espacement après la dernière lettre */
+  right: 0.2em; /* compense l'espace laissé après la dernière lettre */
   bottom: 0;
   height: 1px;
   background: currentColor;
@@ -1622,8 +1620,8 @@ main.is-leaving {
 .nav-links a:hover::after,
 .nav-links a.active::after { transform: scaleX(1); }
 
-/* Le bouton : trois barres sans fond, qui pivotent en croix à l'ouverture
-   (::before = haut + milieu en ombre, ::after = bas) */
+/* Le bouton : trois barres qui pivotent en croix à l'ouverture
+   (::before = haut + milieu grâce à une ombre, ::after = bas). Petit tour de magie. */
 .nav-burger {
   position: fixed;
   z-index: 1150;
@@ -1665,15 +1663,14 @@ main.is-leaving {
   .nav-links, .nav-links *, .nav-burger { transition: none !important; }
 }
 
-/* Mobile : marge réduite entre le menu et le haut des sous-pages */
+/* Mobile : un peu moins d'espace entre le menu et le haut des pages */
 @media (max-width: 720px) {
   .about-page, .realisations-page, .services-page, .contact-page { padding-top: 4.5rem; }
 }
 
 /* ====================================
-   PIED DE PAGE
-   Autres pages : bloc gris brun (marque, contact, réseaux).
-   Accueil : copyright seul, en bas de l'écran.
+   PIED DE PAGE : on est arrivé en bas, bravo pour la persévérance !
+   Bloc bleu canard : la marque, le plan du site, le contact et les réseaux.
    ==================================== */
 .site-footer {
   padding: clamp(1.8rem, 4vw, 2.6rem) max(1.5rem, (100% - 72rem) / 2) 1.2rem;
@@ -1701,7 +1698,7 @@ main.is-leaving {
   line-height: 1;
   color: var(--panel-text);
 }
-.footer-logo .accent-word { color: #F0A060; } /* orange abricot, comme « Parlons-en. » sur le bleu */
+.footer-logo .accent-word { color: #F0A060; } /* orange abricot, comme « Parlons-en. » sur le bleu : il fallait qu'Emy se voie */
 .footer-tagline {
   margin-top: 0.5rem;
   max-width: 22rem;
@@ -1717,7 +1714,7 @@ main.is-leaving {
   color: var(--panel-text);
 }
 .footer-col li + li { margin-top: 0.5rem; }
-/* Plan du site sur deux colonnes, pour garder le pied de page bas */
+/* Plan du site sur deux colonnes, pour que le pied de page reste bas */
 .footer-plan { display: grid; grid-template-columns: repeat(2, max-content); gap: 0.5rem 2rem; }
 .footer-col .footer-plan li + li { margin-top: 0; }
 
@@ -1732,8 +1729,7 @@ main.is-leaving {
   font-size: 0.82rem;
 }
 
-/* Accueil : seulement le copyright, discret, en bas du premier écran */
-/* ===== Mentions légales ===== */
+/* ===== Mentions légales : la page que personne ne lit (sauf toi, peut-être ?) ===== */
 .legal-section {
   max-width: 44rem;
   margin-bottom: 2.6rem;
@@ -1759,9 +1755,8 @@ main.is-leaving {
 .legal-section a:hover { color: var(--accent); }
 
 /* ====================================
-   MENU ORDINATEUR - barre fixe en haut,
-   liens centrés en petites majuscules.
-   L'icône trois barres reste pour le mobile.
+   MENU ORDINATEUR : barre fixe en haut, liens centrés en petites majuscules.
+   L'icône trois barres reste réservée au mobile.
    ==================================== */
 @media (min-width: 721px) {
   .nav-burger { display: none; }
@@ -1794,12 +1789,12 @@ main.is-leaving {
   }
 }
 
-/* Mobile : logo « Emy Studio » à gauche du bandeau, à partir du titre des réalisations */
+/* Mobile : le logo « Emy Studio » apparaît à gauche du bandeau, à partir des réalisations */
 .nav-logo {
   position: fixed;
   z-index: 1150;
-  /* Calé sur la marge du contenu (24 px) et centré optiquement
-     sur l'icône trois barres (le dessin de la police est haut) */
+  /* Calé sur la marge du contenu (24 px) et centré à l'œil sur l'icône trois barres
+     (la police dessine haut, alors on triche un peu) */
   top: calc(0.9rem + 5px);
   left: 24px;
   font-family: 'Corinthia', cursive;
@@ -1824,7 +1819,7 @@ body.show-logo .nav-logo {
   .nav-logo { display: none; }
 }
 
-/* Mobile : même bandeau abricot derrière l'icône trois barres dès qu'on défile */
+/* Mobile : le même bandeau abricot derrière l'icône trois barres dès qu'on défile */
 @media (max-width: 720px) {
   body::before {
     content: "";
@@ -1841,7 +1836,7 @@ body.show-logo .nav-logo {
   body.scrolled::before { opacity: 1; }
 }
 
-/* Accueil : « Mes réalisations » au style des liens du menu */
+/* Accueil : « Mes réalisations » dans le style des liens du menu */
 .hero-actions { gap: clamp(1.6rem, 3.5vw, 3rem); }
 .hero-actions .btn,
 .hero-actions .btn:hover,
@@ -1879,9 +1874,9 @@ body.show-logo .nav-logo {
 .home-projects .btn:focus-visible::after { transform: scaleX(1); }
 
 /* ====================================
-   ACCUEIL - bande « Dernières réalisations »
-   En bas de l'écran d'accueil, sous la signature : 4 petites cartes
-   côte à côte (2 × 2 sur téléphone) qui ouvrent chacune la fiche du projet.
+   ACCUEIL : bande « Dernières réalisations »
+   En bas de l'écran d'accueil, sous la signature : 4 petites cartes côte à côte
+   (2 × 2 sur téléphone), qui ouvrent chacune la fiche de leur projet.
    ==================================== */
 .home-projects {
   width: min(100%, 69rem);
@@ -1891,7 +1886,7 @@ body.show-logo .nav-logo {
   transform: translateY(12px);
   animation: hp-soft-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) 2.4s forwards;
 }
-/* Arrivée moelleuse : fondu, légère montée et flou qui se dissipe */
+/* Arrivée moelleuse : fondu, légère montée et flou qui se dissipe. Tout en douceur. */
 @keyframes hp-soft-in {
   to { opacity: 1; transform: none; filter: blur(0); }
 }
@@ -1919,8 +1914,8 @@ body.show-logo .nav-logo {
 @media (min-width: 800px) {
   .home-projects ul { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 }
-/* Bulles de savon : chaque icône gonfle avec un petit rebond,
-   puis son nom glisse à côté ; ordre légèrement mélangé */
+/* Bulles de savon : chaque icône gonfle avec un petit rebond, puis son nom
+   glisse à côté. L'ordre est un peu mélangé, sinon c'est trop sage. */
 .home-projects li:nth-child(1) { --delay: 2.95s; }
 .home-projects li:nth-child(2) { --delay: 3.4s; }
 .home-projects li:nth-child(3) { --delay: 2.7s; }
@@ -1964,7 +1959,7 @@ body.show-logo .nav-logo {
   transform: translateY(-3px);
   box-shadow: 0 18px 36px -22px rgba(24, 61, 64, 0.45);
 }
-/* Téléphone : vignette au-dessus du nom, pour que les noms longs tiennent */
+/* Téléphone : la vignette au-dessus du nom, pour que les noms longs tiennent */
 @media (max-width: 559px) {
   .home-projects li a { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
 }
@@ -2012,23 +2007,23 @@ body.show-logo .nav-logo {
 }
 
 /* ====================================
-   ONE PAGE - défilement doux vers les sections
+   UNE SEULE PAGE : défilement tout doux vers les sections
    ==================================== */
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 .section-realisations .realisations-page { padding-top: 1rem; }
 
 /* ====================================
-   TRANSITION « BUREAU DE LA CRÉATRICE »
-   Une scène épinglée : post-it et croquis couvrent l'écran,
-   puis s'écartent au scroll (piloté par main.js) pour
-   dévoiler le titre des réalisations.
+   TRANSITION « LE BUREAU DE LA CRÉATRICE »
+   Une scène épinglée : la photo de mon bureau éclate en morceaux de papier
+   au fil du scroll (orchestré par main.js) pour dévoiler le titre des réalisations.
+   Oui, j'ai passé beaucoup trop de temps dessus. Non, je ne regrette rien.
    ==================================== */
 .paper-scene {
   position: relative;
   z-index: 1;
 }
-/* Version animée : l'accueil se fige, la scène vient se superposer à son dernier écran */
+/* Version animée : l'accueil se fige et la scène vient se poser par-dessus */
 .chapter.is-live > :first-child {
   position: sticky;
   min-height: 100vh;
@@ -2059,7 +2054,7 @@ html { scroll-behavior: smooth; }
   pointer-events: none;
 }
 
-/* Ancre « Réalisations » : tombe au moment où tout est dégagé */
+/* Ancre « Réalisations » : elle tombe pile quand tout est dégagé */
 .scene-anchor {
   position: absolute;
   left: 0;
@@ -2106,7 +2101,7 @@ html { scroll-behavior: smooth; }
   background: center / cover no-repeat;
   opacity: 0;
 }
-/* Sans JavaScript ou animations coupées : pas de scène, le titre s'affiche directement */
+/* Sans JavaScript ou avec les animations coupées : pas de scène, le titre s'affiche direct */
 .chapter:not(.is-live) .paper-sticky {
   position: static;
   height: auto;
@@ -2115,7 +2110,7 @@ html { scroll-behavior: smooth; }
 .chapter:not(.is-live) .paper-notes,
 .chapter:not(.is-live) .paper-veil { display: none; }
 
-/* ===== Éléments qui se posent avec un petit rebond (cartes, étapes) ===== */
+/* ===== Cartes et étapes qui se posent avec un petit rebond, boing ===== */
 body.pops-live .pop-in:not(.is-in) {
   opacity: 0;
   translate: 0 28px;
@@ -2124,7 +2119,7 @@ body.pops-live .pop-in:not(.is-in) {
 body.pops-live .pop-in {
   --d: calc(var(--i, 0) * 0.09s);
   --pop: cubic-bezier(0.34, 1.56, 0.64, 1);
-  /* le rebond d'entrée est décalé carte par carte ; les effets de survol gardent leur vitesse */
+  /* le rebond d'arrivée est décalé carte par carte ; les survols gardent leur vitesse */
   transition:
     opacity 0.6s ease var(--d), translate 0.8s var(--pop) var(--d), scale 0.8s var(--pop) var(--d),
     transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
@@ -2136,13 +2131,13 @@ body.pops-live .pop-in {
 
 
 /* ====================================
-   PAGES TITRE - Services, À propos, Contact
-   Le titre occupe tout un écran, comme celui des réalisations ;
+   PAGES TITRE : Services, À propos, Contact
+   Le titre prend tout un écran, comme celui des réalisations ;
    en défilant, le contenu remonte par-dessus et le recouvre.
    ==================================== */
 .title-page {
   position: sticky;
-  top: 0; /* recalé par main.js si le titre dépasse l'écran */
+  top: 0; /* réajusté par main.js si le titre dépasse de l'écran */
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -2166,9 +2161,9 @@ body.pops-live .pop-in {
   max-width: 40rem;
   text-align: center;
 }
-/* Le contenu glisse sur le titre : fond plein sur toute la largeur
+/* Le contenu glisse par-dessus le titre : fond plein sur toute la largeur
    (border-image déborde sur les côtés sans créer de défilement horizontal),
-   précédé d'un dégradé qui efface le titre en douceur */
+   précédé d'un dégradé qui efface le titre tout en douceur */
 .title-after {
   position: relative;
   z-index: 1;

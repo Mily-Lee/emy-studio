@@ -1,7 +1,7 @@
 const burger = document.querySelector('.nav-burger');
 const links = document.querySelector('.nav-links');
 
-// ===== Menu (icône trois barres sur mobile) =====
+// ===== Menu (les trois petites barres sur mobile) =====
 function toggleMenu() {
   const isOpen = burger.classList.toggle('open');
   links.classList.toggle('open');
@@ -13,8 +13,8 @@ function toggleMenu() {
 
 burger.addEventListener('click', toggleMenu);
 
-// Fond du menu dès qu'on quitte le haut de page
-// Mobile : le logo apparaît à gauche une fois arrivé au titre des réalisations
+// Le menu prend un fond dès qu'on quitte le haut de la page
+// Mobile : le logo apparaît à gauche une fois arrivé aux réalisations
 const logoFrom = document.getElementById('realisations');
 const markScrolled = () => {
   document.body.classList.toggle('scrolled', window.scrollY > 10);
@@ -27,13 +27,13 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && burger.classList.contains('open')) toggleMenu();
 });
 
-// Un clic hors du menu le referme
+// Un clic à côté du menu le referme (pas besoin de viser la croix)
 document.addEventListener('click', (e) => {
   if (burger.classList.contains('open') && !e.target.closest('.nav-links a, .nav-burger')) toggleMenu();
 });
 
-// ===== Bouton retour en haut =====
-// Créé une seule fois et attaché au body (jamais touché par la navigation AJAX).
+// ===== Bouton « on remonte ! » =====
+// Créé une seule fois et accroché au body, il ne bouge plus.
 const scrollTopBtn = document.createElement('button');
 scrollTopBtn.type = 'button';
 scrollTopBtn.className = 'scroll-top';
@@ -51,13 +51,13 @@ scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ===== Modale projets (page Réalisations) =====
-// Vue d'ensemble : toutes les images du projet côte à côte dans une grille.
+// ===== Fiches projets : la fenêtre qui s'ouvre au clic sur une réalisation =====
+// Toutes les images du projet côte à côte dans une grille.
 // Chaque nom de typo s'affiche dans sa propre police, hébergée sur le site
-// (assets/fonts/preview-*.woff2, seulement les lettres du nom, déclarées dans style.css).
-// Nouvelle typo dans un projet : ajouter son fichier preview et son @font-face.
-// Police manuscrite, trop fine à taille normale : affichée plus grande
-// (multiplicateur lu par le CSS via --font-scale)
+// (assets/fonts/preview-*.woff2 : juste les lettres du nom, déclarées dans style.css).
+// Nouvelle typo dans un projet ? Ajouter son fichier preview et son @font-face, et le tour est joué.
+// Les polices manuscrites sont toutes fines à taille normale, alors on les grossit
+// (le multiplicateur est lu par le CSS via --font-scale)
 const FONT_SCALES = { 'Arizonia': 1.5 };
 function applyFontPreview(el, name) {
   el.style.fontFamily = `'${name}', 'Lato', sans-serif`;
@@ -95,13 +95,13 @@ function openProjectModal(tile) {
   galleryEl.innerHTML = '';
   galleryEl.classList.toggle('single', images.length <= 1);
   images.forEach((src, i) => {
-    // Vidéo : lecture auto en boucle, muette (obligatoire pour l'autoplay mobile).
-    // L'affiche (même nom en -poster.jpg) s'affiche le temps du chargement.
+    // Vidéo : lecture auto en boucle et sans le son (sinon les téléphones refusent de la lancer).
+    // L'affiche (même nom en -poster.jpg) fait patienter pendant le chargement.
     if (/\.mp4$/i.test(src)) {
       const video = document.createElement('video');
       Object.assign(video, { src, muted: true, loop: true, autoplay: true, playsInline: true, preload: 'auto' });
       video.poster = src.replace(/\.mp4$/i, '-poster.jpg');
-      // Fond transparent : masque alpha statique (-mask.png) découpant les appareils et leur ombre.
+      // Fond transparent : un masque (-mask.png) découpe les appareils et leur ombre. Du travail d'orfèvre.
       const mask = `url("${src.replace(/\.mp4$/i, '-mask.png')}")`;
       video.style.webkitMaskImage = mask;
       video.style.maskImage = mask;
@@ -140,7 +140,7 @@ function openProjectModal(tile) {
   swatchesEl.innerHTML = '';
   if (colorsRaw) {
     colorsRaw.split(',').map(c => c.trim()).filter(Boolean).forEach(hex => {
-      // Une petite carte remplie de la couleur, code écrit en clair ou en foncé selon le fond
+      // Une carte remplie de la couleur, avec son code écrit en clair ou en foncé selon le fond
       const swatch = document.createElement('span');
       swatch.className = 'modal-swatch';
       swatch.style.background = hex;
@@ -184,7 +184,7 @@ function openProjectModal(tile) {
     row.append(sample, info);
     fontsEl.appendChild(row);
   });
-  // Logo du projet en grand, sur la couleur de fond de la marque (data-logo-bg, sinon data-icon-bg)
+  // Le logo du projet en grand, sur la couleur de sa marque (data-logo-bg, sinon data-icon-bg)
   const logoWrap = document.getElementById('modalLogoWrap');
   const logoSrc = tile.dataset.logo || '';
   logoWrap.style.display = logoSrc ? '' : 'none';
@@ -196,8 +196,8 @@ function openProjectModal(tile) {
   }
   document.getElementById('modalIdentity').style.display = logoSrc || fontsRaw || colorsRaw ? '' : 'none';
 
-  // Déclinaisons (t-shirt, icône…) : « image|titre|texte|fond » séparés par « ;; ».
-  // Avec un fond : l'image (logo, icône) garde sa taille, centrée ; sans fond : la photo remplit la carte.
+  // Déclinaisons (t-shirt, icône…) : « image|titre|texte|fond », séparées par « ;; ».
+  // Avec un fond : l'image garde sa taille, centrée. Sans fond : la photo remplit la carte.
   const extrasEl = document.getElementById('modalExtras');
   extrasEl.innerHTML = '';
   const extras = (tile.dataset.extras || '').split(';;').map(s => s.trim()).filter(Boolean);
@@ -205,7 +205,7 @@ function openProjectModal(tile) {
     const [src, title, text, bg] = entry.split('|').map(s => s.trim());
     const fig = document.createElement('figure');
     fig.className = 'modal-extra';
-    // Cliquer sur l'image l'agrandit en plein écran
+    // Un clic sur l'image l'agrandit en plein écran
     const visual = document.createElement('button');
     visual.type = 'button';
     visual.setAttribute('aria-label', `Agrandir l'image : ${title}`);
@@ -228,7 +228,7 @@ function openProjectModal(tile) {
   });
   document.getElementById('modalExtrasWrap').style.display = extras.length ? '' : 'none';
 
-  // Lien discret sous le titre + grand bouton sous les visuels
+  // Un lien discret sous le titre et un grand bouton sous les visuels
   const url = tile.dataset.url;
   if (url) {
     linkEl.href = siteLinkEl.href = url;
@@ -267,10 +267,10 @@ function initGallery() {
   modal.querySelector('.modal-backdrop').addEventListener('click', closeProjectModal);
 }
 
-// Enregistré une seule fois au chargement du script : safe contre les navigations répétées
+// Branché une seule fois au chargement, pour ne pas empiler les écouteurs
 document.addEventListener('keydown', (e) => {
   const modal = document.getElementById('projectModal');
-  // Échap ferme d'abord l'image agrandie (géré par <dialog>), pas la fiche projet
+  // Échap ferme d'abord l'image agrandie, pas toute la fiche (chaque chose en son temps)
   if (document.getElementById('lightbox')?.open) return;
   if (modal && modal.classList.contains('open') && e.key === 'Escape') closeProjectModal();
 });
@@ -286,7 +286,7 @@ function openLightbox(src, alt) {
 }
 document.getElementById('lightbox')?.addEventListener('click', (e) => e.currentTarget.close());
 
-// ===== Copie de l'email au clic (page Contact) =====
+// ===== Contact : un clic sur l'email le copie. Plus d'excuse pour ne pas m'écrire ! =====
 document.addEventListener('click', async (e) => {
   const card = e.target.closest('[data-copy]');
   if (!card) return;
@@ -308,13 +308,13 @@ document.addEventListener('click', async (e) => {
 
 initGallery();
 
-// ===== One page : liens du menu =====
-// Un clic sur un lien du menu referme le menu mobile avant de glisser vers la section.
+// ===== Une seule page : les liens du menu =====
+// Un clic sur un lien referme le menu mobile avant de glisser jusqu'à la section.
 links.addEventListener('click', (e) => {
   if (e.target.closest('a') && burger.classList.contains('open')) toggleMenu();
 });
 
-// Le lien de la section affichée s'allume pendant le défilement
+// Le lien de la section affichée s'allume pendant qu'on défile
 const navAnchors = [...document.querySelectorAll('.nav-links a[href^="#"]')];
 const spied = document.querySelectorAll('[data-section]');
 if (spied.length) {
@@ -328,17 +328,17 @@ if (spied.length) {
   spied.forEach(el => spy.observe(el));
 }
 
-// ===== Transition « bureau de la créatrice », entre chaque section =====
+// ===== Transition « le bureau de la créatrice », entre les sections =====
 // Chaque .chapter = une section + une scène de papiers. À la fin de la section,
-// elle se fige et recule doucement pendant que post-it et croquis glissent un à un
+// elle se fige et recule doucement pendant que les morceaux de papier glissent un à un
 // pour la recouvrir ; puis ils s'écartent depuis le centre pour dévoiler le titre
-// de la section suivante. Tout suit le scroll, dans les deux sens.
+// de la section suivante. Tout suit le scroll, dans les deux sens. Oui, même à reculons.
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const chapters = [...document.querySelectorAll('.chapter')];
 if (chapters.length && !reduceMotion.matches) {
   const clamp = (v) => Math.min(Math.max(v, 0), 1);
-  // Puzzle : l'image de l'atelier découpée en éclats de papier déchiré.
-  // Les bords sont partagés entre voisins, donc les morceaux s'emboîtent exactement.
+  // Puzzle : la photo de mon bureau découpée en morceaux de papier déchiré.
+  // Les bords sont partagés entre voisins, donc les morceaux s'emboîtent pile poil.
   const fits = [];
   document.querySelectorAll('.puzzle').forEach(box => {
     let seed = 7;
@@ -385,7 +385,7 @@ if (chapters.length && !reduceMotion.matches) {
       box.appendChild(el);
       pieces.push([img, x, y]);
     }
-    // Image entière posée par-dessus quand tout est assemblé : aucune jointure visible
+    // Photo entière posée par-dessus une fois tout assemblé : aucune jointure ne se voit
     const full = document.createElement('div');
     full.className = 'puzzle-full';
     full.style.backgroundImage = `url(${box.dataset.img})`;
@@ -408,7 +408,7 @@ if (chapters.length && !reduceMotion.matches) {
       const r = parseFloat(el.style.getPropertyValue('--r'));
       let dx = x - 50, dy = y - 50;
       const len = Math.hypot(dx, dy);
-      if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : part sur le côté
+      if (len < 4) { dx = i % 2 ? 1 : -1; dy = -0.4; }   // pile au centre : il part sur le côté
       const n = Math.hypot(dx, dy);
       return { el, r, ux: dx / n, uy: dy / n, d: Math.min(len / 60, 1), piece: el.classList.contains('piece'), spin: (i % 2 ? 1 : -1) * (14 + (i * 7) % 18) };
     });
@@ -429,7 +429,7 @@ if (chapters.length && !reduceMotion.matches) {
 
   const renderScene = (sc, W, H) => {
     const rect = sc.scene.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > H) return;   // hors écran : rien à calculer
+    if (rect.bottom < 0 || rect.top > H) return;   // hors de l'écran : rien à calculer, on se repose
     const far = Math.max(W, H) * 1.1;
     const p = clamp(-rect.top / (sc.scene.offsetHeight - H));
     if (p < 0.5) {
@@ -445,7 +445,7 @@ if (chapters.length && !reduceMotion.matches) {
       if (sc.full) sc.full.style.opacity = q >= 1 ? 1 : 0;
       sc.header.style.opacity = 0;
     } else {
-      // Envol : le centre s'ouvre d'abord, les bords suivent
+      // Envol : le centre s'ouvre en premier, les bords suivent
       const u = clamp((p - 0.55) / 0.45);
       sc.notes.forEach(n => {
         const t = clamp((u - 0.1 - n.d * 0.3) / 0.5);
@@ -456,7 +456,7 @@ if (chapters.length && !reduceMotion.matches) {
       sc.header.style.opacity = 1;
       if (sc.full) sc.full.style.opacity = u <= 0.1 ? 1 : 0;
     }
-    // Voile abricot sous les papiers au moment où tout est couvert : l'échange ne se voit pas
+    // Voile abricot sous les papiers quand tout est couvert : personne ne voit l'échange, chut
     sc.veil.style.opacity = clamp(1 - Math.abs(p - 0.5) / 0.07);
   };
 
@@ -467,7 +467,7 @@ if (chapters.length && !reduceMotion.matches) {
     scenes.forEach(sc => renderScene(sc, W, H));
   };
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } };
-  // Section plus haute que l'écran : elle défile jusqu'à son bas, puis se fige
+  // Section plus haute que l'écran : elle défile jusqu'en bas, puis se fige
   const pin = () => {
     fits.forEach(f => f());
     scenes.forEach(sc => { sc.outgoing.style.top = Math.min(0, window.innerHeight - sc.outgoing.offsetHeight) + 'px'; });
@@ -477,7 +477,7 @@ if (chapters.length && !reduceMotion.matches) {
   window.addEventListener('resize', pin);
   chapters.forEach(c => c.classList.add('is-live'));
   pin();
-  // Les images chargées tard changent la hauteur des sections : on recalcule
+  // Les images qui arrivent en retard changent la hauteur des sections : on recalcule
   window.addEventListener('load', pin);
 }
 
@@ -499,7 +499,7 @@ if (pops.length && 'IntersectionObserver' in window) {
   pops.forEach(el => popObserver.observe(el));
 }
 
-// ===== La méthode : les ronds se remplissent un à un pendant le scroll =====
+// ===== La méthode : les ronds se remplissent un à un pendant qu'on défile =====
 document.querySelectorAll('.process').forEach(process => {
   const steps = [...process.querySelectorAll('.process-step')];
   let busy = false;
@@ -513,7 +513,7 @@ document.querySelectorAll('.process').forEach(process => {
   update();
 });
 
-// ===== Pages titre : un titre plus haut que l'écran défile jusqu'à son bas, puis se fige =====
+// ===== Pages titre : un titre plus haut que l'écran défile jusqu'en bas, puis se fige =====
 {
   const titles = document.querySelectorAll('.title-page');
   const pinTitles = () => titles.forEach(t => { t.style.top = Math.min(0, window.innerHeight - t.offsetHeight) + 'px'; });
@@ -522,7 +522,7 @@ document.querySelectorAll('.process').forEach(process => {
   pinTitles();
 }
 
-// ===== Fond qui change de couleur selon la section =====
+// ===== Le fond change de couleur selon la section, comme un caméléon =====
 // La section qui passe au milieu de l'écran donne sa couleur au fond (data-bg).
 {
   const BG = { pale: '#FFEBCF' };   // abricot clair
@@ -547,5 +547,5 @@ document.querySelectorAll('.process').forEach(process => {
   queue();
 }
 
-// ===== Pied de page : année du copyright =====
+// ===== Pied de page : l'année du copyright se met à jour toute seule (une chose de moins à penser) =====
 document.querySelector('.footer-year').textContent = new Date().getFullYear();
