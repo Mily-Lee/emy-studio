@@ -1627,7 +1627,7 @@ main.is-leaving {
    Accueil : copyright seul, en bas de l'écran.
    ==================================== */
 .site-footer {
-  padding: clamp(2.8rem, 6vw, 4rem) max(1.5rem, (100% - 72rem) / 2) 1.8rem;
+  padding: clamp(1.8rem, 4vw, 2.6rem) max(1.5rem, (100% - 72rem) / 2) 1.2rem;
   font-family: 'Lato', sans-serif;
   font-size: var(--text-sm);
   color: rgba(255, 217, 163, 0.72);
@@ -1643,18 +1643,18 @@ main.is-leaving {
   gap: 2.2rem;
 }
 @media (min-width: 720px) {
-  .footer-main { grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+  .footer-main { grid-template-columns: 2fr 1fr 1fr; gap: 3rem; align-items: start; }
 }
 .footer-logo {
   font-family: 'Corinthia', cursive;
   font-weight: 700;
-  font-size: 3.2rem;
+  font-size: 2.6rem;
   line-height: 1;
   color: var(--panel-text);
 }
 .footer-logo .accent-word { color: #F0A060; } /* orange abricot, comme « Parlons-en. » sur le bleu */
 .footer-tagline {
-  margin-top: 0.8rem;
+  margin-top: 0.5rem;
   max-width: 22rem;
   line-height: 1.6;
   font-size: 0.95rem;
@@ -1674,8 +1674,8 @@ main.is-leaving {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.6rem 2rem;
-  margin-top: clamp(2.2rem, 5vw, 3rem);
-  padding-top: 1.4rem;
+  margin-top: clamp(1.4rem, 3vw, 1.8rem);
+  padding-top: 1rem;
   border-top: 1px solid rgba(255, 217, 163, 0.15);
   font-size: 0.82rem;
 }
