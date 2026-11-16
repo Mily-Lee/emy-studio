@@ -1085,7 +1085,9 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .cta-page .btn,
 .cta-page .btn:hover,
 .modal-actions .btn,
-.modal-actions .btn:hover {
+.modal-actions .btn:hover,
+.lost-actions .btn,
+.lost-actions .btn:hover {
   position: relative;
   height: auto;
   padding: 0.4rem 0;
@@ -1100,7 +1102,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 /* Trait toujours visible, qui s'épaissit au survol */
 .cta-page .btn::after,
-.modal-actions .btn::after {
+.modal-actions .btn::after,
+.lost-actions .btn::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1111,13 +1114,16 @@ html { scrollbar-color: var(--accent) var(--bg); }
   transition: height 0.3s var(--ease);
 }
 .cta-page .btn:hover,
-.modal-actions .btn:hover { color: var(--accent); }
+.modal-actions .btn:hover,
+.lost-actions .btn:hover { color: var(--accent); }
 .cta-page.bg-on .btn { color: var(--panel-text); transition: color 0.9s ease; }
 .cta-page.bg-on .btn:hover { color: #F0A060; transition-duration: 0.3s; }
 .cta-page .btn:hover::after,
-.modal-actions .btn:hover::after { height: 2px; }
+.modal-actions .btn:hover::after,
+.lost-actions .btn:hover::after { height: 2px; }
 .cta-page .btn:focus-visible,
-.modal-actions .btn:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+.modal-actions .btn:focus-visible,
+.lost-actions .btn:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
 /* Variante paragraphe (À propos) : texte plus long, donc plus petit */
 .cta-page--text p {
   max-width: 34ch;
