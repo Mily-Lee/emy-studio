@@ -624,21 +624,22 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink);
 }
 .modal-swatches {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 0.9rem 1.4rem;
 }
 .modal-swatch {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.6rem;
   font-family: 'Lato', sans-serif;
   font-size: 0.85rem;
   color: var(--ink-soft);
 }
 .modal-swatch-dot {
-  width: 16px;
-  height: 16px;
+  flex: none;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 1px solid rgba(24, 61, 64, 0.15);
   display: inline-block;
