@@ -911,6 +911,16 @@ html { scrollbar-color: var(--accent) var(--bg); }
   transform: translateY(-5px);
   box-shadow: 0 24px 50px -25px rgba(24, 61, 64, 0.4);
 }
+.service-img {
+  display: block;
+  width: calc(100% + 3.8rem);
+  max-width: none;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  margin: -2.2rem -1.9rem 1.8rem;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
 .service-card h2 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
