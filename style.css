@@ -1657,7 +1657,7 @@ main.is-leaving {
   margin-top: 0.8rem;
   max-width: 22rem;
   line-height: 1.6;
-  font-size: var(--text);
+  font-size: 0.95rem;
 }
 .footer-title {
   margin-bottom: 0.9rem;
