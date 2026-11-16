@@ -965,6 +965,55 @@ html { scrollbar-color: var(--accent) var(--bg); }
   line-height: 1.7;
   color: var(--ink-soft);
 }
+/* FAQ : questions qui s'ouvrent au clic (balises details/summary natives) */
+.faq { margin-top: clamp(4.5rem, 10vw, 7rem); }
+.faq-list {
+  max-width: 48rem;
+  margin: 0 auto;
+  border-top: 1px solid rgba(24, 61, 64, 0.18);
+}
+.faq-item { border-bottom: 1px solid rgba(24, 61, 64, 0.18); }
+.faq-item summary {
+  position: relative;
+  padding: 1.35rem 3rem 1.35rem 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.3s var(--ease);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--accent); }
+.faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+/* Petit « + » qui devient « − » à l'ouverture */
+.faq-item summary::before,
+.faq-item summary::after {
+  content: '';
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  width: 0.9rem;
+  height: 1.5px;
+  background: currentColor;
+  transition: rotate 0.35s var(--ease);
+}
+.faq-item summary::after { rotate: 90deg; }
+.faq-item[open] summary::after { rotate: 0deg; }
+.faq-item p {
+  padding: 0 3rem 1.5rem 0;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  animation: faq-open 0.4s var(--ease);
+}
+@keyframes faq-open {
+  from { opacity: 0; translate: 0 -6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item p { animation: none; }
+}
 /* Chaque étape dans une carte, au style des cartes de prestations ;
    le numéro en rond en haut de la carte */
 .process-steps {
