@@ -738,7 +738,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   overflow: hidden;
 }
 .modal-extra-visual {
-  height: clamp(16rem, 30vw, 22rem);
+  height: clamp(18rem, 38vw, 30rem);
 }
 .modal-extra-visual img {
   display: block;
@@ -752,7 +752,13 @@ html { scrollbar-color: var(--accent) var(--bg); }
   align-items: center;
   justify-content: center;
 }
-.modal-extra-visual.is-contained img { width: auto; height: auto; max-width: 80%; }
+.modal-extra-visual.is-contained img {
+  width: auto;
+  height: auto;
+  max-width: 80%;
+  max-height: 88%; /* flyer : affiché en entier */
+  filter: drop-shadow(0 14px 22px rgba(24, 61, 64, 0.28)); /* suit la forme de l’image (icône arrondie) */
+}
 .modal-extra figcaption { padding: 1.6rem 1.6rem 1.9rem; }
 @media (min-width: 700px) {
   .modal-extra figcaption { padding: 1.9rem 2.4rem 2.2rem; }
