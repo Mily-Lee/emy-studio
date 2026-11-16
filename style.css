@@ -486,14 +486,14 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 @media (min-width: 700px) {
   .modal-visual {
-    padding: 2.5rem;
+    padding: 2.5rem 1.5rem;
   }
 }
 
 /* Vue d'ensemble : plusieurs images côte à côte plutôt qu'un carrousel */
 .modal-gallery {
   width: 100%;
-  max-width: 72rem;
+  max-width: 69rem; /* = 72rem moins les marges, aligné sur le texte */
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -566,21 +566,16 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .modal-body {
   flex: none;
   width: 100%;
-  max-width: 46rem;
+  /* Même largeur et mêmes marges latérales que les pages du site */
+  max-width: 72rem;
   margin: 0 auto;
   padding: calc(4rem + env(safe-area-inset-top)) 1.5rem 2rem;
 }
 @media (min-width: 700px) {
-  .modal-body {
-    max-width: 52rem;
-    padding: calc(5.5rem + env(safe-area-inset-top)) 2.5rem 3rem;
-  }
+  .modal-body { padding-top: calc(5.5rem + env(safe-area-inset-top)); padding-bottom: 3rem; }
 }
 @media (min-width: 1200px) {
-  .modal-body {
-    max-width: 60rem;
-    padding: calc(7rem + env(safe-area-inset-top)) 2.5rem 3.5rem;
-  }
+  .modal-body { padding-top: calc(7rem + env(safe-area-inset-top)); padding-bottom: 3.5rem; }
 }
 .modal-body h2 {
   margin-top: 0.8rem;
