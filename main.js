@@ -258,6 +258,11 @@ function initGallery() {
   if (!modal || !tiles.length) return;
 
   tiles.forEach(tile => tile.addEventListener('click', () => openProjectModal(tile)));
+  // Accueil : chaque carte « Dernières réalisations » ouvre directement la fiche du projet
+  document.querySelectorAll('.home-projects a[data-project]').forEach(link => {
+    const tile = [...tiles].find(t => t.dataset.title === link.dataset.project);
+    if (tile) link.addEventListener('click', (e) => { e.preventDefault(); openProjectModal(tile); });
+  });
   document.getElementById('modalClose').addEventListener('click', closeProjectModal);
   modal.querySelector('.modal-backdrop').addEventListener('click', closeProjectModal);
 }

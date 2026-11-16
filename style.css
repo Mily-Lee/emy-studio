@@ -1750,18 +1750,14 @@ body.show-logo .nav-logo {
 .home-projects .btn:focus-visible::after { transform: scaleX(1); }
 
 /* ====================================
-   ACCUEIL - encadré « Dernières réalisations »
-   Se déroule de haut en bas une fois la signature écrite,
-   puis les 4 derniers projets s'y posent un à un.
+   ACCUEIL - bande « Dernières réalisations »
+   En bas de l'écran d'accueil, sous la signature : 4 petites cartes
+   côte à côte (2 × 2 sur téléphone) qui ouvrent chacune la fiche du projet.
    ==================================== */
 .home-projects {
-  width: min(100%, 17rem);
-  margin: 3.5rem auto 0;
-  padding: 1.4rem 1.3rem 1.2rem;
+  width: min(100%, 69rem);
+  margin: 2.5rem auto 0;
   text-align: left;
-  background: var(--sand);
-  border: 1px solid rgba(24, 61, 64, 0.12);
-  border-radius: 1.25rem;
   opacity: 0;
   transform: translateY(12px);
   animation: hp-soft-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) 2.4s forwards;
@@ -1771,20 +1767,28 @@ body.show-logo .nav-logo {
   to { opacity: 1; transform: none; filter: blur(0); }
 }
 
+.hp-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 .hp-title {
-  text-align: center;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin-bottom: 1rem;
 }
 .home-projects ul {
   list-style: none;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
+}
+@media (min-width: 800px) {
+  .home-projects ul { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 }
 /* Bulles de savon : chaque icône gonfle avec un petit rebond,
    puis son nom glisse à côté ; ordre légèrement mélangé */
@@ -1821,7 +1825,19 @@ body.show-logo .nav-logo {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  border-radius: 0.8rem;
+  height: 100%;
+  padding: 0.75rem;
+  background: var(--sand);
+  border-radius: 1.25rem;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.home-projects li a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px -22px rgba(24, 61, 64, 0.45);
+}
+/* Téléphone : vignette au-dessus du nom, pour que les noms longs tiennent */
+@media (max-width: 559px) {
+  .home-projects li a { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
 }
 .hp-visual {
   flex: none;
@@ -1851,27 +1867,17 @@ body.show-logo .nav-logo {
   transition: color 0.3s var(--ease);
 }
 .home-projects li a:hover .hp-name { color: var(--accent); }
-.home-projects > .btn {
-  display: table;
-  margin: 1.3rem auto 0;
+.hp-head .btn {
   opacity: 0;
-  transform: translateY(10px);
   animation: hp-soft-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) 4.1s forwards;
 }
 
-/* Écran large : l'encadré se place à gauche, centré en hauteur */
+/* La signature reste centrée dans la place libre, la bande se pose en bas */
 .cover { flex-direction: column; }
-@media (min-width: 1200px) {
-  .home-projects {
-    position: absolute;
-    left: clamp(1.5rem, 3vw, 3.5rem);
-    top: 50%;
-    translate: 0 -50%;
-    margin: 0;
-  }
-}
+.cover .wordmark { margin-block: auto; }
+
 @media (prefers-reduced-motion: reduce) {
-  .home-projects, .home-projects li, .home-projects > .btn { animation: none; opacity: 1; transform: none; filter: none; }
+  .home-projects, .home-projects li, .hp-head .btn { animation: none; opacity: 1; transform: none; filter: none; }
   .home-projects .hp-visual, .home-projects .hp-text { animation: none; opacity: 1; transform: none; }
 }
 
