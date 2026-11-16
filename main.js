@@ -53,27 +53,14 @@ scrollTopBtn.addEventListener('click', () => {
 
 // ===== Modale projets (page Réalisations) =====
 // Vue d'ensemble : toutes les images du projet côte à côte dans une grille.
-// Chaque nom de typo s'affiche dans sa propre police, chargée depuis Google Fonts
-// à la première ouverture (seulement les lettres du nom, via &text=).
-// Archivo Expanded n'existe pas sous ce nom chez Google : c'est Archivo en largeur 125 %.
-const FONT_ALIASES = {
-  'Archivo Expanded': { query: 'Archivo:wdth@125', family: 'Archivo', stretch: '125%' },
-  // Police manuscrite, trop fine à taille normale : affichée plus grande
-  'Arizonia': { query: 'Arizonia', family: 'Arizonia', size: '1.7em' },
-};
-const loadedFonts = new Set();
+// Chaque nom de typo s'affiche dans sa propre police, hébergée sur le site
+// (assets/fonts/preview-*.woff2, seulement les lettres du nom, déclarées dans style.css).
+// Nouvelle typo dans un projet : ajouter son fichier preview et son @font-face.
+// Police manuscrite, trop fine à taille normale : affichée plus grande
+const FONT_SIZES = { 'Arizonia': '1.7em' };
 function applyFontPreview(el, name) {
-  const spec = FONT_ALIASES[name] || { query: name.replace(/ /g, '+'), family: name };
-  if (!loadedFonts.has(name)) {
-    loadedFonts.add(name);
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `https://fonts.googleapis.com/css2?family=${spec.query}&text=${encodeURIComponent(name)}&display=swap`;
-    document.head.appendChild(link);
-  }
-  el.style.fontFamily = `'${spec.family}', 'Lato', sans-serif`;
-  if (spec.stretch) el.style.fontStretch = spec.stretch;
-  if (spec.size) el.style.fontSize = spec.size;
+  el.style.fontFamily = `'${name}', 'Lato', sans-serif`;
+  if (FONT_SIZES[name]) el.style.fontSize = FONT_SIZES[name];
 }
 
 function openProjectModal(tile) {
