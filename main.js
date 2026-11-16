@@ -184,7 +184,7 @@ function openProjectModal(tile) {
     row.append(sample, info);
     fontsEl.appendChild(row);
   });
-  // Logo du projet en grand, sur la couleur de fond de la marque (data-icon-bg)
+  // Logo du projet en grand, sur la couleur de fond de la marque (data-logo-bg, sinon data-icon-bg)
   const logoWrap = document.getElementById('modalLogoWrap');
   const logoSrc = tile.dataset.logo || '';
   logoWrap.style.display = logoSrc ? '' : 'none';
@@ -192,7 +192,7 @@ function openProjectModal(tile) {
     const logoImg = document.getElementById('modalLogo');
     logoImg.src = logoSrc;
     logoImg.alt = `Logo ${tile.dataset.title || ''}`;
-    logoWrap.style.background = tile.dataset.iconBg || 'var(--sand)';
+    logoWrap.style.background = tile.dataset.logoBg || tile.dataset.iconBg || 'var(--sand)';
   }
   document.getElementById('modalIdentity').style.display = logoSrc || fontsRaw || colorsRaw ? '' : 'none';
 
