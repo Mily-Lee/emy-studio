@@ -205,7 +205,11 @@ function openProjectModal(tile) {
     const [src, title, text, bg] = entry.split('|').map(s => s.trim());
     const fig = document.createElement('figure');
     fig.className = 'modal-extra';
-    const visual = document.createElement('div');
+    // Cliquer sur l'image l'agrandit en plein écran
+    const visual = document.createElement('button');
+    visual.type = 'button';
+    visual.setAttribute('aria-label', `Agrandir l'image : ${title}`);
+    visual.addEventListener('click', () => openLightbox(src, title));
     visual.className = 'modal-extra-visual' + (bg ? ' is-contained' : '');
     if (bg) visual.style.background = bg;
     const img = document.createElement('img');
@@ -261,8 +265,21 @@ function initGallery() {
 // Enregistré une seule fois au chargement du script : safe contre les navigations répétées
 document.addEventListener('keydown', (e) => {
   const modal = document.getElementById('projectModal');
+  // Échap ferme d'abord l'image agrandie (géré par <dialog>), pas la fiche projet
+  if (document.getElementById('lightbox')?.open) return;
   if (modal && modal.classList.contains('open') && e.key === 'Escape') closeProjectModal();
 });
+
+// ===== Image agrandie (flyer, t-shirt…) : un clic n'importe où la referme =====
+function openLightbox(src, alt) {
+  const box = document.getElementById('lightbox');
+  if (!box) return;
+  const img = box.querySelector('img');
+  img.src = src;
+  img.alt = alt;
+  box.showModal();
+}
+document.getElementById('lightbox')?.addEventListener('click', (e) => e.currentTarget.close());
 
 // ===== Copie de l'email au clic (page Contact) =====
 document.addEventListener('click', async (e) => {

@@ -738,7 +738,54 @@ html { scrollbar-color: var(--accent) var(--bg); }
   overflow: hidden;
 }
 .modal-extra-visual {
+  display: block;
+  width: 100%;
   height: clamp(18rem, 38vw, 30rem);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+.modal-extra-visual:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+
+/* Image agrandie en plein écran (<dialog>) */
+.lightbox {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 1.5rem;
+  border: none;
+  background: transparent;
+  cursor: zoom-out;
+}
+.lightbox[open] { display: flex; align-items: center; justify-content: center; }
+.lightbox::backdrop {
+  background: rgba(24, 61, 64, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.6);
+}
+.lightbox-close {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 .modal-extra-visual img {
   display: block;
