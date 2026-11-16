@@ -603,6 +603,20 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: clamp(1.4rem, 2.6vw, 2rem);
   color: var(--ink);
 }
+/* Logo du projet : grande carte pleine largeur, sur la couleur de la marque */
+.modal-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  padding: clamp(3rem, 8vw, 5.5rem) 1.5rem;
+  border-radius: 1.5rem;
+}
+.modal-logo img {
+  display: block;
+  width: min(100%, 30rem);
+  height: auto;
+}
 /* Cartes claires côte à côte (empilées sur mobile).
    En flex : si une carte manque pour un projet, l'autre prend toute la ligne. */
 .modal-row {
