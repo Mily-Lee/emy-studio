@@ -94,7 +94,6 @@ function openProjectModal(tile) {
 
   galleryEl.innerHTML = '';
   galleryEl.classList.toggle('single', images.length <= 1);
-  galleryEl.classList.toggle('crop', tile.dataset.cropGallery === 'true');
   images.forEach((src, i) => {
     // Vidéo : lecture auto en boucle, muette (obligatoire pour l'autoplay mobile).
     // L'affiche (même nom en -poster.jpg) s'affiche le temps du chargement.
@@ -186,6 +185,34 @@ function openProjectModal(tile) {
     fontsEl.appendChild(row);
   });
   document.getElementById('modalIdentity').style.display = fontsRaw || colorsRaw ? '' : 'none';
+
+  // Déclinaisons (t-shirt, icône…) : « image|titre|texte|fond » séparés par « ;; ».
+  // Avec un fond : l'image (logo, icône) garde sa taille, centrée ; sans fond : la photo remplit la carte.
+  const extrasEl = document.getElementById('modalExtras');
+  extrasEl.innerHTML = '';
+  const extras = (tile.dataset.extras || '').split(';;').map(s => s.trim()).filter(Boolean);
+  extras.forEach(entry => {
+    const [src, title, text, bg] = entry.split('|').map(s => s.trim());
+    const fig = document.createElement('figure');
+    fig.className = 'modal-extra';
+    const visual = document.createElement('div');
+    visual.className = 'modal-extra-visual' + (bg ? ' is-contained' : '');
+    if (bg) visual.style.background = bg;
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = title;
+    img.loading = 'lazy';
+    visual.appendChild(img);
+    const caption = document.createElement('figcaption');
+    const h = document.createElement('h4');
+    h.textContent = title;
+    const p = document.createElement('p');
+    p.textContent = text;
+    caption.append(h, p);
+    fig.append(visual, caption);
+    extrasEl.appendChild(fig);
+  });
+  document.getElementById('modalExtrasWrap').style.display = extras.length ? '' : 'none';
 
   // Lien discret sous le titre + grand bouton sous les visuels
   const url = tile.dataset.url;

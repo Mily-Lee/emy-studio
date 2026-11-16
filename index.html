@@ -94,14 +94,14 @@
 
         <button type="button" class="pop-in project-tile"
           data-title="Megalith France" data-tag="Application"
-          data-imgs="assets/projects/megalith-mockup-responsive.mp4,assets/projects/tshirt-megalith.jpeg,assets/projects/icon-ecran.png"
-          data-captions="Démonstration animée de l'application,T-shirt Megalith France,Icône de l'application"
+          data-imgs="assets/projects/megalith-mockup-responsive.mp4"
+          data-captions="Démonstration animée de l'application"
+          data-extras="assets/projects/tshirt-megalith.jpeg|Le t-shirt|Le logo de Megalith France imprimé sur un t-shirt : la marque prend vie au-delà de l'écran.;;assets/projects/icon-ecran.png|L'icône de l'application|Une fois installée, la web app s'affiche sur l'écran d'accueil du téléphone avec sa propre icône, comme une application classique.|#1C2B30"
           data-detail="PWA mobile-first de recensement et d'exploration des mégalithes (menhirs, dolmens, tumulus), en France et dans plusieurs pays d'Europe. Conçue, designée et développée de A à Z : carte vectorielle avec clustering, radar GPS à 100 m, ajout et validation communautaire des sites, commentaires, système d'exploits, notifications push, interface en 5 langues (français, anglais, espagnol, allemand, italien)."
           data-tools="Vanilla JS · MapLibre · Supabase · PWA · Figma"
           data-colors="#C5A059,#1C2B30,#243840,#F0E8D8"
           data-fonts="Cinzel · Playfair Display"
           data-icon-bg="#1C2B30"
-          data-crop-gallery="true"
           data-url="https://megalithes-france.fr/">
           <div class="project-tile-visual" style="background: linear-gradient(160deg, #39464B 0%, #202B30 100%);">
             <img src="assets/projects/icon-ecran.png" alt="Megalith France" />
@@ -407,6 +407,10 @@
                 <div class="modal-swatches-grid" id="modalSwatches"></div>
               </div>
             </div>
+          </section>
+          <section class="modal-section" id="modalExtrasWrap">
+            <h3 class="modal-section-title">Déclinaisons</h3>
+            <div class="modal-extras" id="modalExtras"></div>
           </section>
         </div>
         <div class="modal-actions" id="modalActions">
