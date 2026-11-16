@@ -308,6 +308,34 @@ document.addEventListener('click', async (e) => {
 
 initGallery();
 
+// ===== Formulaire de devis : envoyé via Formspree, sans quitter la page =====
+// Le navigateur a déjà vérifié les champs obligatoires avant d'arriver ici.
+document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const btn = form.querySelector('button[type="submit"]');
+  const status = form.querySelector('.form-status');
+  form.querySelector('[name="_subject"]').value =
+    `[Emy Studio] Devis ${form.objet.value} : ${form.prenom.value} ${form.nom.value}`;
+  btn.disabled = true;
+  status.className = 'form-status';
+  status.textContent = 'Envoi en cours…';
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) throw new Error(res.status);
+    form.reset();
+    status.textContent = 'Merci ! Votre demande est bien partie, je vous réponds très vite.';
+  } catch {
+    status.classList.add('is-error');
+    status.textContent = "Oups, l'envoi n'a pas marché. Réessayez, ou écrivez-moi à contact@emystudio.fr.";
+  }
+  btn.disabled = false;
+});
+
 // ===== Une seule page : les liens du menu =====
 // Un clic sur un lien referme le menu mobile avant de glisser jusqu'à la section.
 links.addEventListener('click', (e) => {

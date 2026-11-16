@@ -417,6 +417,51 @@
         </li>
       </ul>
 
+      <form class="contact-form pop-in" id="contactForm" action="https://formspree.io/f/xrevkdvw" method="POST">
+        <h2 class="contact-form-title">Demande de devis</h2>
+        <p class="contact-form-intro">Parlez-moi de votre projet, je vous réponds rapidement. Les champs marqués d'une <span aria-hidden="true">*</span> sont obligatoires.</p>
+        <input type="hidden" name="_subject" value="[Emy Studio] Nouvelle demande de devis" />
+        <input type="text" name="_gotcha" class="contact-form-trap" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-nom">Nom <span aria-hidden="true">*</span></label>
+            <input type="text" id="cf-nom" name="nom" required autocomplete="family-name" />
+          </div>
+          <div class="form-field">
+            <label for="cf-prenom">Prénom <span aria-hidden="true">*</span></label>
+            <input type="text" id="cf-prenom" name="prenom" required autocomplete="given-name" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-email">Email <span aria-hidden="true">*</span></label>
+            <input type="email" id="cf-email" name="email" required autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label for="cf-objet">Objet <span aria-hidden="true">*</span></label>
+            <select id="cf-objet" name="objet" required>
+              <option value="" selected disabled>Choisissez…</option>
+              <option>Site vitrine</option>
+              <option>E-commerce</option>
+              <option>Identité visuelle</option>
+              <option>Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cf-message">Votre projet <span aria-hidden="true">*</span></label>
+          <textarea id="cf-message" name="message" rows="6" required placeholder="Votre activité, vos envies, vos délais… Dites-moi tout !"></textarea>
+        </div>
+        <label class="form-consent">
+          <input type="checkbox" name="rgpd" value="Accepté" required />
+          <span>J'accepte que les informations saisies soient utilisées pour répondre à ma demande. Elles ne seront jamais revendues ni cédées (voir les <a href="mentions-legales.html">mentions légales</a>). <span aria-hidden="true">*</span></span>
+        </label>
+        <div class="contact-form-actions">
+          <button type="submit" class="btn">Envoyer ma demande</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
     </div>
     </section>
 
