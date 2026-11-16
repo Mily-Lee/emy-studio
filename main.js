@@ -161,9 +161,10 @@ function openProjectModal(tile) {
   const fontsRaw = tile.dataset.fonts || '';
   fontsWrap.style.display = fontsRaw ? 'block' : 'none';
   fontsEl.textContent = '';
-  fontsRaw.split('·').map(s => s.trim()).filter(Boolean).forEach((name, i) => {
-    if (i) fontsEl.append(' · ');
+  // Une typo par ligne, affichée dans sa propre police
+  fontsRaw.split('·').map(s => s.trim()).filter(Boolean).forEach(name => {
     const span = document.createElement('span');
+    span.className = 'modal-font';
     span.textContent = name;
     applyFontPreview(span, name);
     fontsEl.appendChild(span);
