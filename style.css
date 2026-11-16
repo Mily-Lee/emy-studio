@@ -1724,7 +1724,7 @@ main.is-leaving {
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 0.6rem 2rem;
   margin-top: clamp(1.4rem, 3vw, 1.8rem);
   padding-top: 1rem;
