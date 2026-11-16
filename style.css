@@ -510,6 +510,13 @@ html { scrollbar-color: var(--accent) var(--bg); }
   max-width: 56rem;
   height: auto;
   margin: 0 auto;
+  /* Le masque suit exactement l'image affichée (object-fit: contain, centrée) */
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 .modal-gallery img {
   width: 100%;

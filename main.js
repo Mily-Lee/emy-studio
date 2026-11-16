@@ -114,6 +114,10 @@ function openProjectModal(tile) {
       const video = document.createElement('video');
       Object.assign(video, { src, muted: true, loop: true, autoplay: true, playsInline: true, preload: 'auto' });
       video.poster = src.replace(/\.mp4$/i, '-poster.jpg');
+      // Fond transparent : masque alpha statique (-mask.png) découpant les appareils et leur ombre.
+      const mask = `url("${src.replace(/\.mp4$/i, '-mask.png')}")`;
+      video.style.webkitMaskImage = mask;
+      video.style.maskImage = mask;
       video.setAttribute('aria-label', captions[i] || tile.dataset.title || '');
       galleryEl.appendChild(video);
       return;
