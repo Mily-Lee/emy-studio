@@ -57,10 +57,11 @@ scrollTopBtn.addEventListener('click', () => {
 // (assets/fonts/preview-*.woff2, seulement les lettres du nom, déclarées dans style.css).
 // Nouvelle typo dans un projet : ajouter son fichier preview et son @font-face.
 // Police manuscrite, trop fine à taille normale : affichée plus grande
-const FONT_SIZES = { 'Arizonia': '1.7em' };
+// (multiplicateur lu par le CSS via --font-scale)
+const FONT_SCALES = { 'Arizonia': 1.5 };
 function applyFontPreview(el, name) {
   el.style.fontFamily = `'${name}', 'Lato', sans-serif`;
-  if (FONT_SIZES[name]) el.style.fontSize = FONT_SIZES[name];
+  if (FONT_SCALES[name]) el.style.setProperty('--font-scale', FONT_SCALES[name]);
 }
 
 function openProjectModal(tile) {
@@ -157,14 +158,34 @@ function openProjectModal(tile) {
   const fontsRaw = tile.dataset.fonts || '';
   fontsWrap.style.display = fontsRaw ? 'block' : 'none';
   fontsEl.textContent = '';
-  // Une typo par ligne, affichée dans sa propre police
-  fontsRaw.split('·').map(s => s.trim()).filter(Boolean).forEach(name => {
-    const span = document.createElement('span');
-    span.className = 'modal-font';
-    span.textContent = name;
-    applyFontPreview(span, name);
-    fontsEl.appendChild(span);
+  // Une ligne par typo : « Aa » en grand, puis le nom et son rôle (la 1re pour les titres, la 2e pour le texte)
+  const fonts = fontsRaw.split('·').map(s => s.trim()).filter(Boolean);
+  const roles = fonts.length === 2 ? ['Titres', 'Texte'] : [];
+  fonts.forEach((name, i) => {
+    const row = document.createElement('div');
+    row.className = 'modal-font';
+    const sample = document.createElement('span');
+    sample.className = 'modal-font-sample';
+    sample.textContent = 'Aa';
+    sample.setAttribute('aria-hidden', 'true');
+    const info = document.createElement('span');
+    info.className = 'modal-font-info';
+    const fontName = document.createElement('span');
+    fontName.className = 'modal-font-name';
+    fontName.textContent = name;
+    info.appendChild(fontName);
+    if (roles[i]) {
+      const role = document.createElement('span');
+      role.className = 'modal-font-role';
+      role.textContent = roles[i];
+      info.appendChild(role);
+    }
+    applyFontPreview(sample, name);
+    applyFontPreview(fontName, name);
+    row.append(sample, info);
+    fontsEl.appendChild(row);
   });
+  document.getElementById('modalIdentity').style.display = fontsRaw || colorsRaw ? '' : 'none';
 
   // Lien discret sous le titre + grand bouton sous les visuels
   const url = tile.dataset.url;

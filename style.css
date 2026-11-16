@@ -611,17 +611,24 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: clamp(1.8rem, 4.5vw, 3.2rem);
   color: var(--ink);
 }
-/* Cartes claires, sur deux lignes :
-   1. la description, les outils à côté
-   2. les typos en grand, une petite carte par couleur à côté
+/* Fiche projet, lue de haut en bas : titre → visuel → « Le projet » → « Identité visuelle » */
+.modal-head { padding-bottom: 0; }
+.modal-content { padding-top: clamp(2.5rem, 6vw, 4.5rem); }
+.modal-section + .modal-section { margin-top: clamp(3rem, 7vw, 5rem); }
+.modal-section-title {
+  margin-bottom: 1.2rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  color: var(--ink);
+}
+/* Cartes claires côte à côte (empilées sur mobile).
    En flex : si une carte manque pour un projet, l'autre prend toute la ligne. */
 .modal-row {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 1rem;
 }
-.modal-row--text { margin-top: clamp(1.6rem, 3vw, 2.4rem); }
 @media (min-width: 900px) {
   .modal-row { flex-direction: row; }
   .modal-row--text > :first-child { flex: 2 1 0; }
@@ -653,14 +660,41 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink);
   margin-bottom: 1.2rem;
 }
-/* Typos : chaque nom en grand, dans sa propre police */
+/* Typos : « Aa » en grand dans la police, puis son nom et son rôle */
 .modal-font {
-  display: block;
-  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2rem);
+  padding: 1.3rem 0;
+  border-top: 1px solid rgba(24, 61, 64, 0.12);
+}
+.modal-font:first-child { padding-top: 0; border-top: none; }
+.modal-font:last-child { padding-bottom: 0; }
+.modal-font-sample {
+  flex: none;
+  min-width: clamp(4.5rem, 8vw, 6.5rem);
+  font-size: calc(clamp(3.2rem, 6vw, 4.6rem) * var(--font-scale, 1));
+  line-height: 1;
   color: var(--ink);
 }
-.modal-font + .modal-font { margin-top: 0.6rem; }
+.modal-font-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.modal-font-name {
+  font-size: calc(clamp(1.3rem, 2.2vw, 1.7rem) * var(--font-scale, 1));
+  line-height: 1.2;
+  color: var(--ink);
+}
+.modal-font-role {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
 /* Couleurs : une petite carte pleine par couleur, le code dedans */
 .modal-swatches-grid {
   display: grid;

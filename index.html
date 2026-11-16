@@ -373,34 +373,41 @@
             <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </button>
-        <div class="modal-body">
+        <!-- Fiche projet, lue de haut en bas : le titre, le visuel, le projet, l'identité visuelle -->
+        <div class="modal-body modal-head">
           <span class="project-tag" id="modalTag"></span>
           <h2 id="modalTitle"></h2>
           <a href="#" target="_blank" rel="noopener noreferrer" class="modal-site-link" id="modalSiteLink"></a>
           <span class="project-soon" id="modalSoon">Bientôt en ligne</span>
-          <!-- Ligne 1 : la description, les outils à côté -->
-          <div class="modal-row modal-row--text">
-            <div class="modal-panel">
-              <p class="modal-detail" id="modalDetail"></p>
-            </div>
-            <div class="modal-panel modal-meta" id="modalToolsWrap">
-              <span class="modal-meta-label">Outils</span>
-              <ul class="modal-tools" id="modalTools"></ul>
-            </div>
-          </div>
-          <!-- Ligne 2 : les typos en grand, une petite carte par couleur à côté -->
-          <div class="modal-row modal-row--identity">
-            <div class="modal-panel modal-meta" id="modalFontsWrap">
-              <span class="modal-meta-label">Typographies</span>
-              <div id="modalFonts"></div>
-            </div>
-            <div class="modal-swatches" id="modalColorsWrap" aria-label="Couleurs">
-              <div class="modal-swatches-grid" id="modalSwatches"></div>
-            </div>
-          </div>
         </div>
         <div class="modal-visual">
           <div class="modal-gallery" id="modalGallery"></div>
+        </div>
+        <div class="modal-body modal-content">
+          <section class="modal-section">
+            <h3 class="modal-section-title">Le projet</h3>
+            <div class="modal-row modal-row--text">
+              <div class="modal-panel">
+                <p class="modal-detail" id="modalDetail"></p>
+              </div>
+              <div class="modal-panel modal-meta" id="modalToolsWrap">
+                <span class="modal-meta-label">Outils</span>
+                <ul class="modal-tools" id="modalTools"></ul>
+              </div>
+            </div>
+          </section>
+          <section class="modal-section" id="modalIdentity">
+            <h3 class="modal-section-title">Identité visuelle</h3>
+            <div class="modal-row modal-row--identity">
+              <div class="modal-panel modal-meta" id="modalFontsWrap">
+                <span class="modal-meta-label">Typographies</span>
+                <div class="modal-fonts" id="modalFonts"></div>
+              </div>
+              <div class="modal-swatches" id="modalColorsWrap" aria-label="Couleurs">
+                <div class="modal-swatches-grid" id="modalSwatches"></div>
+              </div>
+            </div>
+          </section>
         </div>
         <div class="modal-actions" id="modalActions">
           <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="modalLink">Voir le projet</a>
