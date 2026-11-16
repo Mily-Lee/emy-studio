@@ -129,15 +129,24 @@ function openProjectModal(tile) {
 
   const toolsRaw = tile.dataset.tools || '';
   toolsWrap.style.display = toolsRaw ? 'block' : 'none';
-  toolsEl.textContent = toolsRaw;
+  toolsEl.innerHTML = '';
+  toolsRaw.split('·').map(s => s.trim()).filter(Boolean).forEach(name => {
+    const li = document.createElement('li');
+    li.textContent = name;
+    toolsEl.appendChild(li);
+  });
 
   const colorsRaw = tile.dataset.colors || '';
   swatchesEl.innerHTML = '';
   if (colorsRaw) {
     colorsRaw.split(',').map(c => c.trim()).filter(Boolean).forEach(hex => {
+      // Une petite carte remplie de la couleur, code écrit en clair ou en foncé selon le fond
       const swatch = document.createElement('span');
       swatch.className = 'modal-swatch';
-      swatch.innerHTML = `<span class="modal-swatch-dot" style="background:${hex};"></span>${hex}`;
+      swatch.style.background = hex;
+      const [r, g, b] = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
+      swatch.style.color = (r * 299 + g * 587 + b * 114) / 1000 > 150 ? '#183D40' : '#FFF7EC';
+      swatch.textContent = hex;
       swatchesEl.appendChild(swatch);
     });
     colorsWrap.style.display = 'block';
