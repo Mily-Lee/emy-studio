@@ -2114,7 +2114,7 @@ body.show-logo .nav-logo {
    au lieu d'être séparées par tout l'écran */
 @media (max-width: 559px) {
   .cover .wordmark { margin-block: auto 0; }
-  .home-projects { margin-top: 2rem; margin-bottom: auto; }
+  .home-projects { margin-top: 4.5rem; margin-bottom: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
