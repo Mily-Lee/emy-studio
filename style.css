@@ -2001,19 +2001,14 @@ body.show-logo .nav-logo {
   to { opacity: 1; transform: none; filter: blur(0); }
 }
 
-.hp-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
+/* Sous les cartes, le lien vers toutes les réalisations (le titre « Dernières
+   réalisations » reste dans l'aria-label de la bande, pour les lecteurs d'écran) */
+.hp-foot {
+  margin-top: 1.6rem;
+  text-align: center;
 }
-.hp-title {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+@media (max-width: 559px) {
+  .hp-foot { margin-top: 0.6rem; } /* la bande qui défile a déjà sa marge du bas */
 }
 .home-projects ul {
   list-style: none;
@@ -2110,7 +2105,7 @@ body.show-logo .nav-logo {
   transition: color 0.3s var(--ease);
 }
 .home-projects li a:hover .hp-name { color: var(--accent); }
-.hp-head .btn {
+.hp-foot .btn {
   opacity: 0;
   animation: hp-soft-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) 4.1s forwards;
 }
@@ -2123,7 +2118,7 @@ body.show-logo .nav-logo {
 .home-projects { margin-top: clamp(3.5rem, 8vh, 5.5rem); margin-bottom: auto; }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-projects, .home-projects li, .hp-head .btn { animation: none; opacity: 1; transform: none; filter: none; }
+  .home-projects, .home-projects li, .hp-foot .btn { animation: none; opacity: 1; transform: none; filter: none; }
   .home-projects .hp-visual, .home-projects .hp-text { animation: none; opacity: 1; transform: none; }
 }
 
