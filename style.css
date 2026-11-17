@@ -1572,6 +1572,15 @@ main.is-leaving {
   margin: 2rem auto 0;
   max-width: 34rem;
 }
+/* La phrase pour le client, sous le métier : plus douce, en minuscules */
+.wordmark .hero-pitch {
+  margin: 1.1rem auto 0;
+  max-width: 37rem;
+  text-wrap: balance;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
 .wordmark .tagline {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -1600,14 +1609,14 @@ main.is-leaving {
 
 /* ===== Boutons de l'accueil : ils arrivent en fondu, en toute discrétion ===== */
 .hero-actions {
-  margin-top: 3rem;
+  margin-top: 2rem;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
   opacity: 0;
   transform: translateY(16px);
-  animation: buttons-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 2.2s forwards;
+  animation: buttons-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards;
 }
 @keyframes buttons-reveal {
   to { opacity: 1; transform: translateY(0); }
@@ -1938,10 +1947,7 @@ body.show-logo .nav-logo {
   body.scrolled::before { opacity: 1; }
 }
 
-/* Accueil : « Mes réalisations » dans le style des liens du menu */
-.hero-actions { gap: clamp(1.6rem, 3.5vw, 3rem); }
-.hero-actions .btn,
-.hero-actions .btn:hover,
+/* Accueil : « Tout voir » dans le style des liens du menu */
 .home-projects .btn,
 .home-projects .btn:hover {
   position: relative;
@@ -1956,9 +1962,7 @@ body.show-logo .nav-logo {
   text-transform: uppercase;
   color: var(--ink);
 }
-.hero-actions .btn:hover,
 .home-projects .btn:hover { color: var(--accent); }
-.hero-actions .btn::after,
 .home-projects .btn::after {
   content: "";
   position: absolute;
@@ -1970,8 +1974,6 @@ body.show-logo .nav-logo {
   transform: scaleX(0);
   transition: transform 0.35s var(--ease);
 }
-.hero-actions .btn:hover::after,
-.hero-actions .btn:focus-visible::after,
 .home-projects .btn:hover::after,
 .home-projects .btn:focus-visible::after { transform: scaleX(1); }
 
@@ -2295,3 +2297,6 @@ body.pops-live .pop-in {
   pointer-events: none;
   border-image: linear-gradient(rgba(255, 217, 163, 0), var(--bg)) fill 0 // 0 100vmax;
 }
+
+/* Mots composés qu'on ne coupe pas au trait d'union */
+.nowrap { white-space: nowrap; }
