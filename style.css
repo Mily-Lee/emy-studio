@@ -142,7 +142,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 0.75rem;
   color: var(--ink-soft);
 }
-.about-intro h1 {
+.about-intro h2 {
   margin-top: 1rem;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -150,7 +150,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   line-height: 1.15;
   color: var(--ink);
 }
-.about-intro h1 .accent-word {
+.about-intro h2 .accent-word {
   color: var(--accent);
 }
 .about-intro .about-lead {
@@ -188,7 +188,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--accent);
 }
 
-.about-section h2 {
+.about-section h3 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
@@ -242,7 +242,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--bg);
   font-size: 0.95rem;
 }
-.about-card h2 { font-size: 1.3rem; margin-bottom: 0.7rem; }
+.about-card h3 { font-size: 1.3rem; margin-bottom: 0.7rem; }
 @media (min-width: 700px) {
   .about-section.about-card {
     display: grid;
@@ -276,7 +276,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 0.75rem;
   color: var(--ink-soft);
 }
-.realisations-header h1 {
+.realisations-header h2 {
   margin-top: 1rem;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -284,7 +284,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   line-height: 1.15;
   color: var(--ink);
 }
-.realisations-header h1 .accent-word { color: var(--accent); }
+.realisations-header h2 .accent-word { color: var(--accent); }
 .realisations-header p {
   margin-top: 1.2rem;
   font-family: 'Lato', sans-serif;
@@ -872,7 +872,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 0.75rem;
   color: var(--ink-soft);
 }
-.services-header h1 {
+.services-header h2 {
   margin-top: 1rem;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -880,7 +880,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   line-height: 1.15;
   color: var(--ink);
 }
-.services-header h1 .accent-word {
+.services-header h2 .accent-word {
   color: var(--accent);
 }
 .services-header p {
@@ -923,7 +923,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   margin: -2.2rem -1.9rem 1.8rem;
   border-radius: 1.5rem 1.5rem 0 0;
 }
-.service-card h2 {
+.service-card h3 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
@@ -954,7 +954,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 0.75rem;
   color: var(--ink-soft);
 }
-.process-header h2 {
+.process-header h3 {
   margin-top: 0.8rem;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -1052,7 +1052,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-weight: 700;
   font-size: 0.95rem;
 }
-.process-step h3 {
+.process-step h4 {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
@@ -1208,7 +1208,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: 0.75rem;
   color: var(--ink-soft);
 }
-.contact-header h1 {
+.contact-header h2 {
   margin-top: 1rem;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -1216,7 +1216,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   line-height: 1.15;
   color: var(--ink);
 }
-.contact-header h1 .accent-word { color: var(--accent); }
+.contact-header h2 .accent-word { color: var(--accent); }
 .contact-lead {
   margin-top: 1.2rem;
   font-family: 'Lato', sans-serif;
