@@ -2117,13 +2117,10 @@ body.show-logo .nav-logo {
 
 /* La signature reste centrée dans la place libre, la bande se pose en bas */
 .cover { flex-direction: column; }
-.cover .wordmark { margin-block: auto; }
-/* Téléphone : la signature et les réalisations restent ensemble, centrées,
-   au lieu d'être séparées par tout l'écran */
-@media (max-width: 559px) {
-  .cover .wordmark { margin-block: auto 0; }
-  .home-projects { margin-top: 4.5rem; margin-bottom: auto; }
-}
+/* La signature, le texte et les réalisations forment un seul bloc centré
+   dans l'écran, au lieu d'être séparés par un grand vide. Pareil partout. */
+.cover .wordmark { margin-block: auto 0; }
+.home-projects { margin-top: clamp(3.5rem, 8vh, 5.5rem); margin-bottom: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .home-projects, .home-projects li, .hp-head .btn { animation: none; opacity: 1; transform: none; filter: none; }
