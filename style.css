@@ -1132,6 +1132,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .cta-page p .accent-word { color: #C2602A; transition: color 0.9s ease; }
 .cta-page.bg-on p { color: var(--panel-text); }
 .cta-page.bg-on p .accent-word { color: #F0A060; } /* orange abricot, bien lisible sur le bleu */
+.hero-actions .btn,
+.hero-actions .btn:hover,
 .cta-page .btn,
 .cta-page .btn:hover,
 .modal-actions .btn,
@@ -1153,6 +1155,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink);
 }
 /* Trait toujours là, qui prend un peu de muscle au survol */
+.hero-actions .btn::after,
 .cta-page .btn::after,
 .modal-actions .btn::after,
 .lost-actions .btn::after,
@@ -1166,16 +1169,19 @@ html { scrollbar-color: var(--accent) var(--bg); }
   background: currentColor;
   transition: height 0.3s var(--ease);
 }
+.hero-actions .btn:hover,
 .cta-page .btn:hover,
 .modal-actions .btn:hover,
 .lost-actions .btn:hover,
 .contact-form .btn:hover { color: var(--accent); }
 .cta-page.bg-on .btn { color: var(--panel-text); transition: color 0.9s ease; }
 .cta-page.bg-on .btn:hover { color: #F0A060; transition-duration: 0.3s; }
+.hero-actions .btn:hover::after,
 .cta-page .btn:hover::after,
 .modal-actions .btn:hover::after,
 .lost-actions .btn:hover::after,
 .contact-form .btn:hover::after { height: 2px; }
+.hero-actions .btn:focus-visible,
 .cta-page .btn:focus-visible,
 .modal-actions .btn:focus-visible,
 .lost-actions .btn:focus-visible,
