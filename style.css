@@ -1384,6 +1384,17 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: clamp(1.5rem, 3vw, 1.9rem);
   color: var(--ink);
 }
+/* La petite promesse sous le titre : en capitales espacées, couleur brun rosé */
+.contact-form-promise {
+  margin: 0.5rem 0 1rem;
+  line-height: 1.7;
+  text-wrap: balance;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
 .contact-form-intro {
   margin: 0.6rem 0 1.8rem;
   line-height: 1.6;
