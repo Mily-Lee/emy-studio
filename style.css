@@ -2024,13 +2024,8 @@ body.show-logo .nav-logo {
 .home-projects li:nth-child(4) { --delay: 3.15s; }
 .home-projects .hp-visual {
   transform: scale(0);
-  animation:
-    hp-bubble 0.9s cubic-bezier(0.3, 0, 0.3, 1) var(--delay) forwards,
-    hp-float 4.5s ease-in-out calc(var(--delay) + 0.9s) infinite alternate;
+  animation: hp-bubble 0.9s cubic-bezier(0.3, 0, 0.3, 1) var(--delay) forwards;
 }
-.home-projects li:nth-child(2) .hp-visual { animation-duration: 0.9s, 5.2s; }
-.home-projects li:nth-child(3) .hp-visual { animation-duration: 0.9s, 3.9s; }
-.home-projects li:nth-child(4) .hp-visual { animation-duration: 0.9s, 4.8s; }
 @keyframes hp-bubble {
   0%   { transform: scale(0); }
   50%  { transform: scale(1.14); }
@@ -2042,10 +2037,6 @@ body.show-logo .nav-logo {
   opacity: 0;
   transform: translateX(-10px);
   animation: hp-soft-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--delay) + 0.35s) forwards;
-}
-@keyframes hp-float {
-  from { translate: 0 0; rotate: -1.5deg; }
-  to   { translate: 0 -4px; rotate: 1.5deg; }
 }
 .home-projects li a {
   display: flex;
@@ -2061,9 +2052,9 @@ body.show-logo .nav-logo {
   transform: translateY(-3px);
   box-shadow: 0 18px 36px -22px rgba(24, 61, 64, 0.45);
 }
-/* Téléphone : les cartes sur une seule ligne qu'on fait défiler du doigt.
-   La bande déborde jusqu'aux bords de l'écran, la carte suivante dépasse
-   un peu pour montrer qu'il y a une suite. */
+/* Téléphone : les cartes sur une seule ligne qui défile doucement toute seule
+   (main.js), et qu'on peut aussi faire glisser du doigt. La bande déborde
+   jusqu'aux bords de l'écran. */
 @media (max-width: 559px) {
   .home-projects ul {
     display: flex;
@@ -2071,13 +2062,16 @@ body.show-logo .nav-logo {
     margin-inline: -2rem;
     padding: 0.4rem 2rem 1rem;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 2rem;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
   .home-projects ul::-webkit-scrollbar { display: none; }
-  .home-projects li { flex: 0 0 72%; scroll-snap-align: start; }
+  .home-projects li { flex: 0 0 72%; }
+}
+/* Les copies servent seulement à la boucle du défilement sur téléphone */
+.home-projects li:nth-child(n+5) { --delay: 3.4s; }
+@media (min-width: 560px) {
+  .home-projects li[aria-hidden="true"] { display: none; }
 }
 .hp-visual {
   flex: none;

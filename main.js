@@ -577,3 +577,52 @@ document.querySelectorAll('.process').forEach(process => {
 
 // ===== Pied de page : l'année du copyright se met à jour toute seule (une chose de moins à penser) =====
 document.querySelector('.footer-year').textContent = new Date().getFullYear();
+
+// ===== Accueil, téléphone : les réalisations défilent doucement toutes seules =====
+// On double la liste pour boucler sans à-coup. Un doigt posé met en pause,
+// le défilement reprend tranquillement quelques secondes après.
+const hpList = document.querySelector('.home-projects ul');
+const phone = window.matchMedia('(max-width: 559px)');
+if (hpList && !reduceMotion.matches) {
+  const originals = [...hpList.children];
+  originals.forEach(li => {
+    const copy = li.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    const link = copy.querySelector('a');
+    link.tabIndex = -1;
+    link.addEventListener('click', (e) => { e.preventDefault(); li.querySelector('a').click(); });
+    hpList.appendChild(copy);
+  });
+
+  const SPEED = 22;            // pixels par seconde : tout doux
+  let pos = 0, last = 0, pausedUntil = performance.now() + 4500; // on attend la fin de l'arrivée des cartes
+  const pause = () => { pausedUntil = Infinity; };
+  const resume = () => { pausedUntil = performance.now() + 3000; };
+  hpList.addEventListener('pointerdown', pause);
+  hpList.addEventListener('touchstart', pause, { passive: true });
+  hpList.addEventListener('touchend', resume);
+  hpList.addEventListener('pointerup', resume);
+  hpList.addEventListener('pointercancel', resume);
+
+  let running = false;
+  const step = (now) => {
+    if (!phone.matches) { running = false; return; } // ordinateur : la boucle s'arrête
+    const dt = Math.min(now - last, 100) / 1000;
+    last = now;
+    if (now >= pausedUntil) {
+      const loop = hpList.children[originals.length].offsetLeft - hpList.children[0].offsetLeft;
+      if (Math.abs(hpList.scrollLeft - pos) > 2) pos = hpList.scrollLeft; // le doigt a bougé la bande
+      pos += SPEED * dt;
+      if (pos >= loop) pos -= loop;
+      hpList.scrollLeft = pos;
+    }
+    requestAnimationFrame(step);
+  };
+  const start = () => {
+    if (running || !phone.matches) return;
+    running = true;
+    requestAnimationFrame((now) => { last = now; step(now); });
+  };
+  phone.addEventListener('change', start);
+  start();
+}
