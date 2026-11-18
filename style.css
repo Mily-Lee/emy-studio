@@ -1141,31 +1141,40 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink-soft);
   font-size: var(--text);
 }
-/* Étapes 3 et 4 illustrées, côte à côte sous les cartes */
-.process-visuals {
-  display: grid;
-  gap: 1.2rem;
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+/* Étapes 3 et 4 : la carte se retourne (survol, toucher ou clavier) et montre l'image.
+   Le recto (rond, titre, texte) disparaît de dos ; l'image, posée à l'envers, apparaît. */
+.process-step--flip {
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s var(--ease);
+  cursor: pointer;
 }
-@media (min-width: 700px) {
-  .process-visuals { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-}
-.process-visual img {
-  display: block;
+.process-step--flip::before,
+.process-step--flip > :not(.flip-back) { backface-visibility: hidden; }
+.process-step--flip .flip-back {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  border-radius: 1.5rem;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transform: rotateY(180deg) translateZ(1px);
+  backface-visibility: hidden;
 }
-.process-visual figcaption {
-  margin-top: 0.9rem;
-  font-family: 'Lato', sans-serif;
-  font-size: var(--text-sm);
-  color: var(--ink-soft);
+.process-step--flip.is-flipped { transform: rotateY(180deg); }
+@media (hover: hover) {
+  .process-step--flip:hover { transform: rotateY(180deg); }
 }
-.process-visual figcaption strong {
-  display: block;
-  font-size: 1.05rem;
-  color: var(--ink);
+.process-step--flip:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+/* Petit signe « ça se retourne » dans le coin */
+.flip-hint {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  color: var(--accent);
+  opacity: 0.8;
+}
+@media (prefers-reduced-motion: reduce) {
+  .process-step--flip { transition: none; }
 }
 /* Les ronds se remplissent un à un pendant qu'on défile (merci main.js) */
 .process.is-live .process-step::before {

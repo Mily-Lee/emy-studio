@@ -594,6 +594,13 @@ document.querySelectorAll('.process').forEach(process => {
   update();
 });
 
+// ===== Étapes 3 et 4 : au toucher (pas de survol sur téléphone) ou à la touche Entrée, la carte se retourne =====
+document.querySelectorAll('.process-step--flip').forEach(card => {
+  const flip = () => card.classList.toggle('is-flipped');
+  card.addEventListener('click', () => { if (!matchMedia('(hover: hover)').matches) flip(); });
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+});
+
 // ===== Pages titre : un titre plus haut que l'écran défile jusqu'en bas, puis se fige =====
 {
   const titles = document.querySelectorAll('.title-page');
