@@ -296,6 +296,9 @@ function initGallery() {
   });
   document.getElementById('modalClose').addEventListener('click', closeProjectModal);
   modal.querySelector('.modal-backdrop').addEventListener('click', closeProjectModal);
+  // Lien direct vers une fiche (realisations.html#nectar-sauvage) : elle s'ouvre toute seule
+  const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (target && target.classList.contains('project-tile')) openProjectModal(target);
 }
 
 // Branché une seule fois au chargement, pour ne pas empiler les écouteurs
@@ -305,6 +308,25 @@ document.addEventListener('keydown', (e) => {
   if (document.getElementById('lightbox')?.open) return;
   if (modal && modal.classList.contains('open') && e.key === 'Escape') closeProjectModal();
 });
+
+// ===== Page Réalisations : les onglets qui rangent les vignettes par catégorie =====
+const filtersEl = document.querySelector('.project-filters');
+if (filtersEl) {
+  const tiles = [...document.querySelectorAll('.projects-grid .project-tile')];
+  const cats = ['Tout', ...new Set(tiles.map(t => t.dataset.category).filter(Boolean))];
+  cats.forEach((cat, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'project-filter';
+    btn.textContent = cat;
+    btn.setAttribute('aria-pressed', i === 0);
+    btn.addEventListener('click', () => {
+      filtersEl.querySelectorAll('.project-filter').forEach(b => b.setAttribute('aria-pressed', b === btn));
+      tiles.forEach(t => { t.hidden = cat !== 'Tout' && t.dataset.category !== cat; });
+    });
+    filtersEl.appendChild(btn);
+  });
+}
 
 // ===== Image agrandie (flyer, t-shirt…) : un clic n'importe où la referme =====
 function openLightbox(src, alt) {

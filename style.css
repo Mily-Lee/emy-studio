@@ -315,6 +315,63 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .project-tile { grid-column: span 1 !important; }
 }
 
+/* Sous les 3 vignettes de l'accueil : le lien vers la page Réalisations */
+.projects-more {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+/* Page Réalisations : onglets en lettres capitales, soulignés quand ils sont choisis
+   (même esprit que les liens-boutons du site, pas de pastilles) */
+.realisations-header h1 {
+  margin-top: 1rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+  color: var(--ink);
+}
+.realisations-header h1 .accent-word { color: var(--accent); }
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2rem;
+  margin: -1.5rem 0 2.5rem;
+}
+.project-filter {
+  position: relative;
+  padding: 0.4rem 0;
+  border: none;
+  background: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+}
+.project-filter::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.22em;
+  bottom: 0;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.3s var(--ease);
+}
+.project-filter:hover { color: var(--accent); }
+.project-filter[aria-pressed="true"] { color: var(--ink); }
+.project-filter[aria-pressed="true"]::after { transform: scaleX(1); }
+.project-filter:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+.project-tile[hidden] { display: none; }
+/* Page Réalisations : en-tête et onglets centrés, comme le reste du site */
+.realisations-page--all .realisations-header { margin-left: auto; margin-right: auto; text-align: center; }
+.realisations-page--all .project-filters { justify-content: center; }
+
 /* Vignette pleine image, étiquette et titre posés en bas ; les détails s'ouvrent dans la fiche */
 .project-tile {
   position: relative;
@@ -354,6 +411,14 @@ html { scrollbar-color: var(--accent) var(--bg); }
   max-height: 55%;
   object-fit: contain;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Vignette print (le flyer) : posé en grand sur la carte, avec une ombre de papier,
+   en laissant la place au titre en bas */
+.project-tile-visual--print { padding-bottom: 5.5rem; }
+.project-tile-visual--print img {
+  max-width: 82%;
+  max-height: 100%;
+  box-shadow: 0 14px 28px -12px rgba(59, 42, 34, 0.45);
 }
 .project-tile:hover .project-tile-visual img,
 .project-tile:focus-visible .project-tile-visual img {
@@ -1153,6 +1218,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .cta-page.bg-on p .accent-word { color: #F0A060; } /* orange abricot, bien lisible sur le bleu */
 .hero-actions .btn,
 .hero-actions .btn:hover,
+.projects-more .btn,
+.projects-more .btn:hover,
 .cta-page .btn,
 .cta-page .btn:hover,
 .modal-actions .btn,
@@ -1175,6 +1242,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 /* Trait toujours là, qui prend un peu de muscle au survol */
 .hero-actions .btn::after,
+.projects-more .btn::after,
 .cta-page .btn::after,
 .modal-actions .btn::after,
 .lost-actions .btn::after,
@@ -1189,6 +1257,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   transition: height 0.3s var(--ease);
 }
 .hero-actions .btn:hover,
+.projects-more .btn:hover,
 .cta-page .btn:hover,
 .modal-actions .btn:hover,
 .lost-actions .btn:hover,
@@ -1196,11 +1265,13 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .cta-page.bg-on .btn { color: var(--panel-text); transition: color 0.9s ease; }
 .cta-page.bg-on .btn:hover { color: #F0A060; transition-duration: 0.3s; }
 .hero-actions .btn:hover::after,
+.projects-more .btn:hover::after,
 .cta-page .btn:hover::after,
 .modal-actions .btn:hover::after,
 .lost-actions .btn:hover::after,
 .contact-form .btn:hover::after { height: 2px; }
 .hero-actions .btn:focus-visible,
+.projects-more .btn:focus-visible,
 .cta-page .btn:focus-visible,
 .modal-actions .btn:focus-visible,
 .lost-actions .btn:focus-visible,

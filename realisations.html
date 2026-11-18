@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Réalisations · Emy Studio</title>
+<meta name="description" content="Les réalisations d'Emy Studio : sites vitrines, application, concepts et print. Filtrez par catégorie et ouvrez chaque projet pour découvrir les détails." />
+<link rel="canonical" href="https://www.emystudio.fr/realisations.html" />
+<meta name="theme-color" content="#FFD9A3" />
+<link rel="icon" href="favicon.ico?v=2" sizes="any" />
+<link rel="icon" type="image/png" href="assets/icon-512.png?v=2" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:site_name" content="Emy Studio" />
+<meta property="og:title" content="Réalisations · Emy Studio" />
+<meta property="og:description" content="Les réalisations d'Emy Studio : sites vitrines, application, concepts et print. Filtrez par catégorie et ouvrez chaque projet pour découvrir les détails." />
+<meta property="og:url" content="https://www.emystudio.fr/realisations.html" />
+<meta property="og:image" content="https://www.emystudio.fr/assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preload" href="assets/fonts/lato-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/corinthia-700-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="subpage">
+
+  <button class="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false"></button>
+
+  <main class="page">
+    <div class="realisations-page realisations-page--all">
+
+      <div class="realisations-header">
+        <p class="eyebrow">Réalisations</p>
+        <h1>Des projets qui racontent <span class="accent-word">une histoire</span>.</h1>
+        <p>Sites vitrines, application, concepts et supports print : choisissez une catégorie, puis cliquez sur une vignette pour découvrir les détails.</p>
+      </div>
+
+      <!-- Les onglets sont créés par main.js à partir des data-category des vignettes :
+           une nouvelle catégorie apparaît toute seule dès qu'une vignette l'utilise -->
+      <div class="project-filters" role="group" aria-label="Filtrer les réalisations par catégorie"></div>
+
+      <div class="projects-grid">
+
+        <button type="button" id="megalith-france" class="pop-in project-tile"
+          data-title="Megalith France" data-category="Application" data-tag="Application"
+          data-role="Conception et parcours utilisateur;Maquettes sur Figma;Logo et icône sur Illustrator;Développement complet de l'application;Référencement (SEO);Base de données et mise en ligne"
+          data-imgs="assets/projects/megalith-mockup-responsive.mp4"
+          data-captions="Démonstration animée de l'application"
+          data-extras="assets/projects/tshirt-megalith.jpeg|Le t-shirt|Le logo de Megalith France imprimé sur un t-shirt : la marque prend vie au-delà de l'écran.;;assets/projects/icon-ecran.png|L'icône de l'application|Une fois installée, la web app s'affiche sur l'écran d'accueil du téléphone avec sa propre icône, comme une application classique.|#1C2B30"
+          data-detail="PWA mobile-first de recensement et d'exploration des mégalithes (menhirs, dolmens, tumulus), en France et dans plusieurs pays d'Europe. Conçue, designée et développée de A à Z : carte vectorielle avec clustering, radar GPS à 100 m, ajout et validation communautaire des sites, commentaires, système d'exploits, notifications push, interface en 5 langues (français, anglais, espagnol, allemand, italien)."
+          data-tools="Vanilla JS · MapLibre · Supabase · PWA · Figma · Illustrator"
+          data-logo="assets/projects/megalith-logo.svg"
+          data-colors="#C5A059,#1C2B30,#243840,#F0E8D8"
+          data-fonts="Cinzel · Playfair Display"
+          data-icon-bg="#1C2B30"
+          data-url="https://megalithes-france.fr/">
+          <div class="project-tile-visual" style="background: linear-gradient(160deg, #39464B 0%, #202B30 100%);">
+            <img src="assets/projects/icon-ecran.png" alt="Megalith France" />
+          </div>
+          <span class="project-tile-overlay">
+            <span class="project-tile-cta">Application</span>
+            <span class="project-tile-title">Megalith France</span>
+          </span>
+        </button>
+
+        <button type="button" id="daemon-ia" class="pop-in project-tile"
+          data-title="Daemon-IA" data-category="Web design" data-tag="Web design"
+          data-role="Maquette sur Figma;Développement sur mesure;Logo et favicon sur Illustrator;Référencement (SEO)"
+          data-imgs="assets/projects/daemon-ia-mockup.mp4"
+          data-captions="Démonstration animée du site Daemon-IA"
+          data-detail="Site vitrine professionnel conçu de A à Z pour capter des prospects et crédibiliser la marque. Présentation de l'expertise en automatisation, IA et Micro-SaaS sur-mesure. Maquette Figma, puis développement sur mesure en HTML, CSS et JavaScript, sans CMS : micro-interactions, focus dynamique vert wasabi, navigation mobile fluide. Logo réalisé sur Illustrator."
+          data-tools="HTML · CSS · JavaScript · Figma · Illustrator"
+          data-logo="assets/projects/daemon-logo.svg"
+          data-logo-bg="#121212"
+          data-colors="#121212,#B4F857,#FFFFFF,#333333"
+          data-fonts="Montserrat · Plus Jakarta Sans"
+          data-url="https://daemon-ia.fr">
+          <div class="project-tile-visual" style="background: #121212;">
+            <img src="assets/projects/daemon-logo.png" alt="Logo Daemon-IA" style="max-width: 78%; max-height: 78%;" />
+          </div>
+          <span class="project-tile-overlay">
+            <span class="project-tile-cta">Web design</span>
+            <span class="project-tile-title">Daemon-IA</span>
+          </span>
+        </button>
+
+        <button type="button" id="jardin-de-nous-deux" class="pop-in project-tile project-tile--light"
+          data-title="Le Jardin de Nous Deux" data-category="Web design" data-tag="Web design"
+          data-role="Refonte d'un ancien site Drupal;Maquette validée avec la cliente;Accompagnement pour l'hébergement;WordPress développé en local, validé en visio;Thème enfant, menu et footer en PHP;Réservations et paiement en ligne avec WooCommerce;Référencement avec Yoast SEO;Mise en ligne du site"
+          data-imgs="assets/projects/jardin-mockup.mp4"
+          data-captions="Démonstration animée du site Le Jardin de Nous Deux"
+          data-detail="Refonte complète du site d'un jardin sculpté dans la pierre dorée, à 25 minutes de Lyon. Direction artistique &quot;carnet de voyage&quot; : papier déchiré, kraft, lanières de cuir, photos façon timbres. Développement WordPress sur mesure et système de réservation en ligne : calendrier des visites, réservation en trois étapes, places mises à jour en temps réel, liste des participants. L'association gère ses dates, tarifs et événements en toute autonomie. Site conforme RGPD, référencé et optimisé."
+          data-tools="WordPress · Elementor · WooCommerce · ACF · Yoast SEO · PHP · CSS · JavaScript"
+          data-extras="assets/projects/jardin-flyer.jpg|Le flyer|Un flyer imprimé dans le même esprit &quot;carnet de voyage&quot; que le site : papier ancien, bord déchiré, typographie manuscrite. Il présente le jardin, les visites sur réservation et renvoie vers le site grâce à un QR code.|#E7DCC9"
+          data-colors="#E7DCC9,#6B4228,#3B2A22,#065266"
+          data-fonts="Arizonia · Source Sans 3"
+          data-icon-bg="#E7DCC9"
+          data-url="https://www.jardin-de-nous-deux.fr/">
+          <div class="project-tile-visual" style="background: #E7DCC9;">
+            <img src="assets/projects/jardin-de-nous-deux-titre.webp" alt="Logo Le Jardin de Nous Deux" style="max-width: 75%; max-height: 70%;" />
+          </div>
+          <span class="project-tile-overlay">
+            <span class="project-tile-cta">Web design</span>
+            <span class="project-tile-title">Le Jardin de Nous Deux</span>
+          </span>
+        </button>
+
+        <button type="button" id="flyer-jardin-de-nous-deux" class="pop-in project-tile project-tile--light"
+          data-title="Flyer Le Jardin de Nous Deux" data-category="Print" data-tag="Print"
+          data-imgs="assets/projects/jardin-flyer.jpg"
+          data-captions="Le flyer du Jardin de Nous Deux"
+          data-detail="Un flyer imprimé dans le même esprit &quot;carnet de voyage&quot; que le site : papier ancien, bord déchiré, typographie manuscrite. Il présente le jardin, les visites sur réservation et renvoie vers le site grâce à un QR code."
+          data-url="https://www.jardin-de-nous-deux.fr/">
+          <div class="project-tile-visual project-tile-visual--print" style="background: #E7DCC9;">
+            <img src="assets/projects/jardin-flyer.jpg" alt="Flyer Le Jardin de Nous Deux" />
+          </div>
+          <span class="project-tile-overlay">
+            <span class="project-tile-cta">Print</span>
+            <span class="project-tile-title">Flyer Le Jardin de Nous Deux</span>
+          </span>
+        </button>
+
+        <button type="button" id="nectar-sauvage" class="pop-in project-tile"
+          data-title="Nectar Sauvage" data-category="Concept" data-tag="Concept"
+          data-imgs="assets/projects/nectar-sauvage-mockup.mp4"
+          data-captions="Démonstration animée du site Nectar Sauvage"
+          data-detail="Projet personnel : démo concept pour une miellerie artisanale. Site vitrine avec boutique en ligne : présentation des miels, panier, encart dédié aux professionnels. Ambiance chaleureuse inspirée des tons du miel et de la ruche."
+          data-tools="HTML · CSS · JS"
+          data-colors="#4b2f1e,#372418,#2f4f3a,#D98C1D,#b67a1d,#f2b84b,#f9f3e8"
+          data-fonts="Playfair Display · Montserrat"
+          data-url="https://nectar-sauvage.vercel.app/">
+          <div class="project-tile-visual" style="background: #4b2f1e;">
+            <img src="assets/projects/nectar-sauvage.webp" alt="Logo Nectar Sauvage" style="max-width: 100%; max-height: 100%;" />
+          </div>
+          <span class="project-tile-overlay">
+            <span class="project-tile-cta">Concept</span>
+            <span class="project-tile-title">Nectar Sauvage</span>
+          </span>
+        </button>
+
+        <button type="button" id="volt" class="pop-in project-tile"
+          data-title="VOLT" data-category="Concept" data-tag="Concept"
+          data-imgs="assets/projects/volt-mockup.mp4"
+          data-captions="Démonstration animée du site VOLT"
+          data-detail="Projet personnel : démo concept pour une entreprise d'électricité et domotique en Bretagne. Site premium avec animations GSAP, scroll fluide Lenis, sections interactives."
+          data-tools="HTML · CSS · JS · GSAP · Lenis"
+          data-colors="#060608,#19e3ff,#ffe600,#8df3ff,#f4f4f6"
+          data-fonts="Archivo Expanded"
+          data-url="https://demo-volt.vercel.app/">
+          <div class="project-tile-visual" style="background: #060608;">
+            <img src="assets/projects/volt-logo.svg" alt="Logo VOLT" style="max-width: 75%; max-height: 75%;" />
+          </div>
+          <span class="project-tile-overlay">
+            <span class="project-tile-cta">Concept</span>
+            <span class="project-tile-title">VOLT</span>
+          </span>
+        </button>
+
+        <button type="button" id="demacia-consulting" class="pop-in project-tile project-tile--light"
+          data-title="Demacia Consulting" data-category="Web design" data-tag="En cours"
+          data-detail="Site vitrine en cours de réalisation pour Demacia Consulting, cabinet de conseil en IA et automatisation pour PME. Design minimaliste et professionnel, orienté B2B."
+          data-tools="HTML · CSS · JS"
+          data-colors="#1A1A1A,#FFFFFF,#0066FF,#38A486,#F5F5F5">
+          <div class="project-tile-visual" style="background: #FAFCFC;">
+            <img src="assets/projects/demacia-logo.webp" alt="Logo Demacia Consulting" />
+          </div>
+          <span class="project-tile-overlay">
+            <span class="project-tile-cta">En cours</span>
+            <span class="project-tile-title">Demacia Consulting</span>
+          </span>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true" inert>
+      <div class="modal-backdrop"></div>
+      <div class="modal-card">
+        <button class="modal-close" id="modalClose" aria-label="Fermer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <!-- Fiche projet, à lire de haut en bas : le titre, le visuel, le projet, l'identité visuelle -->
+        <div class="modal-body modal-head">
+          <span class="project-tag" id="modalTag"></span>
+          <h2 id="modalTitle"></h2>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="modal-site-link" id="modalSiteLink"></a>
+          <span class="project-soon" id="modalSoon">Bientôt en ligne</span>
+        </div>
+        <div class="modal-visual">
+          <div class="modal-gallery" id="modalGallery"></div>
+        </div>
+        <div class="modal-body modal-content">
+          <section class="modal-section">
+            <h3 class="modal-section-title">Le projet</h3>
+            <div class="modal-row modal-row--text">
+              <div class="modal-panel">
+                <p class="modal-detail" id="modalDetail"></p>
+                <div class="modal-role-wrap" id="modalRoleWrap">
+                  <span class="modal-meta-label">Mon rôle</span>
+                  <ul class="modal-role" id="modalRole"></ul>
+                </div>
+              </div>
+              <div class="modal-panel modal-meta" id="modalToolsWrap">
+                <span class="modal-meta-label">Outils</span>
+                <ul class="modal-tools" id="modalTools"></ul>
+              </div>
+            </div>
+          </section>
+          <section class="modal-section" id="modalIdentity">
+            <h3 class="modal-section-title">Identité visuelle</h3>
+            <div class="modal-logo" id="modalLogoWrap">
+              <img id="modalLogo" alt="" />
+            </div>
+            <div class="modal-row modal-row--identity">
+              <div class="modal-panel modal-meta" id="modalFontsWrap">
+                <span class="modal-meta-label">Typographies</span>
+                <div class="modal-fonts" id="modalFonts"></div>
+              </div>
+              <div class="modal-swatches" id="modalColorsWrap" aria-label="Couleurs">
+                <div class="modal-swatches-grid" id="modalSwatches"></div>
+              </div>
+            </div>
+          </section>
+          <section class="modal-section" id="modalExtrasWrap">
+            <h3 class="modal-section-title">Déclinaisons</h3>
+            <div class="modal-extras" id="modalExtras"></div>
+          </section>
+        </div>
+        <div class="modal-actions" id="modalActions">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="modalLink">Voir le projet</a>
+        </div>
+      </div>
+    </div>
+    <dialog class="lightbox" id="lightbox" aria-label="Image agrandie">
+      <img alt="" />
+      <button type="button" class="lightbox-close" aria-label="Fermer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </dialog>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <p class="footer-logo"><span class="accent-word">Emy</span> Studio</p>
+        <p class="footer-tagline">Des sites internet épurés et sur-mesure, à l'image de votre projet.</p>
+      </div>
+      <nav class="footer-col" aria-label="Plan du site">
+        <p class="footer-title">Plan du site</p>
+        <ul class="footer-plan">
+          <li><a href="index.html#accueil">Accueil</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#apropos">À propos</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-title">Contact</p>
+        <ul>
+          <li><a href="mailto:contact@emystudio.fr">contact@emystudio.fr</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-title">Réseaux</p>
+        <ul>
+          <li><a href="https://www.instagram.com/emystudio_web/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/emilie-roupsard-15a058191/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© <span class="footer-year">2026</span> Emy Studio</p>
+    </div>
+  </footer>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html#accueil">Accueil</a></li>
+      <li><a href="realisations.html" class="active" aria-current="page">Réalisations</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#apropos">À propos</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <script src="main.js"></script>
+</body>
+</html>
