@@ -726,6 +726,23 @@ html { scrollbar-color: var(--accent) var(--bg); }
   font-size: var(--text-sm);
   color: var(--ink);
 }
+/* Mon rôle : ce que j'ai fait sur le projet, sous la description */
+.modal-role-wrap { margin-top: 1.8rem; }
+.modal-role {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  font-family: 'Lato', sans-serif;
+  font-size: var(--text);
+  color: var(--ink-soft);
+}
+.modal-role li { padding-left: 1.2rem; position: relative; }
+.modal-role li::before {
+  content: '';
+  position: absolute; left: 0; top: 0.7em;
+  width: 0.45rem; height: 1px;
+  background: currentColor;
+}
 /* Déclinaisons : une carte par support (photo ou icône) et son petit texte */
 .modal-extras {
   display: grid;

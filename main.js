@@ -73,6 +73,8 @@ function openProjectModal(tile) {
   const titleEl = document.getElementById('modalTitle');
   const detailEl = document.getElementById('modalDetail');
   const toolsWrap = document.getElementById('modalToolsWrap');
+  const roleWrap = document.getElementById('modalRoleWrap');
+  const roleEl = document.getElementById('modalRole');
   const toolsEl = document.getElementById('modalTools');
   const colorsWrap = document.getElementById('modalColorsWrap');
   const swatchesEl = document.getElementById('modalSwatches');
@@ -125,6 +127,15 @@ function openProjectModal(tile) {
     } else {
       galleryEl.appendChild(img);
     }
+  });
+
+  const myRole = (tile.dataset.role || '').split(';').map(s => s.trim()).filter(Boolean);
+  roleWrap.style.display = myRole.length ? 'block' : 'none';
+  roleEl.innerHTML = '';
+  myRole.forEach(text => {
+    const li = document.createElement('li');
+    li.textContent = text;
+    roleEl.appendChild(li);
   });
 
   const toolsRaw = tile.dataset.tools || '';
