@@ -416,7 +416,9 @@ if (spied.length) {
 // de la section suivante. Tout suit le scroll, dans les deux sens. Oui, même à reculons.
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const chapters = [...document.querySelectorAll('.chapter')];
-if (chapters.length && !reduceMotion.matches) {
+// Sur téléphone, pas de scène : elle se battait avec le doigt et la barre d'adresse
+const phoneScene = window.matchMedia('(max-width: 799px)');
+if (chapters.length && !reduceMotion.matches && !phoneScene.matches) {
   const clamp = (v) => Math.min(Math.max(v, 0), 1);
   // Puzzle : la photo de mon bureau découpée en morceaux de papier déchiré.
   // Les bords sont partagés entre voisins, donc les morceaux s'emboîtent pile poil.
