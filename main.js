@@ -596,7 +596,7 @@ document.querySelectorAll('.process').forEach(process => {
   update();
 });
 
-// ===== Étapes 3 et 4 : au toucher (pas de survol sur téléphone) ou à la touche Entrée, la carte se retourne =====
+// ===== La méthode : les cartes se retournent au toucher (un téléphone ne sait pas survoler) ou à la touche Entrée =====
 document.querySelectorAll('.process-step--flip').forEach(card => {
   const flip = () => card.classList.toggle('is-flipped');
   card.addEventListener('click', () => { if (!matchMedia('(hover: hover)').matches) flip(); });
@@ -604,7 +604,7 @@ document.querySelectorAll('.process-step--flip').forEach(card => {
 });
 // Coup d'œil une seule fois à l'arrivée à l'écran : on comprend qu'il y a une image derrière
 {
-  const flips = [...document.querySelectorAll('.process-step--flip')].slice(0, 1); // la 1re suffit à montrer le principe
+  const flips = [...document.querySelectorAll('.process-step--flip')].slice(0, 1); // la 1re montre l'astuce, les 5 autres ont compris
   const peekObs = new IntersectionObserver(entries => entries.forEach(({ isIntersecting, target }) => {
     if (!isIntersecting) return;
     peekObs.unobserve(target);

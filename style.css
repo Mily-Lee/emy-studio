@@ -1141,8 +1141,8 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink-soft);
   font-size: var(--text);
 }
-/* Étapes 3 et 4 : la carte se retourne (survol, toucher ou clavier) et montre l'image.
-   Le recto (rond, titre, texte) disparaît de dos ; l'image, posée à l'envers, apparaît. */
+/* Les 6 étapes jouent à pile ou face : survol, toucher ou clavier, et la carte se retourne sur son illustration.
+   Le recto (rond, titre, texte) disparaît de dos ; l'image, rangée à l'envers, prend sa place. */
 .process-step--flip {
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s var(--ease);
@@ -1752,9 +1752,8 @@ main.is-leaving {
 @keyframes buttons-reveal {
   to { opacity: 1; transform: translateY(0); }
 }
-/* Boutons du site : des pastilles sobres, même gabarit partout.
-   Le principal est plein (bleu canard, brun rosé au survol),
-   le secondaire a un fin contour qui se remplit au survol. */
+/* Boutons du site : la base commune. En vrai, presque partout ils se déguisent en liens
+   soulignés en majuscules (voir « Trait toujours là » plus haut) : les pastilles, très peu pour moi. */
 .btn {
   display: inline-flex;
   align-items: center;
