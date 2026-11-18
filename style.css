@@ -2060,21 +2060,27 @@ body.show-logo .nav-logo {
   .nav-logo { display: none; }
 }
 
-/* Mobile : le même bandeau abricot derrière l'icône trois barres dès qu'on défile */
+/* Mobile : le même bandeau abricot derrière l'icône trois barres dès qu'on défile.
+   Un vrai élément (créé par main.js), pas un ::before : sur iPhone, Safari ne repère
+   que les vrais bandeaux fixés en haut pour peindre sa barre de la même couleur.
+   Sinon on voyait le site défiler au-dessus du menu. Petit voyeur, va. */
+.nav-band { display: none; }
 @media (max-width: 720px) {
-  body::before {
-    content: "";
+  .nav-band {
+    display: block;
     position: fixed;
     z-index: 1120;
     inset: 0 0 auto 0;
     height: calc(1.8rem + 48px);
-    background: var(--bg);
-    box-shadow: 0 1px 0 rgba(24, 61, 64, 0.12);
-    opacity: 0;
+    background-color: rgba(255, 217, 163, 0);
     pointer-events: none;
-    transition: opacity 0.3s var(--ease);
+    transition: background-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
   }
-  body.scrolled::before { opacity: 1; }
+  body.scrolled .nav-band {
+    background-color: var(--bg);
+    box-shadow: 0 1px 0 rgba(24, 61, 64, 0.12);
+    pointer-events: auto; /* le menu et le logo sont posés par-dessus, ils restent cliquables */
+  }
 }
 
 /* Accueil : "Tout voir" dans le style des liens du menu */

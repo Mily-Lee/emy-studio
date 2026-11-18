@@ -15,6 +15,8 @@ burger.addEventListener('click', toggleMenu);
 
 // Le menu prend un fond dès qu'on quitte le haut de la page
 // Mobile : le logo apparaît à gauche une fois arrivé aux réalisations
+// Le bandeau abricot du téléphone : un vrai élément, pour que Safari le repère (voir style.css)
+document.body.prepend(Object.assign(document.createElement('div'), { className: 'nav-band' }));
 const logoFrom = document.getElementById('realisations');
 const markScrolled = () => {
   document.body.classList.toggle('scrolled', window.scrollY > 10);
