@@ -12,6 +12,26 @@
       "permanent": true
     },
     {
+      "source": "/realisations",
+      "destination": "/mes-realisations.html",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/#services",
+      "permanent": true
+    },
+    {
+      "source": "/apropos",
+      "destination": "/#apropos",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "permanent": true
+    },
+    {
       "source": "/realisations.html",
       "destination": "/mes-realisations.html",
       "permanent": true
