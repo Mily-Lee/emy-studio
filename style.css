@@ -2079,6 +2079,10 @@ body.show-logo .nav-logo {
     transition: background-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
   }
   body.scrolled::before {
+    /* Safari "touche" le haut de l'écran pour trouver la couleur de sa barre :
+       un bandeau qui laisse passer les clics est invisible pour lui. Le menu et le logo
+       restent cliquables, ils sont posés par-dessus. */
+    pointer-events: auto;
     background-color: var(--bg);
     box-shadow: 0 1px 0 rgba(24, 61, 64, 0.12);
   }
