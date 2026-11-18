@@ -13,7 +13,7 @@
     },
     {
       "source": "/realisations.html",
-      "destination": "/#realisations",
+      "destination": "/mes-realisations.html",
       "permanent": true
     },
     {

@@ -296,7 +296,7 @@ function initGallery() {
   });
   document.getElementById('modalClose').addEventListener('click', closeProjectModal);
   modal.querySelector('.modal-backdrop').addEventListener('click', closeProjectModal);
-  // Lien direct vers une fiche (realisations.html#nectar-sauvage) : elle s'ouvre toute seule
+  // Lien direct vers une fiche (mes-realisations.html#nectar-sauvage) : elle s'ouvre toute seule
   const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
   if (target && target.classList.contains('project-tile')) openProjectModal(target);
 }
