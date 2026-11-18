@@ -2066,8 +2066,10 @@ body.show-logo .nav-logo {
     content: "";
     position: fixed;
     z-index: 1120;
-    inset: 0 0 auto 0;
-    height: calc(1.8rem + 48px);
+    /* Il déborde de 100 px vers le haut : sur iPhone, la barre d'adresse est transparente
+       et on voyait le site défiler au-dessus du menu. Petit voyeur, va. */
+    inset: -100px 0 auto 0;
+    height: calc(1.8rem + 48px + 100px);
     background: var(--bg);
     box-shadow: 0 1px 0 rgba(24, 61, 64, 0.12);
     opacity: 0;
