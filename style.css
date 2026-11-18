@@ -1,6 +1,6 @@
 /* Coucou toi qui fouilles dans mon CSS !
    Les polices vivent ici, à la maison : pas de détour par Google Fonts, pas de mouchard.
-   Les fichiers « preview- » sont des polices au régime : juste les lettres de leur nom,
+   Les fichiers "preview-" sont des polices au régime : juste les lettres de leur nom,
    pour les fiches projets. Pourquoi charger tout l'alphabet quand on n'en montre que six ? */
 @font-face { font-family: 'Corinthia'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/corinthia-700-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 @font-face { font-family: 'Corinthia'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/corinthia-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
@@ -24,7 +24,7 @@
   --sand: #FFEBCF;         /* Abricot très clair : cartes et étiquettes */
   --panel: #183D40;        /* Bleu canard encore : menu, bouton principal, pied de page. Oui, j'ai un chouchou. */
   --panel-text: #FFD9A3;
-  --rose: #806D54;         /* Brun olive : la touche secondaire (« voir le projet ») */
+  --rose: #806D54;         /* Brun olive : la touche secondaire ("voir le projet") */
   --ease: cubic-bezier(0.65, 0, 0.35, 1);
   /* Texte de 17 px sur téléphone à 19 px sur ordinateur : ça grandit avec l'écran */
   --text: clamp(1.0625rem, 0.95rem + 0.4vw, 1.1875rem);
@@ -59,7 +59,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink); }
 
-/* ===== Le petit bouton « on remonte ! » ===== */
+/* ===== Le petit bouton "on remonte !" ===== */
 .scroll-top {
   position: fixed;
   bottom: 1.8rem;
@@ -653,7 +653,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   max-width: 100%;
   max-height: min(640px, 80vh);
 }
-/* La fiche se lit de haut en bas : titre, visuel, « Le projet », « Identité visuelle » */
+/* La fiche se lit de haut en bas : titre, visuel, "Le projet", "Identité visuelle" */
 .modal-head { padding-bottom: 0; }
 .modal-content { padding-top: clamp(2.5rem, 6vw, 4.5rem); }
 .modal-section + .modal-section { margin-top: clamp(3rem, 7vw, 5rem); }
@@ -716,7 +716,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--ink);
   margin-bottom: 1.2rem;
 }
-/* Typos : un grand « Aa » dans la police, puis son nom et son rôle */
+/* Typos : un grand "Aa" dans la police, puis son nom et son rôle */
 .modal-font {
   display: flex;
   align-items: center;
@@ -918,7 +918,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 }
 .modal-site-link:hover { color: var(--accent); }
 
-/* Le bouton « Voir le projet », sous les visuels */
+/* Le bouton "Voir le projet", sous les visuels */
 .modal-actions {
   display: none;
   flex: none;
@@ -1065,7 +1065,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary:hover { color: var(--accent); }
 .faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
-/* Le petit « + » qui devient « − » quand on ouvre. Un plus qui perd une jambe. */
+/* Le petit "+" qui devient "−" quand on ouvre. Un plus qui perd une jambe. */
 .faq-item summary::before,
 .faq-item summary::after {
   content: '';
@@ -1165,7 +1165,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .process-step--flip:hover { transform: rotateY(180deg); }
 }
 .process-step--flip:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
-/* Petit signe « ça se retourne » dans le coin */
+/* Petit signe "ça se retourne" dans le coin */
 .flip-hint {
   position: absolute;
   top: 1.4rem;
@@ -1173,7 +1173,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   color: var(--accent);
 }
 .flip-hint svg { width: 22px; height: 22px; }
-/* Le « coup d'œil » : une seule fois, quand la carte arrive à l'écran, elle se retourne
+/* Le "coup d'œil" : une seule fois, quand la carte arrive à l'écran, elle se retourne
    juste assez pour montrer l'image, puis revient (main.js pose la classe .peek) */
 .process-step--flip.peek { animation: flip-peek 1.6s cubic-bezier(0.45, 0, 0.25, 1) var(--peek-delay, 0s); }
 @keyframes flip-peek {
@@ -1206,7 +1206,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   .process-steps { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 }
 
-/* « Une idée en tête ? » (Services) et le mot de la fin d'À propos :
+/* "Une idée en tête ?" (Services) et le mot de la fin d'À propos :
    un écran entier qui passe au bleu canard en fondu quand on arrive dessus
    (classe bg-on, posée par main.js), et le texte passe à l'abricot en même temps */
 .cta-page {
@@ -1597,7 +1597,7 @@ main.is-leaving {
   opacity: 0;
 }
 
-/* ===== Accueil : « Emy Studio » au centre, la place d'honneur ===== */
+/* ===== Accueil : "Emy Studio" au centre, la place d'honneur ===== */
 .cover {
   position: relative;
   isolation: isolate;
@@ -1939,7 +1939,7 @@ main.is-leaving {
   line-height: 1;
   color: var(--panel-text);
 }
-.footer-logo .accent-word { color: #F0A060; } /* orange abricot, comme « Parlons-en. » sur le bleu : il fallait qu'Emy se voie */
+.footer-logo .accent-word { color: #F0A060; } /* orange abricot, comme "Parlons-en." sur le bleu : il fallait qu'Emy se voie */
 .footer-tagline {
   margin-top: 0.5rem;
   max-width: 22rem;
@@ -2030,7 +2030,7 @@ main.is-leaving {
   }
 }
 
-/* Mobile : le logo « Emy Studio » apparaît à gauche du bandeau, à partir des réalisations */
+/* Mobile : le logo "Emy Studio" apparaît à gauche du bandeau, à partir des réalisations */
 .nav-logo {
   position: fixed;
   z-index: 1150;
@@ -2077,7 +2077,7 @@ body.show-logo .nav-logo {
   body.scrolled::before { opacity: 1; }
 }
 
-/* Accueil : « Tout voir » dans le style des liens du menu */
+/* Accueil : "Tout voir" dans le style des liens du menu */
 .home-projects .btn,
 .home-projects .btn:hover {
   position: relative;
@@ -2108,7 +2108,7 @@ body.show-logo .nav-logo {
 .home-projects .btn:focus-visible::after { transform: scaleX(1); }
 
 /* ====================================
-   ACCUEIL : bande « Dernières réalisations »
+   ACCUEIL : bande "Dernières réalisations"
    En bas de l'écran d'accueil, sous la signature : 4 petites cartes côte à côte
    (2 × 2 sur téléphone), qui ouvrent chacune la fiche de leur projet.
    ==================================== */
@@ -2125,8 +2125,8 @@ body.show-logo .nav-logo {
   to { opacity: 1; transform: none; filter: blur(0); }
 }
 
-/* Sous les cartes, le lien vers toutes les réalisations (le titre « Dernières
-   réalisations » reste dans l'aria-label de la bande, pour les lecteurs d'écran) */
+/* Sous les cartes, le lien vers toutes les réalisations (le titre "Dernières
+   réalisations" reste dans l'aria-label de la bande, pour les lecteurs d'écran) */
 .hp-foot {
   margin-top: 1.6rem;
   text-align: center;
@@ -2254,7 +2254,7 @@ html { scroll-behavior: smooth; }
 .section-realisations .realisations-page { padding-top: 1rem; }
 
 /* ====================================
-   TRANSITION « LE BUREAU DE LA CRÉATRICE »
+   TRANSITION "LE BUREAU DE LA CRÉATRICE"
    Une scène épinglée : la photo de mon bureau éclate en morceaux de papier
    au fil du scroll (orchestré par main.js) pour dévoiler le titre des réalisations.
    Oui, j'ai passé beaucoup trop de temps dessus. Non, je ne regrette rien.
@@ -2294,7 +2294,7 @@ html { scroll-behavior: smooth; }
   pointer-events: none;
 }
 
-/* Ancre « Réalisations » : elle tombe pile quand tout est dégagé */
+/* Ancre "Réalisations" : elle tombe pile quand tout est dégagé */
 .scene-anchor {
   position: absolute;
   left: 0;

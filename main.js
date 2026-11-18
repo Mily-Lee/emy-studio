@@ -32,7 +32,7 @@ document.addEventListener('click', (e) => {
   if (burger.classList.contains('open') && !e.target.closest('.nav-links a, .nav-burger')) toggleMenu();
 });
 
-// ===== Bouton « on remonte ! » =====
+// ===== Bouton "on remonte !" =====
 // Créé une seule fois et accroché au body, il ne bouge plus.
 const scrollTopBtn = document.createElement('button');
 scrollTopBtn.type = 'button';
@@ -181,7 +181,7 @@ function openProjectModal(tile) {
   const fontsRaw = tile.dataset.fonts || '';
   fontsWrap.style.display = fontsRaw ? 'block' : 'none';
   fontsEl.textContent = '';
-  // Une ligne par typo : « Aa » en grand, puis le nom et son rôle (la 1re pour les titres, la 2e pour le texte)
+  // Une ligne par typo : "Aa" en grand, puis le nom et son rôle (la 1re pour les titres, la 2e pour le texte)
   const fonts = fontsRaw.split('·').map(s => s.trim()).filter(Boolean);
   const roles = fonts.length === 2 ? ['Titres', 'Texte'] : [];
   fonts.forEach((name, i) => {
@@ -220,7 +220,7 @@ function openProjectModal(tile) {
   }
   document.getElementById('modalIdentity').style.display = logoSrc || fontsRaw || colorsRaw ? '' : 'none';
 
-  // Déclinaisons (t-shirt, icône…) : « image|titre|texte|fond », séparées par « ;; ».
+  // Déclinaisons (t-shirt, icône…) : "image|titre|texte|fond", séparées par ";;".
   // Avec un fond : l'image garde sa taille, centrée. Sans fond : la photo remplit la carte.
   const extrasEl = document.getElementById('modalExtras');
   extrasEl.innerHTML = '';
@@ -289,7 +289,7 @@ function initGallery() {
   if (!modal || !tiles.length) return;
 
   tiles.forEach(tile => tile.addEventListener('click', () => openProjectModal(tile)));
-  // Accueil : chaque carte « Dernières réalisations » ouvre directement la fiche du projet
+  // Accueil : chaque carte "Dernières réalisations" ouvre directement la fiche du projet
   document.querySelectorAll('.home-projects a[data-project]').forEach(link => {
     const tile = [...tiles].find(t => t.dataset.title === link.dataset.project);
     if (tile) link.addEventListener('click', (e) => { e.preventDefault(); openProjectModal(tile); });
@@ -409,7 +409,7 @@ if (spied.length) {
   spied.forEach(el => spy.observe(el));
 }
 
-// ===== Transition « le bureau de la créatrice », entre les sections =====
+// ===== Transition "le bureau de la créatrice", entre les sections =====
 // Chaque .chapter = une section + une scène de papiers. À la fin de la section,
 // elle se fige et recule doucement pendant que les morceaux de papier glissent un à un
 // pour la recouvrir ; puis ils s'écartent depuis le centre pour dévoiler le titre
