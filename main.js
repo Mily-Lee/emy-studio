@@ -341,11 +341,14 @@ function openLightbox(src, alt) {
 }
 document.getElementById('lightbox')?.addEventListener('click', (e) => e.currentTarget.close());
 
-// ===== Contact : un clic sur l'email le copie. Plus d'excuse pour ne pas m'écrire ! =====
+// ===== Contact et pied de page : un clic sur l'email le copie. Plus d'excuse pour ne pas m'écrire ! =====
 document.addEventListener('click', async (e) => {
   const card = e.target.closest('[data-copy]');
   if (!card) return;
-  const hint = card.querySelector('.contact-card-hint');
+  e.preventDefault(); // le lien du pied de page n'essaie plus d'ouvrir une messagerie qui n'existe peut-être pas
+  // Dans le pied de page, pas de petit texte d'aide : c'est l'adresse elle-même qui dit merci
+  const hint = card.querySelector('.contact-card-hint') || card;
+  hint.dataset.default ??= hint.textContent;
   try {
     await navigator.clipboard.writeText(card.dataset.copy);
   } catch {
