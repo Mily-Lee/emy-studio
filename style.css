@@ -2403,4 +2403,14 @@ body.pops-live .pop-in {
   pointer-events: none;
   border-image: linear-gradient(rgba(255, 217, 163, 0), var(--bg)) fill 0 // 0 100vmax;
 }
+/* Téléphone, À propos : pas d'effet ici, la photo et le texte puis les 3 cartes à la suite */
+@media (max-width: 799px) {
+  #apropos .title-page {
+    position: static;
+    min-height: 0;
+    padding-bottom: 0;
+  }
+  #apropos .about-page { padding-top: 2.5rem; }
+  #apropos .title-after::before { display: none; }
+}
 
