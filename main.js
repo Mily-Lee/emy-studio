@@ -602,11 +602,11 @@ document.querySelectorAll('.process-step--flip').forEach(card => {
 });
 // Coup d'œil une seule fois à l'arrivée à l'écran : on comprend qu'il y a une image derrière
 {
-  const flips = [...document.querySelectorAll('.process-step--flip')];
+  const flips = [...document.querySelectorAll('.process-step--flip')].slice(0, 1); // la 1re suffit à montrer le principe
   const peekObs = new IntersectionObserver(entries => entries.forEach(({ isIntersecting, target }) => {
     if (!isIntersecting) return;
     peekObs.unobserve(target);
-    target.style.setProperty('--peek-delay', `${0.6 + flips.indexOf(target) * 0.35}s`); // après le rebond d'arrivée
+    target.style.setProperty('--peek-delay', '0.6s'); // après le rebond d'arrivée
     target.classList.add('peek');
     target.addEventListener('animationend', () => target.classList.remove('peek'), { once: true });
   }), { threshold: 0.7 });
