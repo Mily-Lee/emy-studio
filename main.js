@@ -64,6 +64,7 @@ function applyFontPreview(el, name) {
   if (FONT_SCALES[name]) el.style.setProperty('--font-scale', FONT_SCALES[name]);
 }
 
+let lastFocus = null;
 function openProjectModal(tile) {
   const modal = document.getElementById('projectModal');
   if (!modal) return;
@@ -251,7 +252,11 @@ function openProjectModal(tile) {
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
+  modal.inert = false;
   document.body.style.overflow = 'hidden';
+  // Clavier : on entre dans la fiche, et on reviendra sur ce qu'on avait cliqué en sortant
+  lastFocus = document.activeElement;
+  document.getElementById('modalClose').focus({ preventScroll: true });
 }
 
 function closeProjectModal() {
@@ -259,8 +264,10 @@ function closeProjectModal() {
   if (!modal) return;
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
+  modal.inert = true;   // fermée : ses boutons sortent du parcours au clavier
   modal.querySelectorAll('video').forEach(v => v.pause());
   document.body.style.overflow = '';
+  lastFocus?.focus({ preventScroll: true });
 }
 
 function initGallery() {

@@ -19,7 +19,7 @@
 :root {
   --bg: #FFD9A3;           /* Abricot : le fond, la couleur doudou du site */
   --ink: #183D40;          /* Bleu canard profond : textes et titres (les canards n'ont rien demandé) */
-  --ink-soft: #46696C;     /* Bleu gris, foncé exprès pour qu'on lise sans plisser les yeux : textes secondaires */
+  --ink-soft: #43666A;     /* Bleu gris, foncé exprès pour qu'on lise sans plisser les yeux : textes secondaires */
   --accent: #805E54;       /* Brun rosé : mots en couleur, liens et icônes, la petite touche de blush */
   --sand: #FFEBCF;         /* Abricot très clair : cartes et étiquettes */
   --panel: #183D40;        /* Bleu canard encore : menu, bouton principal, pied de page. Oui, j'ai un chouchou. */
