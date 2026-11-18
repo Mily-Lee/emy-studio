@@ -2314,6 +2314,12 @@ html { scroll-behavior: smooth; }
   left: 0;
   top: calc(100% - 100vh);
 }
+/* Sans la scène (téléphone, animations coupées) : l'ancre se met juste au-dessus du titre,
+   en laissant la place du bandeau du menu. Sinon on atterrissait encore dans l'accueil. */
+.chapter:not(.is-live) .scene-anchor {
+  top: 0;
+  scroll-margin-top: calc(1.8rem + 48px);
+}
 .paper-sticky {
   position: sticky;
   top: 0;

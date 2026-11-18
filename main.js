@@ -20,7 +20,7 @@ document.body.prepend(Object.assign(document.createElement('div'), { className: 
 const logoFrom = document.getElementById('realisations');
 const markScrolled = () => {
   document.body.classList.toggle('scrolled', window.scrollY > 10);
-  if (logoFrom) document.body.classList.toggle('show-logo', logoFrom.getBoundingClientRect().top <= 1);
+  if (logoFrom) document.body.classList.toggle('show-logo', logoFrom.getBoundingClientRect().top < 100); // 100 : l'ancre s'arrête sous le bandeau
 };
 window.addEventListener('scroll', markScrolled, { passive: true });
 markScrolled();
