@@ -1171,10 +1171,18 @@ html { scrollbar-color: var(--accent) var(--bg); }
   top: 1.4rem;
   right: 1.4rem;
   color: var(--accent);
-  opacity: 0.8;
+}
+.flip-hint svg { width: 22px; height: 22px; }
+/* Le « coup d'œil » : une seule fois, quand la carte arrive à l'écran, elle se retourne
+   juste assez pour montrer l'image, puis revient (main.js pose la classe .peek) */
+.process-step--flip.peek { animation: flip-peek 1.6s cubic-bezier(0.45, 0, 0.25, 1) var(--peek-delay, 0s); }
+@keyframes flip-peek {
+  0%, 100% { transform: none; }
+  35%, 60% { transform: rotateY(150deg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .process-step--flip { transition: none; }
+  .process-step--flip.peek { animation: none; }
 }
 /* Les ronds se remplissent un à un pendant qu'on défile (merci main.js) */
 .process.is-live .process-step::before {

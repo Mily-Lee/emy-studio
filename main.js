@@ -600,6 +600,18 @@ document.querySelectorAll('.process-step--flip').forEach(card => {
   card.addEventListener('click', () => { if (!matchMedia('(hover: hover)').matches) flip(); });
   card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
 });
+// Coup d'œil une seule fois à l'arrivée à l'écran : on comprend qu'il y a une image derrière
+{
+  const flips = [...document.querySelectorAll('.process-step--flip')];
+  const peekObs = new IntersectionObserver(entries => entries.forEach(({ isIntersecting, target }) => {
+    if (!isIntersecting) return;
+    peekObs.unobserve(target);
+    target.style.setProperty('--peek-delay', `${0.6 + flips.indexOf(target) * 0.35}s`); // après le rebond d'arrivée
+    target.classList.add('peek');
+    target.addEventListener('animationend', () => target.classList.remove('peek'), { once: true });
+  }), { threshold: 0.7 });
+  flips.forEach(card => peekObs.observe(card));
+}
 
 // ===== Pages titre : un titre plus haut que l'écran défile jusqu'en bas, puis se fige =====
 {
