@@ -479,20 +479,21 @@ html { scrollbar-color: var(--accent) var(--bg); }
   top: max(1rem, env(safe-area-inset-top));
   right: max(1rem, env(safe-area-inset-right));
   z-index: 5;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(24, 61, 64, 0.15);
-  background: var(--bg);
+  border: none;
+  background: var(--panel);     /* bleu canard plein : on le repère tout de suite */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ink);
+  color: var(--panel-text);
   cursor: pointer;
+  box-shadow: 0 10px 24px -10px rgba(24, 61, 64, 0.55);
   transition: background 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .modal-close:hover {
-  background: var(--sand);
+  background: var(--accent);
   transform: rotate(90deg);
 }
 
