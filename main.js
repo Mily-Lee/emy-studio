@@ -51,6 +51,18 @@ scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
+// Même bouton dans les fiches projets : c'est la fiche qui défile, pas la page
+const modalCard = document.querySelector('#projectModal .modal-card');
+if (modalCard) {
+  const modalTopBtn = scrollTopBtn.cloneNode(true);
+  modalTopBtn.classList.add('scroll-top--modal');
+  modalCard.after(modalTopBtn);
+  modalCard.addEventListener('scroll', () => {
+    modalTopBtn.classList.toggle('visible', modalCard.scrollTop > 400);
+  }, { passive: true });
+  modalTopBtn.addEventListener('click', () => modalCard.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
 // ===== Fiches projets : la fenêtre qui s'ouvre au clic sur une réalisation =====
 // Toutes les images du projet côte à côte dans une grille.
 // Chaque nom de typo s'affiche dans sa propre police, hébergée sur le site
@@ -250,6 +262,7 @@ function openProjectModal(tile) {
   actionsEl.style.display = url ? 'flex' : 'none';
   soonEl.style.display = url ? 'none' : 'inline-block';
 
+  modal.querySelector('.modal-card').scrollTop = 0;   // chaque fiche s'ouvre par le haut
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
   modal.inert = false;

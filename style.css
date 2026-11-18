@@ -82,6 +82,7 @@ html { scrollbar-color: var(--accent) var(--bg); }
   transition: opacity 0.4s var(--ease), transform 0.4s var(--ease),
               background 0.3s var(--ease), border-color 0.3s var(--ease);
 }
+.scroll-top--modal { z-index: 2; }   /* posé au-dessus de la fiche ouverte */
 .scroll-top.visible {
   opacity: 1;
   transform: translateY(0);
