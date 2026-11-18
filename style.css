@@ -2066,17 +2066,19 @@ body.show-logo .nav-logo {
     content: "";
     position: fixed;
     z-index: 1120;
-    /* Il déborde de 100 px vers le haut : sur iPhone, la barre d'adresse est transparente
-       et on voyait le site défiler au-dessus du menu. Petit voyeur, va. */
-    inset: -100px 0 auto 0;
-    height: calc(1.8rem + 48px + 100px);
-    background: var(--bg);
-    box-shadow: 0 1px 0 rgba(24, 61, 64, 0.12);
-    opacity: 0;
+    /* Collé pile en haut avec une vraie couleur de fond (pas juste de l'opacité) : sur iPhone,
+       Safari repère ce bandeau et peint la zone de sa barre d'adresse avec la même couleur.
+       Sinon on voyait le site défiler au-dessus du menu. Petit voyeur, va. */
+    inset: 0 0 auto 0;
+    height: calc(1.8rem + 48px);
+    background-color: rgba(255, 217, 163, 0);
     pointer-events: none;
-    transition: opacity 0.3s var(--ease);
+    transition: background-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
   }
-  body.scrolled::before { opacity: 1; }
+  body.scrolled::before {
+    background-color: var(--bg);
+    box-shadow: 0 1px 0 rgba(24, 61, 64, 0.12);
+  }
 }
 
 /* Accueil : "Tout voir" dans le style des liens du menu */
